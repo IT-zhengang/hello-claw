@@ -67,9 +67,14 @@ sudo apt install -y nodejs
 node --version
 ```
 
-看到 `v22.x.x` 说明成功：
+看到 `v22.x.x` 说明成功。
+
+<details>
+<summary>查看验证截图</summary>
 
 ![node --version 终端输出](/node-version.png)
+
+</details>
 
 <details>
 <summary>Windows 用户：什么是 WSL2？如何安装？</summary>
@@ -136,7 +141,12 @@ npm install -g openclaw@latest
 openclaw --version
 ```
 
+<details>
+<summary>查看验证截图</summary>
+
 ![openclaw --version 终端输出](/openclaw-version.png)
+
+</details>
 
 ## 2. 配置 AI 模型
 
@@ -177,23 +187,38 @@ openclaw onboard --install-daemon
 > **还没有 API Key？** 展开下方指南获取。
 
 <details>
-<summary>获取 API Key：以 OpenRouter 为例（免费）</summary>
+<summary>获取 API Key：注册 OpenRouter（免费模型，零成本入门）</summary>
 
 **第一步：注册账号**
 
 1. 访问 [OpenRouter 官网](https://openrouter.ai)
-2. 点击右上角"Sign In"，支持 Google / GitHub 账号登录
-3. 注册成功后即可使用带 `:free` 标识的免费模型，无需充值
+2. 点击右上角 **Sign In**，支持 Google、GitHub、邮箱等多种方式快速注册
+
+![OpenRouter 注册页面](/openrouter-signup.png)
 
 **第二步：创建 API 密钥**
 
-1. 登录后访问 [API Keys 页面](https://openrouter.ai/settings/keys)
-2. 点击"Create Key"
-3. 复制生成的密钥（以 `sk-or-v1-` 开头）
+1. 注册登录后，点击右上角**头像** → 选择 **Settings**
+2. 在左侧菜单选择 **API Keys**
+3. 点击 **Create** 创建一个新的 API Key
+4. 复制生成的密钥（以 `sk-or-v1-` 开头）
+
+![OpenRouter API Key 创建页面](/openrouter-token.png)
 
 > **重要**：API 密钥只会显示一次，请立即复制保存。丢失需重新创建。
 
-**关于免费模型**：OpenRouter 上带 `:free` 后缀的模型完全免费，如 `stepfun/step-3.5-flash:free`。免费模型有速率限制，日常学习足够使用。如果需要更高速率或更强模型，可以充值使用付费模型。
+**第三步：充值（可选）**
+
+OpenRouter 上带 `:free` 后缀的模型完全免费，如 `stepfun/step-3.5-flash:free`，日常学习足够使用。如果你想使用更强的付费模型：
+
+1. 点击左侧菜单的 **Credits** 进入充值页面
+2. 点击 **Add Credits** 进行充值
+3. OpenRouter 支持银联、VISA 等常见卡型，甚至还支持虚拟货币支付，非常方便
+4. 建议第一次充值最低限额 **5 美金**，够练手了
+
+![OpenRouter 充值页面](/openrouter-credits.png)
+
+> **省心提示**：如果后期使用量较大，可以在充值页面开启 **Auto Top Up**（自动充值），余额不足时自动补充，避免使用中断。
 
 </details>
 
@@ -320,9 +345,14 @@ openclaw channels add --channel qqbot --token "你的AppID:你的AppSecret"
 openclaw gateway restart
 ```
 
-执行完成后终端输出类似如下：
+执行完成后终端会显示配置成功信息。
+
+<details>
+<summary>查看终端输出截图</summary>
 
 ![QQ 机器人配置终端输出](/qq-bot-deploy-terminal.png)
+
+</details>
 
 ### 3.3 开始聊天
 
@@ -342,13 +372,16 @@ openclaw gateway restart
 openclaw status
 ```
 
+<details>
+<summary>查看 status 输出截图</summary>
+
 ![openclaw status 输出](/openclaw-status.png)
+
+</details>
 
 ```bash
 openclaw dashboard
 ```
-
-![openclaw dashboard 终端输出](/openclaw-dashboard-terminal.png)
 
 浏览器会自动打开控制面板 `http://localhost:18789`：
 

@@ -5,3 +5,5 @@ docs/.vitepress/cache
 .claude
 .vscode
 .omc
+
+CLAUDE.md
