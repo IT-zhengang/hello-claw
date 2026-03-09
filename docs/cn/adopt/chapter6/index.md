@@ -42,8 +42,14 @@ gog --version
 
 1. 访问 [Google Cloud Console](https://console.cloud.google.com/)，登录你的 Google 账号
 2. 如果已有项目（顶部会显示项目名），直接使用即可；如果没有，点击顶部**项目选择器**（Google Cloud 标志旁边的下拉框）→ **New Project** 创建一个
+
+![Google Cloud 项目创建](/google-cloud-project.png)
+
 3. 在左侧菜单点击 **APIs & Services → Library**
-4. 搜索并逐个启用以下 API（点击进入后点蓝色 **Enable** 按钮）：
+4. 在搜索栏中输入 API 名称，逐个搜索并启用以下 API（点击进入后点蓝色 **Enable** 按钮）：
+
+![在 API Library 搜索栏中搜索需要的 API](/google-library-search.png)
+
    - Gmail API
    - Google Calendar API
    - Google Drive API
@@ -81,6 +87,14 @@ gog auth add you@gmail.com --services gmail,calendar,drive,contacts,sheets,docs
 ```
 
 > 把 `you@gmail.com` 替换成你的实际 Gmail 地址，`/path/to/client_secret_xxx.json` 替换成你下载的凭证文件路径。
+
+运行后会自动打开浏览器进入 Google 授权页面。按以下步骤完成授权：
+
+1. 登录你的 Google 账号（就是你添加为测试用户的那个 Gmail）
+2. 一路点击 **Continue** 前进
+3. 当出现 **Select what gog-cli can access** 页面时，点击 **Select all** 选中所有权限，然后点击 **Continue**
+
+![Google OAuth 授权页面](/google-oauth.png)
 
 验证授权成功：
 
