@@ -10,8 +10,9 @@
 
 | 问题 | 原因 | 解决方案 |
 |------|------|---------|
-| `npm install -g openclaw` 失败 | Node.js 版本过低 | 升级到 Node.js 22+ |
-| 权限错误 | npm 全局安装权限不足 | 使用 `sudo` 或配置 npm prefix |
+| `npm install -g openclaw` 失败（macOS/Linux） | Node.js 版本过低 | 升级到 Node.js 22+ |
+| Windows 安装失败 | 脚本执行策略限制 | 以管理员身份运行 PowerShell，先执行 `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`，再运行 `iwr -useb https://openclaw.ai/install.ps1 \| iex` |
+| 权限错误 | npm 全局安装权限不足 | 使用 `sudo` 或配置 npm prefix（Windows 用户请用管理员 PowerShell） |
 | 网络超时 | npm 源不可访问 | 切换为淘宝源：`npm config set registry https://registry.npmmirror.com` |
 
 ### 1.2 API 连接问题

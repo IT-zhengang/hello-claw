@@ -39,6 +39,17 @@ openclaw [--dev] [--profile <name>] <command>
 
 ### 安装 OpenClaw
 
+**Windows 用户**（PowerShell 管理员模式）：
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+iwr -useb https://openclaw.ai/install.ps1 | iex
+```
+
+> 一键脚本会自动安装 Node.js、OpenClaw 并启动配置向导。
+
+**macOS / Linux / WSL2 用户**：
+
 ```bash
 # 通过 npm 安装（推荐）
 npm install -g openclaw@latest

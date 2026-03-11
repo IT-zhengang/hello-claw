@@ -176,6 +176,15 @@
 - 不要害怕出错，OpenClaw 最坏的结果就是重装
 
 **快速启动命令**：
+
+Windows 用户（PowerShell 管理员模式）：
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+iwr -useb https://openclaw.ai/install.ps1 | iex
+# 脚本会自动安装并启动配置向导
+```
+
+macOS / Linux / WSL2 用户：
 ```bash
 # 安装 OpenClaw
 npm install -g openclaw@latest

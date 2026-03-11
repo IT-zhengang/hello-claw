@@ -451,8 +451,7 @@ const quickStartPresets = {
   powershell: {
     label: 'Windows (PowerShell)',
     command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-iwr -useb https://openclaw.ai/install.ps1 | iex
-openclaw onboard --install-daemon`,
+iwr -useb https://openclaw.ai/install.ps1 | iex`,
   },
   macos: {
     label: 'macOS',
