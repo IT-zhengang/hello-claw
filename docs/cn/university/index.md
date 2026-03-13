@@ -101,8 +101,10 @@ clawhub install gog
   [awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills)
 - 技能发布、版本与安装入口：  
   [ClawHub 原版](https://clawhub.ai/) ｜ [中文 ClawHub（腾讯 SkillHub）](https://skillhub.tencent.com/#categories)
-- 本教程 Skills 章节（安装、配置、实战）：  
-  [第六章 技能系统入门](/cn/adopt/chapter6/)
+- 本教程 Tools 章节（工具集、定时任务、Web 搜索）：
+  [第六章 Tools 配置](/cn/adopt/chapter6/)
+- 技能开发与发布流程：
+  [附录 D 技能开发与发布指南](/cn/appendix/appendix-d)
 
 ---
 
