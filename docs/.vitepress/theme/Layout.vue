@@ -255,10 +255,6 @@
               </div>
             </div>
             <div class="flex items-center gap-4">
-              <span class="text-gray-400 text-xs">{{ quickStartLabel }}</span>
-              <span class="border border-white/10 text-gray-400 text-xs px-2 py-0.5 rounded flex items-center gap-1">
-                β BETA
-              </span>
             </div>
           </div>
           
@@ -691,7 +687,6 @@ openclaw onboard --install-daemon`,
   },
 }
 
-const quickStartLabel = computed(() => quickStartPresets[quickStartMode.value].label)
 const quickStartCommand = computed(() => quickStartPresets[quickStartMode.value].command)
 
 const stars = Array.from({ length: 100 }).map((_, i) => ({
