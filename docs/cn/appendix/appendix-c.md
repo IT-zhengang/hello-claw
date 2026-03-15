@@ -422,6 +422,7 @@ psql -d ironclaw -c 'CREATE EXTENSION IF NOT EXISTS vector;'
 | **CoPaw** | Python | 阿里通义 AgentScope 团队出品，钉钉原生集成，长期记忆（ReMe 框架），支持本地模型 | [agentscope-ai/CoPaw](https://github.com/agentscope-ai/CoPaw) |
 | **HiClaw** | Docker | Higress 社区多智能体协作平台，Manager-Worker 架构，人在回路中，内置 Matrix 服务器 | [higress-group/hiclaw](https://github.com/higress-group/hiclaw) |
 | **GenericAgent** | Python | 复旦 A3 实验室极简自主 Agent，自组织/自学习/自进化，可自动安装/卸载 OpenClaw 等复杂系统 | [lsdefine/pc-agent-loop](https://github.com/lsdefine/pc-agent-loop) |
+| **ClawRouter** | TypeScript | Agent 原生 LLM 智能路由，41+ 模型本地零延迟自动选路，ECO/AUTO/PREMIUM 三档省 92% 成本 | [BlockRunAI/ClawRouter](https://github.com/BlockRunAI/ClawRouter) |
 
 <details>
 <summary>各轻量方案适用场景</summary>
@@ -431,6 +432,7 @@ psql -d ironclaw -c 'CREATE EXTENSION IF NOT EXISTS vector;'
 - **TinyClaw**：需要多个 Agent 团队协作？TinyClaw 支持链式执行和扇出模式，每个 Agent 在隔离工作区中运行，适合复杂工作流编排。
 - **CoPaw**：阿里通义团队基于 AgentScope 框架打造的开源 Agent 工作台（[官网](https://copaw.bot/) / [GitHub](https://github.com/agentscope-ai/CoPaw)），Apache 2.0 开源。钉钉原生集成，也支持飞书/QQ/Discord/iMessage 等渠道。内置 ReMe（Remember Me, Refine Me）长期记忆框架、Tool Guard 安全层、主动心跳定时任务。支持 Ollama/llama.cpp/MLX 本地模型。适合**钉钉生态用户**和想要国产开源替代方案的开发者。
 - **HiClaw**：Higress 社区推出的多智能体协作平台（[官网](https://hiclaw.org/) / [GitHub](https://github.com/higress-group/hiclaw)）。Manager-Worker 架构：一个管理者智能体协调多个工作者并行处理复杂任务，基于 Matrix 开放协议通信，人在回路中（实时观察/介入/纠正）。工作者只使用消费级 Token，真实凭证存储在 Higress AI 网关中。支持 OpenClaw、NanoClaw、ZeroClaw 等多种运行时。前置条件 Docker Desktop（macOS/Windows）或 Docker Engine（Linux）。适合**需要多智能体团队协作**的场景。
+- **ClawRouter**：Agent 原生的 LLM 智能路由器（[GitHub](https://github.com/BlockRunAI/ClawRouter)），本地 15 维加权评分系统在 <1ms 内自动选择最优模型，零外部 API 调用。支持 41+ 模型（OpenAI/Anthropic/Google/DeepSeek/Moonshot/MiniMax 等），三档路由策略（ECO/AUTO/PREMIUM）可节省高达 92% 成本。使用 x402 微支付协议以 USDC 按请求付费，无需信用卡。适合**自建部署中希望优化多模型成本和路由**的用户。
 - **GenericAgent**：复旦大学 A3 实验室（与深圳夸夸菁领科技合作）研发的极简自主 Agent 框架，追求自组织、自学习、自进化。不依赖预定义工具链，而是通过理解系统环境自主决策——例如它能在极少提示下自动完成 OpenClaw 的安装和彻底卸载（含进程清理、配置残留、依赖回收）。提供[一键安装版](https://github.com/lsdefine/pc-agent-loop/release)，支持 Windows/macOS/Linux。
 
 </details>
@@ -446,6 +448,7 @@ psql -d ironclaw -c 'CREATE EXTENSION IF NOT EXISTS vector;'
 | **ZeroClaw** | Rust | ★★★☆☆ | 低 | ★★★☆☆ | ★★☆☆☆ | 无 | ★★☆☆☆ | 高性能 |
 | **HiClaw** | Docker | ★★☆☆☆ | 中 | ★★★★☆ | ★★★☆☆ | ★★★★★ | ★★★☆☆ | 团队协作 |
 | **GenericAgent** | Python | ★☆☆☆☆ | 低 | ★★★☆☆ | ★☆☆☆☆ | 无 | ★☆☆☆☆ | 通用自主Agent |
+| **ClawRouter** | TypeScript | ★★☆☆☆ | 低 | ★★★★☆ | — | 无 | — | 多模型路由/降本 |
 
 ---
 
