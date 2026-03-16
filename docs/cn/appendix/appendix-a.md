@@ -34,7 +34,7 @@ next:
 
 | 资源 | 地址 | 说明 |
 |------|------|------|
-| ⭐ ClawHub Skills Registry | <https://clawhub.ai> | 官方 Skills 注册中心，16,000+ 可用技能，支持搜索与发现 |
+| ⭐ ClawHub Skills Registry | <https://clawhub.ai> | 官方 Skills 注册中心，25,000+ 可用技能，支持搜索与发现 |
 | 腾讯 SkillHub | <https://skillhub.tencent.com> | ClawHub 国内镜像，中文搜索 + CDN 加速 + 精选 Top 50 安全审计技能 |
 
 ### 1.3 官方社区
