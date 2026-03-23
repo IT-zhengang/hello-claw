@@ -121,6 +121,28 @@ https://datawhalechina.github.io/hello-claw
 
 ---
 
+### 第3部：ロブスター大学（実践シナリオ編）
+
+| 記事 | 説明 | 状態 |
+| ---- | ---- | ---- |
+| [ロブスター大学：はじめにとSkills選択ガイド](./docs/cn/university/intro.md) | ClawHubとSkillHubのダブルエントリ、スキル分類マップ、選択の原則と推奨コース | ✅ |
+| [Vibe Coding 実践](./docs/cn/university/vibe-coding/index.md) | 対話から要件定義、PR作成までの全プロセス「対話即開発」ループ | ✅ |
+| [メールアシスタント実践（163）](./docs/cn/university/email-assistant/index.md) | IMAP/SMTP設定からスクリプト検証、cron定期実行による自動化 | ✅ |
+| [マルチエージェント協調（Multi OpenClaw / HiClaw）](./docs/cn/university/multi-claw-hiclaw/index.md) | 単一Workerのボトルネックから複数エージェント協調、タスク編成まで | ✅ |
+| [セキュリティチェックリスト](./docs/cn/university/security/index.md) | スキルとツールのセキュリティ境界、監査とインジェクション対策 | ✅ |
+| [Skill開発実践：ローカル健康管理アシスタント](./docs/cn/university/local-health-assistant/index.md) | MediWiseを基盤としたローカル優先の家庭向け健康管理ループ構築 | ✅ |
+---
+
+> 🎉 **ユースケースの貢献を歓迎します！**
+>
+> 独自のOpenClawユースケースや実践経験がある場合は、以下の方法で共有してください：
+>
+> - このセクションにあなたのケースを追加するPRを提出する
+> - ユースケースを説明するIssueを作成する
+> - コミュニティディスカッションに参加し、他の開発者と交流する
+>
+> すべての貢献が、より多くの人々にOpenClawの可能性を知らせる助けになります！
+
 ## 🦞 ユースケースギャラリー（随時更新）
 
 > あなたのロブスター活用事例を共有してください！ユニークなOpenClawのシナリオがあれば、PRやIssueの提出を歓迎します。

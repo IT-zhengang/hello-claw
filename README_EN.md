@@ -121,6 +121,28 @@ This is a comprehensive tutorial for OpenClaw, helping you master this powerful 
 
 ---
 
+### Part 3: Lobster University (Practical Scenarios)
+
+| Article | Description | Status |
+| ------- | ----------- | ------ |
+| [Lobster University: Intro & Skills Elective Guide](./docs/cn/university/intro.md) | ClawHub & SkillHub dual entry, skill taxonomy, selection principles and recommended courses | ✅ |
+| [Vibe Coding in Practice](./docs/cn/university/vibe-coding/index.md) | From chat requirements to PR, full "chat-as-code" loop via Feishu | ✅ |
+| [Email Assistant in Practice (163)](./docs/cn/university/email-assistant/index.md) | From IMAP/SMTP config to script validation and cron scheduling | ✅ |
+| [Multi-Agent Collaboration (Multi OpenClaw / HiClaw)](./docs/cn/university/multi-claw-hiclaw/index.md) | From single Worker bottleneck to multi-agent orchestration | ✅ |
+| [Security Checklist](./docs/cn/university/security/index.md) | Security boundaries of skills and tools, auditing and injection prevention | ✅ |
+| [Skill Development: Local Health Assistant](./docs/cn/university/local-health-assistant/index.md) | Building a local-first home health management loop based on MediWise | ✅ |
+---
+
+> 🎉 **Contributions are Welcome!**
+>
+> If you have unique OpenClaw use cases or practical experience, please share them by:
+>
+> - Submitting a PR to add your case to this section
+> - Opening an Issue describing your use case
+> - Joining community discussions to exchange ideas with other developers
+>
+> Every contribution helps more people discover the possibilities of OpenClaw!
+
 ## 🦞 Use Case Gallery (Continuously Updated)
 
 > Share your lobster use cases! If you have unique OpenClaw scenarios, welcome to submit a PR or Issue.
