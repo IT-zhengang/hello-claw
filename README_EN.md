@@ -44,7 +44,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 
 1. **Adopt Claw (User Guide)**: 11 chapters plus 7 appendices, covering installation (Ch. 1-3), core configuration (Ch. 4-6), operations and extensions (Ch. 7-9), and security plus client interfaces (Ch. 10-11)
 2. **Lobster University (Practical Scenarios)**: hands-on case studies centered on Skills selection and reusable workflow patterns
-3. **Build Claw (Developer Guide)**: 15 chapters that first break down OpenClaw source code and alternatives, then move into Skills, channels, and full customization
+3. **Build Claw (Developer Guide)**: 11 chapters that first break down OpenClaw source code and alternatives, then move into Skills, channels, and full customization
 
 **Who is this for:**
 
@@ -149,7 +149,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 
 ---
 
-### Part 2: Build Claw (Developer Guide, 15 Chapters)
+### Part 2: Build Claw (Developer Guide, 11 Chapters)
 
 | Chapter | Description | Status |
 | -------------------------------------------------- | -------------------------------------------------------------------- | ---- |
@@ -166,7 +166,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Ch. 8 Lightweight Solutions | Community variants such as NanoClaw, Nanobot, and ZeroClaw | ✅ |
 | Ch. 9 Security Hardening Solutions | IronClaw security architecture, sandbox isolation, and audit logs | ✅ |
 | Ch. 10 Hardware Solutions | PicoClaw hardware selection and low-power embedded deployment | ✅ |
-| **🟡 Level 3: Customize Your Claw** (Ch. 11-15) |  |  |
+| **🟡 Level 3: Customize Your Claw** (Ch. 13) |  |  |
 | Ch. 13 Skill Authoring | Skill file structure, frontmatter, async handling, and debugging | ✅ |
 
 ---
