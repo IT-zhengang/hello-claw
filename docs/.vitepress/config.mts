@@ -21,10 +21,33 @@ const getSiteUrl = () => {
 }
 
 const siteUrl = getSiteUrl()
+const getHostname = (url: string) => {
+  try {
+    return new URL(url).hostname
+  } catch {
+    return null
+  }
+}
+
+const allowedHosts = Array.from(
+  new Set(
+    [
+      'claw.newcode.top',
+      getHostname(siteUrl),
+      ...(process.env.ALLOWED_HOSTS || '')
+        .split(',')
+        .map((host) => host.trim())
+        .filter(Boolean)
+    ].filter((host): host is string => Boolean(host))
+  )
+)
 
 export default defineConfig({
   base,
   vite: {
+    server: {
+      allowedHosts
+    },
     plugins: [tailwindcss()]
   },
   ignoreDeadLinks: [
