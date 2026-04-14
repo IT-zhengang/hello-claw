@@ -73,6 +73,8 @@ export default defineConfig({
           { text: '领养龙虾', link: '/cn/adopt/intro' },
           { text: '龙虾大学', link: '/cn/university/intro.html', activeMatch: '^/cn/university/' },
           { text: '构建龙虾', link: '/cn/build/' },
+          { text: 'AI Agent智能体', link: '/cn/agent/' },
+          { text: 'AI大模型架构解析', link: '/cn/llm/' },
           { text: 'GitHub', link: 'https://github.com/datawhalechina/hello-claw' },
         ],
         search: {
@@ -235,6 +237,25 @@ export default defineConfig({
               ]
             }
           ],
+          '/cn/agent/': [
+            {
+              text: 'AI Agent智能体',
+              items: [
+                { text: '写在开头', link: '/cn/agent/' },
+                { text: '第一章 记忆系统设计', link: '/cn/agent/chapter1/' },
+                { text: '第二章 工具系统设计', link: '/cn/agent/chapter2/' },
+              ]
+            }
+          ],
+          '/cn/llm/': [
+            {
+              text: 'AI大模型架构解析',
+              items: [
+                { text: '写在开头', link: '/cn/llm/' },
+                { text: '第一章 Hermes-Agent 自学习 Skill 机制', link: '/cn/llm/chapter1/' },
+              ]
+            }
+          ],
           '/cn/university/': [
             {
               text: '龙虾大学',
@@ -321,6 +342,8 @@ export default defineConfig({
           { text: 'Adopt', link: '/en/adopt/intro' },
           { text: 'Lobster University', link: '/en/university/intro', activeMatch: '^/en/university/' },
           { text: 'Build', link: '/en/build/' },
+          { text: 'AI Agent Systems', link: '/en/agent/' },
+          { text: 'LLM Architecture', link: '/en/llm/' },
           { text: 'GitHub', link: 'https://github.com/datawhalechina/hello-claw' },
         ],
         sidebar: {
@@ -461,6 +484,25 @@ export default defineConfig({
                     { text: 'Chapter 10: Hardware Solutions', link: '/en/build/chapter10' },
                   ]
                 },
+              ]
+            }
+          ],
+          '/en/agent/': [
+            {
+              text: 'AI Agent Systems',
+              items: [
+                { text: 'Introduction', link: '/en/agent/' },
+                { text: 'Chapter 1: Memory System Design', link: '/en/agent/chapter1/' },
+                { text: 'Chapter 2: Tool-System Design', link: '/en/agent/chapter2/' },
+              ]
+            }
+          ],
+          '/en/llm/': [
+            {
+              text: 'LLM Architecture Analysis',
+              items: [
+                { text: 'Introduction', link: '/en/llm/' },
+                { text: 'Chapter 1: Hermes-Agent Self-Learning Skill Mechanism', link: '/en/llm/chapter1/' },
               ]
             }
           ],

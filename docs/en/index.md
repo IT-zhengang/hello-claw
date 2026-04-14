@@ -113,6 +113,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 8: Lightweight Solutions | NanoClaw, Nanobot, ZeroClaw and other community variants | ✅ |
 | Chapter 9: Security Hardening | IronClaw security architecture, sandbox isolation & audit logs | ✅ |
 | Chapter 10: Hardware Solutions | PicoClaw hardware selection, low-power embedded deployment | ✅ |
+| Chapter 11: Memory System Design | Compare OpenClaw, Droid, and Hermes memory architectures and their tradeoffs | ✅ |
 | **🟡 Tier 3: Customize Your Claw** (Chapters 11-15) | | |
 | Chapter 13: Skill Development | Skill file structure, Frontmatter format, async handling & debugging | ✅ |
 
@@ -164,6 +165,8 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 </table>
 
 ## 🔥 Latest Updates
+
+- **[2026-04-14]** ✅ Added Build Chapter 11: Memory System Design, comparing OpenClaw, Droid, and Hermes Agent memory architectures
 
 - **[2026-03-10]** ✅ New Lobster University: Menu-style Skills elective guide, equip your lobster with "combat power-ups"
 - **[2026-03-10]** ✅ Updated Build Claw Chapters 7-9: Lightweight, Security Hardening, Hardware Solutions

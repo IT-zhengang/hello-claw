@@ -58,6 +58,7 @@ https://datawhalechina.github.io/hello-claw
 
 ## 🔥 最新动态
 
+- **[2026-04-14]** ✅ 新增构建篇第11章：记忆系统设计，系统对比 OpenClaw、Droid 与 Hermes Agent 的记忆架构
 - **[2026-03-25]** ✅ 龙虾大学完成一轮场景扩充与新手化重写，新增个人效率、编程开发、内容创作、商务销售、多智能体协作和更多场景共 11 篇可直接上手的实战案例，并同步按 README 分类整理
 - **[2026-03-25]** 🔥 OpenClaw v2026.3.24：Gateway OpenAI 兼容端点（`/v1/models`、`/v1/embeddings`）、Microsoft Teams 官方 SDK 集成（流式回复/欢迎卡片/消息编辑删除）、Skills 一键安装配方与 Control UI 状态过滤、Slack 富回复恢复、CLI `--container` 容器内执行、Discord LLM 自动线程命名、`before_dispatch` 插件钩子、沙箱媒体安全修复，教程全章节同步
 - **[2026-03-23]** 🔥 OpenClaw 3.22 大版本：插件 SDK 重构（旧 extension-api 废弃）、安全加固（SMB 凭证泄露/环境变量注入/Unicode 伪装等修复）、GPT-5.4 默认上位、飞书交互卡片/Telegram 话题自动命名、Agent 超时延长至 48h
@@ -145,8 +146,8 @@ https://datawhalechina.github.io/hello-claw
 | 附录 G：配置文件详解           | openclaw.json 各项参数逐项解读                            | ✅   |
 
 ---
-构建 Claw（开发篇，13章）
-### 第二部分：构建 Claw（开发篇，13章）
+
+### 第二部分：构建 Claw（开发篇，10章 + 1 实战章）
 
 | 章节                                               | 简介                                                                 | 状态 |
 | -------------------------------------------------- | -------------------------------------------------------------------- | ---- |
@@ -159,12 +160,13 @@ https://datawhalechina.github.io/hello-claw
 | 第 5 章 消息循环与事件驱动                         | 泳道模型、心跳机制、并发安全与时间主动性                             | ✅   |
 | 第 6 章 统一网关                                   | Gateway 架构、多渠道接入与消息标准化                                 | ✅   |
 | 第 7 章 安全沙箱                                   | 自由与约束的平衡、执行环境隔离与权限控制                             | ✅   |
-| **🟢 定制方案**（第 8～10 章）               |                                                                      |      |
+| **🟢 定制方案与关键系统**（第 8～11 章）      |                                                                      |      |
 | 第 8 章 轻量化方案                                 | NanoClaw、Nanobot、ZeroClaw 等社区变体                               | ✅   |
 | 第 9 章 安全加固方案                               | IronClaw 安全架构、沙箱隔离与审计日志                                | ✅   |
 | 第 10 章 硬件方案                                  | PicoClaw 硬件选型、低功耗嵌入式部署                                  | ✅   |
-| **🟡 第三层：定制你的 Claw**（第 13 章） |                                                                      |      |
-| 第 13 章 Skill 编写                                | Skill 文件结构、Frontmatter 格式、异步处理与调试                     | ✅   |
+| 第 11 章 记忆系统设计                              | OpenClaw、Droid、Hermes 三种记忆架构对比与设计取舍                   | ✅   |
+| **🟡 第三层：定制你的 Claw**（1 个实战章）  |                                                                      |      |
+| 实战章 Skill 编写                                  | Skill 文件结构、Frontmatter 格式、异步处理与调试                     | ✅   |
 
 ---
 

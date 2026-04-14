@@ -250,7 +250,22 @@ You'll see: how far can complex features be simplified? Which features are indis
   - Power optimization: how to run an Agent on battery power
   - Offline capability: fully local inference in an environment with no network
 
-### 2.3 Block Three: Create Your Own (Chapters 11–15)
+### 2.3 Block Three: AI Agent Systems
+
+This block focuses on core Agent capabilities such as memory, collaboration, autonomy, and long-running behavior.
+
+#### Chapter 11: Memory System Design — How an Agent Actually Remembers
+
+- **OpenClaw / Droid / Hermes comparison**: three different memory philosophies
+  - Files as memory: why transparency and control matter
+  - Context engineering: why token budget management is an architecture capability
+  - Episodic memory: how to turn experience into reusable Skills
+
+### 2.4 Block Four: LLM Architecture Analysis
+
+This block is reserved for model internals, reasoning paths, context mechanics, and multimodal architecture topics.
+
+### 2.5 Block Five: Create Your Own (Chapters 11–15)
 
 This block focuses on hands-on OpenClaw customization. At the moment, only Chapter 13 has been published, so this overview only lists content that already exists to keep navigation aligned with the actual docs.
 
@@ -277,7 +292,7 @@ If you're curious about "how it works," start at Chapter 1 and read through to C
 
 **Path B: Comparison First**
 
-If you already have some hands-on experience and want to know "what else is possible," jump to Chapter 8 for the case analyses. Seeing NanoClaw's minimal implementation will give you a fresh perspective on "what is the minimum viable feature set."
+If you already have some hands-on experience and want to know "what else is possible," start with Chapters 8–10 for alternative designs, then move into the new AI Agent Systems category with Chapter 11. That sequence makes it easier to separate runtime tradeoffs from Agent-capability design.
 
 **Path C: Need First**
 
@@ -420,3 +435,4 @@ This understanding won't pay off immediately, but it's a long-term investment. A
 **Now, choose where you want to start:**
 
 - [Chapter 1: Core Positioning and Design Philosophy](./chapter1/index.md) — Understand the essence of an Agent Runtime and see why OpenClaw was designed the way it is
+- [Chapter 11: Memory System Design](./chapter11/index.md) — Compare three memory architectures and understand what it really means for an Agent to “remember”
