@@ -648,6 +648,55 @@ clawhub install github</pre>
     </div>
   </div>
   <Layout v-else />
+
+  <div v-if="isDocMarkdownAvailable" class="md-source-launcher">
+    <button @click="openMarkdownPanel" class="md-source-launcher__button">
+      <span>Markdown</span>
+      <span class="md-source-launcher__hint">View / Edit / Copy</span>
+    </button>
+  </div>
+
+  <Teleport to="body">
+    <div v-if="markdownPanelOpen" class="md-source-overlay" @click.self="closeMarkdownPanel">
+      <div class="md-source-panel">
+        <div class="md-source-panel__header">
+          <div>
+            <p class="md-source-panel__eyebrow">Markdown Source</p>
+            <h2 class="md-source-panel__title">{{ markdownPanelTitle }}</h2>
+            <p class="md-source-panel__path">{{ markdownDisplayPath }}</p>
+          </div>
+          <button @click="closeMarkdownPanel" class="md-source-panel__icon" aria-label="Close markdown panel">✕</button>
+        </div>
+
+        <div class="md-source-panel__toolbar">
+          <button @click="copyMarkdownSource" class="md-source-panel__action">Copy</button>
+          <button @click="resetMarkdownDraft" class="md-source-panel__action" :disabled="!hasMarkdownDraft">Reset Draft</button>
+          <button @click="reloadMarkdownSource" class="md-source-panel__action">Reload</button>
+          <span class="md-source-panel__status" :class="{ 'is-draft': hasMarkdownDraft }">
+            {{ markdownStatusText }}
+          </span>
+        </div>
+
+        <p class="md-source-panel__note">
+          Editing here is browser-local only. It is meant for online reading, temporary edits, and quick copying.
+        </p>
+
+        <div v-if="markdownLoadError" class="md-source-panel__error">
+          {{ markdownLoadError }}
+        </div>
+
+        <textarea
+          v-model="markdownSource"
+          class="md-source-panel__editor"
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          autocorrect="off"
+          :placeholder="markdownLoading ? 'Loading markdown...' : 'Markdown source is unavailable for this page.'"
+        />
+      </div>
+    </div>
+  </Teleport>
 </template>
 
 <script setup>
@@ -658,10 +707,170 @@ import DefaultTheme from 'vitepress/theme'
 const { Layout } = DefaultTheme
 const route = useRoute()
 const router = useRouter()
+const markdownModules = import.meta.glob('../../**/*.md', {
+  query: '?raw',
+  import: 'default',
+})
 
 const navigateTo = (path) => {
   clearHintTimer()
   router.go(withBase(path))
+}
+
+const markdownPanelOpen = ref(false)
+const markdownSource = ref('')
+const markdownOriginalSource = ref('')
+const markdownLoadError = ref('')
+const markdownLoading = ref(false)
+const markdownLoadedKey = ref('')
+const markdownCopied = ref(false)
+
+const normalizedDocPath = computed(() => {
+  let path = route.path.split('#')[0].split('?')[0]
+  const basePath = withBase('/')
+
+  if (basePath !== '/' && path.startsWith(basePath)) {
+    path = path.slice(basePath.length - 1)
+  }
+
+  if (path.endsWith('/index.html')) {
+    path = path.slice(0, -'/index.html'.length) || '/'
+  } else if (path.endsWith('.html')) {
+    path = path.slice(0, -'.html'.length)
+  }
+
+  return path || '/'
+})
+
+const markdownCandidateKeys = computed(() => {
+  const path = normalizedDocPath.value
+
+  if (!path.startsWith('/cn/') && !path.startsWith('/en/')) {
+    return []
+  }
+
+  const cleanPath = path === '/' ? '/' : path.replace(/\/+$/, '')
+  const relativePath = cleanPath.slice(1)
+
+  if (!relativePath) {
+    return []
+  }
+
+  return path.endsWith('/')
+    ? [`../../${relativePath}/index.md`, `../../${relativePath}.md`]
+    : [`../../${relativePath}.md`, `../../${relativePath}/index.md`]
+})
+
+const currentMarkdownModuleKey = computed(() =>
+  markdownCandidateKeys.value.find((key) => key in markdownModules) || ''
+)
+
+const isDocMarkdownAvailable = computed(() => Boolean(currentMarkdownModuleKey.value))
+
+const markdownDisplayPath = computed(() =>
+  currentMarkdownModuleKey.value ? currentMarkdownModuleKey.value.replace('../../', 'docs/') : 'docs/...'
+)
+
+const markdownPanelTitle = computed(() => {
+  const path = normalizedDocPath.value
+  if (path === '/' || !path) {
+    return 'Current Page'
+  }
+
+  const segments = path.replace(/\/+$/, '').split('/').filter(Boolean)
+  return segments[segments.length - 1] || 'Current Page'
+})
+
+const hasMarkdownDraft = computed(
+  () => Boolean(markdownSource.value) && markdownSource.value !== markdownOriginalSource.value
+)
+
+const markdownStatusText = computed(() => {
+  if (markdownLoading.value) return 'Loading...'
+  if (markdownCopied.value) return 'Copied'
+  if (hasMarkdownDraft.value) return 'Local draft saved'
+  return 'Synced with source'
+})
+
+const getMarkdownDraftKey = () => `hello-claw:markdown-draft:${normalizedDocPath.value}`
+
+const loadMarkdownSource = async (force = false) => {
+  const key = currentMarkdownModuleKey.value
+
+  if (!key) {
+    markdownLoadError.value = 'No markdown source mapping was found for this page.'
+    return
+  }
+
+  if (!force && markdownLoadedKey.value === key && markdownSource.value) {
+    return
+  }
+
+  markdownLoading.value = true
+  markdownLoadError.value = ''
+
+  try {
+    const rawSource = await markdownModules[key]()
+    const savedDraft = typeof window !== 'undefined' ? window.localStorage.getItem(getMarkdownDraftKey()) : null
+
+    markdownOriginalSource.value = rawSource
+    markdownSource.value = savedDraft ?? rawSource
+    markdownLoadedKey.value = key
+  } catch (error) {
+    markdownLoadError.value = error instanceof Error ? error.message : 'Failed to load markdown source.'
+  } finally {
+    markdownLoading.value = false
+  }
+}
+
+const openMarkdownPanel = async () => {
+  markdownPanelOpen.value = true
+  await loadMarkdownSource()
+}
+
+const closeMarkdownPanel = () => {
+  markdownPanelOpen.value = false
+}
+
+const copyMarkdownSource = async () => {
+  if (!markdownSource.value) return
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(markdownSource.value)
+    } else {
+      const textarea = document.createElement('textarea')
+      textarea.value = markdownSource.value
+      textarea.setAttribute('readonly', 'true')
+      textarea.style.position = 'absolute'
+      textarea.style.left = '-9999px'
+      document.body.appendChild(textarea)
+      textarea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textarea)
+    }
+
+    markdownCopied.value = true
+    setTimeout(() => {
+      markdownCopied.value = false
+    }, 1600)
+  } catch (error) {
+    markdownLoadError.value = error instanceof Error ? error.message : 'Failed to copy markdown source.'
+  }
+}
+
+const resetMarkdownDraft = () => {
+  markdownSource.value = markdownOriginalSource.value
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(getMarkdownDraftKey())
+  }
+}
+
+const reloadMarkdownSource = async () => {
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(getMarkdownDraftKey())
+  }
+  await loadMarkdownSource(true)
 }
 
 const isWaving = ref(false)
@@ -1027,6 +1236,27 @@ watch(() => route.path, (newPath) => {
     clearHintTimer()
     startHintTimer()
   }
+
+  markdownPanelOpen.value = false
+  markdownSource.value = ''
+  markdownOriginalSource.value = ''
+  markdownLoadError.value = ''
+  markdownLoading.value = false
+  markdownLoadedKey.value = ''
+  markdownCopied.value = false
+})
+
+watch(markdownSource, (value) => {
+  if (typeof window === 'undefined' || !markdownLoadedKey.value) {
+    return
+  }
+
+  if (!value || value === markdownOriginalSource.value) {
+    window.localStorage.removeItem(getMarkdownDraftKey())
+    return
+  }
+
+  window.localStorage.setItem(getMarkdownDraftKey(), value)
 })
 
 // Simple intersection observer for fade-in animations
@@ -1638,5 +1868,212 @@ const vFadeIn = {
   text-shadow: 0 0 25px rgba(255, 130, 130, 0.4);
 }
 
+.md-source-launcher {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 70;
+}
+
+.md-source-launcher__button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 148px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 107, 107, 0.22);
+  border-radius: 16px;
+  background: rgba(12, 16, 25, 0.92);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.md-source-launcher__button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 107, 107, 0.5);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+.md-source-launcher__hint {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.md-source-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(5, 10, 16, 0.58);
+  backdrop-filter: blur(6px);
+}
+
+.md-source-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(860px, 100vw);
+  height: 100vh;
+  padding: 24px;
+  background: linear-gradient(180deg, #08101a 0%, #0c1521 100%);
+  color: #fff;
+  box-shadow: -16px 0 42px rgba(0, 0, 0, 0.32);
+}
+
+.md-source-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.md-source-panel__eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff7f7f;
+}
+
+.md-source-panel__title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.md-source-panel__path {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.62);
+  word-break: break-all;
+}
+
+.md-source-panel__icon {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.78);
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.md-source-panel__icon:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.md-source-panel__toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.md-source-panel__action {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.md-source-panel__action:hover:not(:disabled) {
+  background: rgba(255, 107, 107, 0.18);
+  border-color: rgba(255, 107, 107, 0.36);
+}
+
+.md-source-panel__action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.md-source-panel__status {
+  margin-left: auto;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.md-source-panel__status.is-draft {
+  color: #ffd37f;
+}
+
+.md-source-panel__note {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.md-source-panel__error {
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 107, 107, 0.12);
+  color: #ffd1d1;
+  font-size: 13px;
+}
+
+.md-source-panel__editor {
+  flex: 1;
+  width: 100%;
+  min-height: 280px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(2, 6, 12, 0.84);
+  color: #edf3ff;
+  font-size: 14px;
+  line-height: 1.72;
+  font-family: "SFMono-Regular", "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  resize: none;
+  outline: none;
+}
+
+.md-source-panel__editor:focus {
+  border-color: rgba(255, 107, 107, 0.38);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.12);
+}
+
+@media (max-width: 768px) {
+  .md-source-launcher {
+    right: 14px;
+    bottom: 16px;
+    left: 14px;
+  }
+
+  .md-source-launcher__button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .md-source-panel {
+    width: 100vw;
+    padding: 18px 16px;
+  }
+
+  .md-source-panel__title {
+    font-size: 22px;
+  }
+
+  .md-source-panel__status {
+    margin-left: 0;
+    width: 100%;
+  }
+}
 
 </style>

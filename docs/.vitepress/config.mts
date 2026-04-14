@@ -4,9 +4,10 @@ import tailwindcss from '@tailwindcss/vite'
 
 const isVercel = process.env.VERCEL === '1' || !!process.env.VERCEL_URL
 const isEdgeOne = !!process.env.EDGEONE || process.env.EDGEONE === '1'
+const isDev = process.env.NODE_ENV !== 'production'
 const defaultSiteUrl = 'http://claw.newcode.top'
 
-const base = process.env.BASE || (isVercel || isEdgeOne ? '/' : '/')
+const base = process.env.BASE || (isVercel || isEdgeOne ? '/' : isDev ? '/hello-claw/' : '/')
 
 const getSiteUrl = () => {
   if (isVercel && process.env.VERCEL_URL) {
