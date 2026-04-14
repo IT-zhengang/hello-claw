@@ -115,7 +115,7 @@ def send_imap_id(mail: imaplib.IMAP4_SSL) -> dict[str, object]:
         '("name" "hello-claw-imap-test" '
         '"version" "1.0" '
         '"vendor" "datawhale" '
-        '"support-url" "https://github.com/datawhalechina/hello-claw")'
+        '"support-url" "https://github.com/IT-zhengang/hello-claw")'
     )
     id_status, id_data = mail.xatom("ID", id_payload)
     result["id_sent"] = True

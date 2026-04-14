@@ -13,7 +13,10 @@ from datetime import datetime
 import html2text
 from bs4 import BeautifulSoup, NavigableString
 
-DEFAULT_OUTPUT_DIR = '/Users/yanxiao/Desktop/workbook/mds'
+
+def get_default_output_dir():
+    """默认保存到执行命令时所在目录的 mds/ 子目录。"""
+    return os.path.join(os.getcwd(), 'mds')
 
 # ── 内容提取 ──────────────────────────────────────────────
 
@@ -352,8 +355,9 @@ def main():
     if len(sys.argv) >= 3:
         out = sys.argv[2]
     else:
-        os.makedirs(DEFAULT_OUTPUT_DIR, exist_ok=True)
-        out = os.path.join(DEFAULT_OUTPUT_DIR, safe_filename(title))
+        default_output_dir = get_default_output_dir()
+        os.makedirs(default_output_dir, exist_ok=True)
+        out = os.path.join(default_output_dir, safe_filename(title))
 
     with open(out, 'w', encoding='utf-8') as f:
         f.write(md)

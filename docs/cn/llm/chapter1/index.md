@@ -1,356 +1,429 @@
-# 硬核拆解 Hermes-Agent：自学习 Skill 机制的架构设计与实现原理
+# 深度解析：Function Call / MCP / ReAct / Skills 如何构成 AI Agent 的完整技术栈
 
-<p class="hermes-subtitle"><strong>从技能手册到自我进化：拆解 Hermes-Agent 如何在实战中自动学习、修补并激活 Skill</strong></p>
+<p class="llm-stack-subtitle"><strong>从函数调用到协议标准，再到推理编排与能力沉淀，一篇文章看清 AI Agent 的四层技术栈</strong></p>
 
-<div class="hermes-cover hermes-figure">
-  <img src="./images/hermes-agent/cover_gif.gif" width="360" />
-</div>
-
-OpenClaw 有着极其强大的技能（Skill）生态，那么新兴的 Agent 如何挑战这只 **“龙虾”**？最近兴起的 Hermes-Agent 项目给出了一个与众不同的答案。
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/hermes_intro.webp" width="680" />
-</div>
-
-<div class="hermes-meta-card">
+<div class="llm-stack-meta-card">
   <ul>
-    <li><strong>主线问题</strong>：为什么 Agent 需要从“会用 Skill”升级到“会自己长出 Skill”</li>
-    <li><strong>拆解范围</strong>：自学习意识注入、触发链路、后台巡检、补丁修复、条件激活与安全守卫</li>
-    <li><strong>阅读收益</strong>：看懂 Hermes-Agent 如何把一次性执行经验沉淀成长期可复用的能力资产</li>
+    <li><strong>主线问题</strong>：Function Call、MCP、ReAct、Skills 分别解决哪一层问题，为什么必须协同出现</li>
+    <li><strong>阅读收益</strong>：建立一套能解释绝大多数 AI Agent 产品架构的统一分析框架</li>
+    <li><strong>适合人群</strong>：想把工具调用、协议标准、Agent Loop 与工作流沉淀彻底串起来的开发者与产品设计者</li>
   </ul>
 </div>
 
-它的核心哲学是：不再仅追究技能的广度，而是试图让 Agent 在实践中 **具备自我学习与进化** 的能力，从而做到“越用越强”。
 
-本文将首先为大家拆解其核心利器之一 —— Skill 自学习机制的实现原理：
+当你对 AI 说「帮我查一下北京天气」时，它不再只是编一个答案——而是真的去调 API、拿到实时数据、再用自然语言告诉你。这背后，是 **Function Call、MCP、ReAct、Skills** 四项技术的协同工作。
 
-1. 思考：为什么我们需要自学习的 Agent
-2. 演示：Hermes-Agent 如何自学习 Skill
-3. 揭秘：Hermes-Agent Skill 机制全解析
-   - Skill 的自学习意识是如何植入的
-   - Skill 自学习的完整链路与触发时机
-   - Skill 的自动修复机制：给技能“打补丁”
-   - 其他：Skill 的条件激活与安全守卫
+这篇文章将从协议细节到架构设计，深入拆解这四大核心技术。
 
-让我们一起走进这个 Agent 中的“爱马仕”。
+## 一、Function Call：从「能说」到「能做」的第一步
 
----
+### 1.1 它解决了什么问题？
 
-## Part 01 — 思考：为什么我们需要自学习的 Agent
+大语言模型的本质是一个**文本续写器** ——给它一段文字，它预测下一段最合理的文字。这意味着它天生有两个致命缺陷：
 
-回想这一轮 AI 的发展，我们经历了从构建被动响应的对话 **ChatBot**，到能够自主调用工具的简单 **Agent**，再到具备持久记忆、连续工作的复杂 Agent。
+**缺陷一：知识截止** — 训练数据有截止日期，无法获取实时信息
 
-能力固然在增强，但绝大部分 Agent 依然缺乏人类最核心的能力之一 — **在不断的实战中总结经验、学习技能，形成解决问题的"肌肉记忆"与标准流程（SOP）。**
+**缺陷二：无法执行** — 它能"说"该怎么做，但不能真正"去做"
 
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/agent_evolution.webp" width="720" />
-  <p><sub><B>Agent 能力演进：从 ChatBot → 简单 Agent → 复杂 Agent → 自学习 Agent</B></sub></p>
-</div>
-
-
-### ACE：主动式上下文工程
-
-事实上，学术与工程界一直没有停止探索。比如我们之前介绍过的主动上下文工程**（ACE，Agentic Context Engineering）**： 让 Agent 在每次任务完成后回顾历史消息，总结出后续任务可参考的"**Bullet**"（经验条目）。但 ACE 方法的局限性在于，它的"Bullet"通常是用**非结构化的自然语言表达的简单指南**。比如："对价格、数量等关键数据，应对比多个权威来源，验证准确性。"这种非结构化的知识，就像散落在人脑中的碎片化经验，难以被固化为精确的工作流程或者代码逻辑；且随着经验库的膨胀，还会面临上下文超载、规则冲突等问题；而面对复杂任务时，模型仍需重新做大量的推理，低效且不稳定。
-
-### Skill：结构化的知识卡片
-
-Skill 无疑是一项重大的 Agent 工程突破：**它用一种结构化的、标准化的模式来组织经验，并用渐进式加载机制来降低上下文负担**。但 Skill 仍然不是"自驱动的"，而是人类写好并塞给 AI 的"经验手册" — 让 Agent 遇到问题先去翻书查答案。
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_vs_manual.webp" width="680" />
-  <p><sub><B>Skill 的本质：结构化的经验手册，但仍然依赖人工编写</B></sub></p>
-</div>
-
-
-但现实的问题是：Agent 的任务与环境是多变的，不可能所有的问题都有预设的标准解法。这时候就需要 Agent 能够在解决难题后，自己"写手册" — **在复杂试错中提炼出最佳实践，并将其固化为全新的 Skill**。
-
-> 而这正是 **Hermes-Agent** 试图跨越的鸿沟。
-
-### 更进一步：强化学习（RL）闭环
-
-尽管最近大家都强调 **Harness Engineering** 的重要性，但基础大模型仍然是 Agent 的大脑。在传统 Agent 系统中，一旦选型结束，你的大模型能力基线就确定了。那么有没有一种方式，可以自动从 Agent 的实战经验中汲取养分，构建训练数据，并快速用于强化训练？
-
-从而让模型拥有对某些复杂任务处理的本能反应，而不用去查"操作手册"。这就是 Hermes-Agent 另一项更具野心的机制：**强化学习（RL）训练闭环**。关于如何收集 Agent 轨迹、通过奖励模型标注并反向强化大模型，我们将在后续文章做详细拆解。今天我们先聚焦于它是如何做到自动"写手册"（Skill）的。
+Function Call 的核心思想很简单：**让模型不仅输出文字，还能输出一段结构化的 JSON，声明"我需要调用某个函数"** 。宿主程序拦截这个 JSON，执行对应的函数，再把结果喂回模型。
 
 ---
 
-## Part 02 — 演示：Hermes-Agent 如何自学习 Skill
+### 1.2 技术细节：一次 Function Call 到底发生了什么？
 
-本节我们设计一个具体的任务来直观的体验 Hermes-Agent 自学习 Skill 的能力。在此之前，首先来了解下 Hermes-Agent 的整体架构并做好安装配置。
-
-### Hermes-Agent 的整体架构
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/architecture.webp" width="760" />
-  <p><sub><b>Hermes-Agent 整体架构 — 注意其技能进化子系统（右侧）</b></sub></p>
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/function-call-sequence.png" alt="Function Call 完整执行序列" />
+  <p><sub><b>图 1</b> — Function Call 完整执行序列</sub></p>
 </div>
 
+上图展示了一次完整的 Function Call 流程。关键技术点在于：
 
-
-与 OpenClaw 不同的是，**Hermes-Agent 的 Gateway** 并不作为核心模块，如果你不接入外部消息渠道，甚至无需启动它。接下来我们重点关注其技能进化子系统。
-
-### 安装与配置
-
-Hermes-Agent的安装、配置与使用更简洁，它省略了OpenClaw 中很多复杂选项，而专注在核心能力。
-
-极简模式下，你只需要三步走：一键安装 -> 配置模型 -> 执行"hermes"命令（详细参考 GitHub 文档）。
-
-个人使用时的一个特别体验：Hermes 除了支持常见模型的 Direct 访问外（配置API Key）；也支持借用已有 AI 编程工具的订阅（比如 Codex、Copilot 等），直接调用订阅计划所包含的多个顶级模型，而无需额外配置。比如接入你的 GitHub Copilot 订阅：
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/copilot_config.webp" width="560" />
-  <p><sub>配置示例：接入 GitHub Copilot 订阅，复用已有模型额度</sub></p>
-</div>
-
-
-### 设计一个任务以触发自学习 Skill
-
-那么什么时候 **Hermes-Agent** 会尝试自己去总结并创建一个新的 Skill？在下一节的揭秘之前，我们想象至少应该具备如下条件：
-
-  1. 这个任务无法借助已有技能直接完成
-  2. 这个任务要有一定的复杂度，比如超过 N 次的工具调用
-  3. 这个任务未来有被重复执行的可能
-
-所以，我们设计一个多步骤的代码审计任务：
+**工具定义（Tool Schema）** ：每个可调用的函数都用 JSON Schema 描述其参数类型和含义。这是模型"理解"工具能力的基础：
 
 ```
-对 ～/hermes-agent 源代码做一次代码库质量检查，要求完成：
-1. 统计 .py 文件总数和总行数，找出最大的5个文件
-2. 搜索 TODO/FIXME/HACK 注释，按子目录分组统计数量
-3. 读最大文件的头20行和尾20行，再逐条读取它的 TODO 注释上下文
-4. 搜索非测试文件中的 password=、secret=、api_key= 行，判断是占位符还是硬编码
-5. 在 tools/ 下找被整个项目 import ≤1 次的"孤儿"模块
-6. 找被引用次数最多的5个模块，读取第1名的前50行
-7. 把完整报告写入 /tmp/source_checkreport_$(date +%Y%m%d).md，
-   包含各步骤数据汇总表格和至少8条按高/中/低优先级排列的技术债清单
-最后告诉我，下次做类似审计时，你会从哪一步先入手。
+    {
+      "name": "get_weather",
+      "description": "查询城市天气",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "city": {"type": "string", "description": "城市名"},
+          "date": {"type": "string", "description": "日期, YYYY-MM-DD"}
+        },
+        "required": ["city"]
+      }
+    }
+
 ```
 
-这里的最后一句是为了"暗示"这个任务可能会反复执行。现在给 Hermes-Agent 输入这个任务：
+**模型的决策过程** ：模型并不是简单地"关键词匹配"来决定调用哪个函数。它会：
 
-> **以下为 Skill 自学习的完整演示过程（6 步）：**
+1\. 理解用户意图的语义（不是匹配关键词）
 
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/tui_input.webp" width="720" />
-  <p><sub><b>Step 1</b> — 将代码审计任务粘贴到 Hermes-Agent 的 TUI 输入框</sub></p>
-</div>
+2\. 从所有可用工具中选择最匹配的（可能选零个、一个或多个）
 
-等待一段时间后，可以看到任务执行的输出：
+3\. 根据上下文推断缺失参数（如用户没说日期，推断为"今天"）
 
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/task_output.webp" width="720" />
-  <p><sub><b>Step 2</b> — Agent 自主完成多步骤代码审计任务</sub></p>
-</div>
-
-接着我们发现，在输出的最后有如下信息（红框部分）：
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_created_log.webp" width="720" />
-  <p><sub><b>Step 3</b> — 日志显示：一个新的 Skill 被自动创建！</sub></p>
-</div>
-
-此时在 `~/.hermes/skills/` 目录下可以发现这个新的 Skill：
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_directory.webp" width="560" />
-  <p><sub><b>Step 4</b> — 自动生成的 Skill 目录结构，归类到 software-development</sub></p>
-</div>
-
-查看它的 SKILL.md，这是一个对应上述任务的代码审计 Skill：
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_md_content.webp" width="720" />
-  <p><sub><b>Step 5</b> — 自动生成的 SKILL.md：包含完整的代码审计工作流</sub></p>
-</div>
-
-以上过程表明，我们的测试任务成功的触发了 Hermes-Agent 的反思与学习，并创建了一个新 Skill，且被归类到了 software-development 这个类别。现在，Agent 已经"偷偷"的掌握了代码审计的 Skill — 当你下次发出"对 xxx 项目做一次代码审计"的消息时，这个 Skill 就可能被触发：
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_triggered.webp" width="720" />
-  <p><sub><b>Step 6</b> — 下次发出类似指令时，已学习的 Skill 被自动触发</sub></p>
-</div>
-
-整个过程，你无需干预，也无需从某个 Skill-Hub 安装，Agent 自己"复盘"并自学了新的 Skill！
+4\. 生成严格符合 JSON Schema 的参数对象
 
 ---
 
-## Part 03 — 揭秘：Hermes-Agent Skill 机制全解析
+### 1.3 演进：从单次调用到并行调用
 
-现在，我们来扒一扒 Hermes-Agent 这套自学习的 Skill 机制背后的秘密。弄明白下面这几点，你也可以在自己的 Agent 系统中灵活应用：
+2023 年 Function Call 刚出来时只支持**单次调用** ：模型一轮只能调一个函数。到 2024 年底，主流模型已支持**并行函数调用（Parallel Tool Use）** ——模型可以在一轮中同时请求调用多个函数，宿主程序并行执行后统一返回结果。
 
-- Skill 的自学习意识是如何植入的?
-- Skill 自学习的完整链路与触发时机?
-- Skill 的自动修复机制：给技能"打补丁"?
-- 其他：Skill 的条件激活与安全守卫?
+这大幅提升了复杂任务的效率。比如用户问「北京和上海今天天气对比」，模型会同时发出两个 get_weather 调用，而不是串行执行两次。
 
-### Skill 的自学习意识是如何植入的？
+但 Function Call 本质仍是**一次性的、无状态的** 。要让模型能自主完成多步骤任务——比如"先搜索资料，再写文章，最后发布"——需要更高级的编排模式。
 
-一切开始于你启动 Hermes-Agent 会话的那一刻。在 Agent 的启动与初始化入口（代码：`run_agent.py`）有一条明确的系统提示组装流水线，其中一个重要工序就是把 Agent 应该如何学习技能、使用技能和修复技能这套意识植入。
-
-```python
-SKILLS_GUIDANCE = (
-    "当你完成一个复杂任务（例如需要多次调用工具，通常为 5 次及以上）、"
-    "解决了一个棘手错误，或发现了一套非显而易见但可复用的工作流程时，"
-    "请使用 skill_manage 将该方法保存为一个技能（skill），"
-    "以便下次在类似场景中复用。\n"
-    "当你在使用某个技能时，如果发现它已经过时、不完整或存在错误，"
-    "请立即使用 skill_manage(action='patch') 对其进行修补，"
-    "不要等到被要求时才处理。"
-    "如果技能得不到维护，它最终就会从资产变成负担。"
-)
-```
-
-随后会在系统提示中注入当前可用 Skill 的分类索引。
-
-现在，经过"入职培训"的 Agent 就具备了"自己学习自己修复"的意识。不过，这种前端的主动意识只是 Skill 学习的触发机制之一。
-
-### Skill 自学习的完整链路与触发时机
-
-自学习 Skill 并不意味着每次调完工具或者完成任务，就立刻判断要不要写 Skill 的这种机械逻辑。Hermes-Agent 采用**"前台自觉 + 后台巡检"**的双重机制：
-
-- **前台自觉**：这就是上面注入的系统提示的作用。在完成复杂任务、发现复杂工作流时，模型应主动考虑创建成 Skill（调用 `skill_manage` 工具）。
-- **后台巡检**：即便模型在这轮没主动沉淀，主控流程仍会根据工具调用的计数器，在后续的适当时机触发后台复盘（异步兜底）。
-
-注意：后台触发看的是多次任务的 tool-calling 累计计数（`_iters_since_skill`），当其到达阈值（默认 10），就会触发一次后台的异步巡检。
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_created_log.webp" width="720" />
-  <p><sub><b>后台巡检与反思触发</b>——当累计工具调用达到阈值后，系统会异步启动复盘链路</sub></p>
-</div>
-
-用两个例子帮助理解这两套机制：
-
-* **前台自觉**
-
-  Agent 在正常执行任务过程中，模型可能会自己判断"这个方法值得保存为 Skill"，此时就会调用 `**skill_manage**` 工具，自行创建 Skill；并将计数 `_iters_since_skill` 复位为 0。此时，本轮肯定不会再触发后台复盘（计数器已复位）。
-
-* **后台巡检**
-
-  当一次任务全程都没有触发 `skill_manage`，那么计数器会一直累加，当达到阈值时，就会触发后台的复盘动作（独立线程 + 独立的 `review_agent`）。比如：
-
-> 第一个任务：复杂任务，8 次工具迭代。（`_iters_since_skill = 8`）
-> 第二个任务：简单任务，3 次工具迭代。（`_iters_since_skill = 11`）→ 触发巡检
-
-| 机制 | 时机 | 触发条件 |
-|------|------|----------|
-| 前台自觉 | 任务过程中 | 自行推理并调用 `skill_manage` |
-| 后台巡检 | 任务结束后 | 工具调用累计计数 >= 10（可配） |
-
-当进入后台兜底反思过程时，它是如何决定"要不要把某些经验沉淀出新的 Skill"？这依赖于 `**review_agent**` 的提示：
-
-```python
-_SKILL_REVIEW_PROMPT = (
-    "回顾上面的对话内容，判断是否有必要保存或更新某个技能。\n\n"
-    "重点关注：在完成任务的过程中，是否采用了非显而易见的方法，"
-    "是否经历了反复试错，或在实践过程中因为经验反馈而调整了方向，"
-    "或者用户是否期望或需要一种不同的方法或结果？\n\n"
-    "如果已经存在相关技能，请基于当前经验对其进行更新；"
-    "如果不存在且该方法具备可复用性，则创建一个新的技能。\n"
-    "如果没有值得保存的内容，请直接输出：'Nothing to save.' 并停止。"
-)
-```
-
->  说人话就是：
->
-> 只有那些真的绕过弯路、踩过坑、改过方案之后总结出来的经验，才值得创建成 Skill。注意后台反思过程是异步的，不会阻塞主会话。
-
-### Skill 的自动修复机制：给技能打"补丁"
-
-Hermes-Agent 给 Skill 设计了自动修复的机制。**它是一种 Agent 在使用技能时，由系统提示和工具（`skill_manage`）共同驱动的自修复行为** — 就像一个有经验的人边干活边修订"操作手册"。
-
-核心逻辑是：当模型判断到"问题在于 Skill 本身而不是其他环境问题"，就启动 Skill 修复 — 调用 `skill_manage(action='patch')` 工具。
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_md_content.webp" width="720" />
-  <p><sub><b>Skill 补丁与修复</b>——系统会在发现 Skill 本身失效时尝试直接修补技能内容</sub></p>
-</div>
-
-打补丁的动作本质上就是字符串替换，比如对 SKILL.md 中有问题的部分进行重写（当然也可能修改其他 Skill 相关文件）。
-
-例子：假设你有一个 `feature-publish` 的发布技能，但是在执行时出错。经过 Agent 分析，发现是由于"发布的 URL 已经发生变化"，于是 Agent 调用：
-
-```python
-skill_manage(action="patch",
-             old_string="https://old-registry.xx.xx",
-             new_string="https://registry.xx.xx")
-```
-
-这样，Skill 得到原地修复并继续执行。在此过程中，为了获得修复的方法，Agent 有可能会借助其他工具，比如通过搜索获得新的 URL 等。
-
-### Skill 的条件激活与安全守卫
-
-当 Skill 和 Tool 越来越多后，它们之间可能会存在重复或者依赖关系。因此，在每次注入 Skill 索引时，并非所有 Skill 都需要或者适合登场。Hermes 会做一个过滤，其基本逻辑是：
-
->  当主力工具在时，"替补"的 Skill 会被隐藏；当 Skill 的前置工具缺失时，该 Skill 隐藏。
-
-每个技能的激活判断流程如下：
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill-activation-guard.webp" width="720" />
-  <p><sub><b>条件激活与安全守卫</b>——Skill 的展示与可用性并不是静态的，而是由工具可用性、替补关系与风险等级共同决定</sub></p>
-</div>
-
-例子：
-
-假如 `duckduckgo-search` 技能配置了 `fallback_for_toolsets: [web]`，代表这个技能是 web 工具的"替补"。那么当用户配置了 web 工具的 API Key、web 工具可用时，`duckduckgo-search` 技能就会隐身。再或者，一个 `deep-research` 技能依赖前置工具 `web-fetch`，那么如果 `web-fetch` 工具不可用，`deep-research` 技能就不会加载。
-
-除此之外，所有的 Skill 在加载时还需要经过**安全守卫**的扫描，主要检测项包括：
-
-- 硬编码的密钥，如 API Key 等
-- 可疑的代码执行模式（后门代码）
-- 提示词注入，如试图操控 Agent 行为的指令
-- 危险的命令，比如 `rm -rf`，`chmod 777` 等高危操作
-
-最终，Hermes 会根据扫描出来的危险级别（包括 `safe`、`caution`、`dangerous`），以及 Skill 来源（内置、官方认证、社区等），综合判断该 Skill 是否被允许。这两种机制用来确保 Skill 能够稳定与安全的运行。
+## 二、ReAct：让大模型学会「边想边做」
 
 ---
 
-至此，我们完整拆解了 Hermes-Agent 这套自学习 Skill 机制的底层逻辑。它打破了传统 Agent 依赖人工持续喂养与维护技能的瓶颈，通过"**前台自觉+后台巡检**"的双引擎驱动新技能的自动捕获，结合"热补丁"实现自动纠错，并辅以安全守卫等手段构筑起坚实的运行底座。这为构建能够长期稳定运行的生产级 Agent 系统，提供了一条极具吸引力的思路：让 Agent 在实战中不断自我迭代，持续拓展能力边界。
+### 2.1 论文核心：为什么要同时推理和行动？
 
+2022 年普林斯顿的 Yao 等人发表了开创性的论文《ReAct: Synergizing Reasoning and Acting in Language Models》。他们发现了一个关键洞察：
+
+**纯推理（Chain-of-Thought）** ：模型能想得很深，但容易"幻觉"——因为它只在自己的知识里打转，无法验证想法。
+
+**纯行动（Act-only）** ：模型能调用工具，但缺乏规划——它不知道为什么要调这个工具，也不知道拿到结果后下一步该做什么。
+
+ReAct = 让推理指导行动，让行动结果修正推理。
+
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/react-loop.png" alt="ReAct 推理-行动循环流程" />
+  <p><sub><b>图 2</b> — ReAct 推理-行动循环流程</sub></p>
+</div>
+
+---
+
+### 2.2 一个完整的 ReAct 执行过程
+
+以「查询苹果公司最新市值并与微软对比」为例，看 ReAct 循环如何运作：
+
+```
+    [Thought 1] 用户想对比苹果和微软的市值。
+      我需要分别查询两家公司的最新市值数据。
+      先查苹果。
+
+    [Action 1] search_web("Apple Inc market cap 2026")
+
+    [Observation 1] 苹果市值约 3.8 万亿美元（2026 年 4 月）
+
+    [Thought 2] 拿到了苹果的数据。
+      现在需要查微软的市值，才能做对比。
+
+    [Action 2] search_web("Microsoft market cap 2026")
+
+    [Observation 2] 微软市值约 3.4 万亿美元（2026 年 4 月）
+
+    [Thought 3] 两个数据都有了。
+      苹果 3.8 万亿 vs 微软 3.4 万亿,
+      苹果领先约 11.8%。
+      可以给出最终答案了。
+
+    [Final Answer] 截至 2026 年 4 月，苹果市值约 3.8 万亿...
+
+
+```
+
+---
+
+### 2.3 ReAct 的三个关键设计决策
+
+| 设计决策           | 作用               | 如果缺失会怎样          |
+|----------------|------------------|------------------|
+| Thought 可见     | 推理过程写入上下文，指导后续决策 | 模型重复调用相同工具，陷入死循环 |
+| Observation 注入 | 真实数据取代模型的猜测      | 模型依赖训练数据，产生过时信息  |
+| 循环终止条件         | 模型自主判断何时该停止      | 无限循环消耗 token 和时间 |
+
+---
+
+### 2.4 2026 年的 ReAct 演进
+
+到 2026 年，ReAct 已经从单 Agent 模式扩展为更复杂的架构：
+
+**Plan-and-Execute** ：先用一个规划 LLM 生成完整计划，再用执行 LLM 逐步实施。比 vanilla ReAct 更适合长任务。
+
+**Reflexion** ：在 ReAct 循环外增加"反思"环节——任务完成后回顾整个过程，提炼经验，下次做得更好。
+
+**Multi-Agent ReAct** ：多个 Agent 各自运行 ReAct 循环，通过 A2A 协议协作，主 Agent 负责拆解和汇总。
+
+## 三、MCP：标准化一切工具连接
+
+---
+
+### 3.1 Function Call 的碎片化困境
+
+Function Call 虽好，但带来了一个严重的工程问题：**每个 AI 应用都需要自己实现工具接入** 。
+
+假设你的 AI 应用要接 5 个工具（搜索、文件、数据库、浏览器、日历），如果市场上有 3 个 AI 应用（Claude Desktop、VS Code AI、自研系统），那就是 5 x 3 = 15 个独立的接入实现。每加一个工具或一个应用，整个矩阵都要扩展。
+
+这就是经典的 **M x N 问题** 。HTTP 协议解决了 Web 的 M x N 问题，USB 解决了硬件外设的 M x N 问题——AI 工具连接需要自己的 USB。
+
+---
+
+### 3.2 MCP 的架构设计
+
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/mcp-architecture.png" alt="MCP 三层协议架构" />
+  <p><sub><b>图 3</b> — MCP 三层协议架构</sub></p>
+</div>
+
+MCP（Model Context Protocol）由 Anthropic 在 2024 年底提出并开源，其核心设计分为三层：
+
+**第一层：传输层stdio 模式** ：MCP Server 作为子进程运行，通过标准输入/输出通信。最简单、最安全，适合本地工具。
+
+**HTTP + SSE 模式** ：MCP Server 作为独立 HTTP 服务运行，支持远程连接。适合共享型工具（如数据库、云服务）。
+
+两种模式上层协议完全一致，切换无需改代码。
+
+**第二层：协议层（JSON-RPC 2.0）
+MCP 复用了成熟的 JSON-RPC 2.0 协议，而不是发明新轮子。核心方法：
+
+`initialize` — 握手协商双方能力
+
+`tools/list` — 列出 Server 提供的所有工具
+
+`tools/call` — 调用指定工具并传参
+
+`resources/read` — 读取数据资源
+
+**第三层：能力层（三大原语）
+
+| 原语        | 说明                   | 谁控制        |
+|-----------|----------------------|------------|
+| Tools     | 可执行的函数（如查天气、写文件）     | **模型主动调用** |
+| Resources | 可读取的数据源（如文件内容、DB 记录） | **应用程序控制** |
+| Prompts   | 预定义的交互模板（如"代码审查"流程）  | **用户选择触发** |
+
+---
+
+### 3.3 一个 MCP Server 长什么样？
+
+```
+    from mcp.server import Server
+    from mcp.types import Tool, TextContent
+
+    app = Server("weather-server")
+
+    @app.list_tools()
+    async def list_tools():
+        return [Tool(
+            name="get_weather",
+            description="查询城市天气",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "city": {"type": "string"}
+                }
+            }
+        )]
+
+    @app.call_tool()
+    async def call_tool(name, arguments):
+        if name == "get_weather":
+            result = await weather_api.query(arguments["city"])
+            return [TextContent(text=json.dumps(result))]
+
+    # 启动后，任何 MCP 客户端都能自动发现并调用
+    app.run(transport="stdio")
+
+
+```
+
+写一次 MCP Server，就能被 Claude Desktop、VS Code Copilot、Cursor、以及任何支持 MCP 的应用调用。这就是协议标准化的力量——**M x N 降为 M + N** 。
+
+---
+
+### 3.4 MCP 生态爆发
+
+截至 2026 年 4 月，MCP 生态已经覆盖：
+
+**文件与代码** ：filesystem、Git、GitHub、GitLab
+
+**数据库** ：PostgreSQL、MySQL、SQLite、MongoDB
+
+**浏览器** ：Puppeteer、Playwright、Browser MCP
+
+**设计工具** ：Figma、Pencil（本文的架构图就是通过 MCP 驱动 matplotlib 生成的）
+
+**云服务** ：AWS、GCP、Cloudflare、Docker
+
+... 以及数千个社区贡献的 Server
+
+## 四、Skills：可复用的能力封装
+
+---
+
+### 4.1 为什么需要 Skills？
+
+有了 Function Call + ReAct + MCP，模型已经能自主调用工具完成任务。但在实际部署中，我们会发现一个问题：**同样的工具组合 + 同样的流程，在不同场景下反复出现** 。
+
+比如"发布一篇微信公众号文章"这个任务，每次都涉及：
+
+```
+    1. 搜索素材（调用 search MCP Server）
+    2. 撰写文章（调用 LLM 自身能力）
+    3. 排版转 HTML（调用 formatter 工具）
+    4. 生成配图（调用 image generation MCP Server）
+    5. 发布到公众号（调用 wechat-publish API）
+    6. 检查发布结果（验证步骤）
+
+```
+
+如果每次都靠 ReAct 从零推理这个流程，不仅慢（每步都要思考），还不稳定（可能遗漏步骤或顺序出错）。
+
+**Skill = 经验的固化** 。它把"我已经知道怎么做"这件事封装起来：已验证的工具组合 + 固定的执行流程 + 特定领域的知识 = 一个可复用的能力单元。
+
+---
+
+### 4.2 Skill 的技术构成
+
+一个 Skill 通常包含四个部分：
+
+| 组成部分      | 说明                                    |
+|-----------|---------------------------------------|
+| Prompt 模板 | 告诉 Agent "你现在的角色是XXX，你需要完成XXX"的系统提示词  |
+| 工具清单      | 这个 Skill 需要哪些 MCP Server 和 Tools      |
+| 执行脚本      | 可选的确定性流程代码（不是所有步骤都需要 LLM 推理）          |
+| 领域知识      | 特定领域的规则和约束（如"微信会剥离 style 标签，必须用内联样式"） |
+
+---
+
+### 4.3 Skill vs Prompt vs Agent
+
+这三个概念容易混淆，区分如下：
+
+**Prompt** ：一段静态的指令文本。没有工具，没有流程，没有执行能力。类比一张「菜谱」。
+
+**Skill** ：Prompt + 工具 + 流程 + 知识的打包。可被 Agent 激活和执行。类比一个「训练有素的厨师」。
+
+**Agent** ：拥有多个 Skills、能自主决策调用哪个 Skill 的完整实体。类比一个「餐厅经理」。
+
+## 五、四层协同：完整的 Agent 技术栈
+
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/agent-stack.png" alt="AI Agent 四层协同架构" />
+  <p><sub><b>图 4</b> — AI Agent 四层协同架构</sub></p>
+</div>
+
+现在把四者放在一起看。当你对 AI 说**「帮我调研 AI Agent 趋势，写篇公众号文章发布」** 时，一个完整的 Agent 内部是这样运作的：
+
+**Step 1 - Skills 层** ：Agent 识别到这是一个"调研+写作+发布"任务，激活 research-to-wechat Skill。
+
+**Step 2 - ReAct 层** ：Skill 启动 ReAct 循环。Thought: "先搜索 AI Agent 2026 相关资料"。
+
+**Step 3 - MCP 层** ：ReAct 决定调用搜索工具，通过 MCP 协议连接搜索 Server，发送 tools/call 请求。
+
+**Step 4 - Function Call 层** ：search_web("AI Agent 2026 trends") 被实际执行，返回搜索结果。
+
+**Step 5 - ReAct 层** ：Observation 接收结果。Thought: "资料足够，开始写文章"。
+
+**Step 6 - MCP 层** ：连接图表生成 Server，生成架构图。
+
+**Step 7 - Function Call 层** ：matplotlib 渲染图表，返回图片数据。
+
+**Step 8 - ReAct 层** ：Thought: "文章和图表就绪，调用发布 API"。
+
+**Step 9 - Function Call 层** ：POST wechat-publish API，返回发布成功。
+
+**Step 10 - Skills 层** ：Skill 执行完毕，向用户报告结果。
+
+这个例子不是假设——**你正在阅读的这篇文章，就是这个架构的实际产物** 。本文的架构图由 matplotlib MCP 工具生成，内容由 ReAct 循环驱动搜索和写作，最终通过微信发布 API 的 Function Call 推送到你的屏幕上。
+
+## 六、对比与思考
+
+---
+
+### 6.1 四者关系一张表
+
+| 维度     | Function Call | MCP   | ReAct | Skills   |
+|--------|---------------|-------|-------|----------|
+| 层级     | 执行层           | 协议层   | 编排层   | 能力层      |
+| 粒度     | 单次调用          | 连接标准  | 多步循环  | 完整流程     |
+| 类比     | 手指            | 神经系统  | 大脑    | 肌肉记忆     |
+| 有无状态   | 无状态           | 有连接状态 | 有推理状态 | 有领域知识    |
+| 可否独立使用 | 可以            | 需要工具  | 需要工具  | 需要 Agent |
+
+---
+
+### 6.2 安全问题不可忽视
+
+当 AI 从"只会说话"进化到"能调工具、能自主循环、能执行多步任务"时，安全威胁面也发生了本质变化：
+
+**Prompt 注入升级** ：恶意内容可以通过工具返回值（如网页内容、文件内容）注入到 Agent 的上下文中，劫持后续行为。
+
+**权限扩散** ：Agent 具备文件读写、API 调用等能力后，一次误操作的影响范围远大于纯文本对话。
+
+**Tool Confusion** ：恶意 MCP Server 可能伪装成正常工具，窃取用户数据或执行恶意操作。
+
+目前的应对方案包括：MCP 的能力协商机制（Server 声明权限边界）、Agent 的人工审批节点（关键操作需用户确认）、以及沙箱化执行环境。但这仍是一个快速演进的领域。
+
+## 写在最后
+
+Function Call 让模型长出了手指，MCP 为这些手指接通了神经系统，ReAct 赋予了大脑边想边做的能力，Skills 则沉淀下肌肉记忆。
+
+四者的融合，正在把 AI 从「被动回答问题的工具」变成「主动解决问题的助手」。而这个转变，不是发生在未来——你手中的这篇文章，就是它今天的作品。
 
 <style>
-.hermes-subtitle {
-  margin: -4px 0 20px;
+.llm-stack-subtitle {
+  margin: -6px 0 22px;
   text-align: center;
   color: #6b7280;
   font-size: 1.05rem;
   letter-spacing: 0.02em;
 }
 
-.hermes-cover,
-.hermes-figure {
-  margin: 28px auto;
-  padding: 14px;
+.llm-stack-meta-card,
+.llm-stack-source,
+.llm-stack-figure {
   border-radius: 20px;
-  background: linear-gradient(180deg, #fffaf2 0%, #ffffff 100%);
   border: 1px solid rgba(222, 180, 106, 0.28);
   box-shadow: 0 14px 34px rgba(148, 101, 28, 0.08);
 }
 
-.hermes-cover img,
-.hermes-figure img {
-  width: 100% !important;
-  max-height: none !important;
-  border-radius: 12px;
-}
-
-.hermes-meta-card {
-  margin: 20px 0 28px;
+.llm-stack-meta-card {
+  margin: 20px 0 18px;
   padding: 18px 20px;
-  background: linear-gradient(135deg, rgba(255, 246, 221, 0.92), rgba(255, 255, 255, 0.98));
-  border: 1px solid rgba(226, 179, 76, 0.34);
-  border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(201, 145, 38, 0.08);
+  background: linear-gradient(135deg, rgba(255, 246, 221, 0.96), rgba(255, 255, 255, 0.98));
 }
 
-.hermes-meta-card ul {
+.llm-stack-meta-card ul {
   margin: 0;
   padding-left: 1.1rem;
 }
 
-.hermes-meta-card li {
-  margin: 0.45rem 0;
+.llm-stack-meta-card li {
+  margin: 0.5rem 0;
   line-height: 1.75;
+}
+
+.llm-stack-source {
+  margin: 0 0 28px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, #fffaf2 0%, #ffffff 100%);
+}
+
+.llm-stack-source p {
+  margin: 0.35rem 0;
+}
+
+.llm-stack-figure {
+  margin: 28px auto;
+  padding: 14px;
+  background: linear-gradient(180deg, #fffaf2 0%, #ffffff 100%);
+}
+
+.llm-stack-figure img {
+  width: 100% !important;
+  border-radius: 12px;
+}
+
+.llm-stack-figure p {
+  margin: 12px 0 4px;
+  text-align: center;
+  color: #7c5a1f;
 }
 
 .vp-doc h2 {
@@ -360,7 +433,7 @@ skill_manage(action="patch",
 }
 
 .vp-doc h3 {
-  margin-top: 28px;
+  margin-top: 30px;
 }
 
 .vp-doc blockquote {
@@ -379,20 +452,20 @@ skill_manage(action="patch",
   background-color: rgba(255, 248, 230, 0.45);
 }
 
-.dark .hermes-subtitle {
+.dark .llm-stack-subtitle {
   color: #c8d0da;
 }
 
-.dark .hermes-cover,
-.dark .hermes-figure {
+.dark .llm-stack-meta-card,
+.dark .llm-stack-source,
+.dark .llm-stack-figure {
   background: linear-gradient(180deg, rgba(56, 43, 20, 0.65), rgba(30, 30, 30, 0.92));
   border-color: rgba(226, 173, 71, 0.28);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
-.dark .hermes-meta-card {
-  background: linear-gradient(135deg, rgba(73, 53, 20, 0.86), rgba(30, 30, 30, 0.95));
-  border-color: rgba(226, 173, 71, 0.28);
+.dark .llm-stack-figure p {
+  color: #f2d7a0;
 }
 
 .dark .vp-doc blockquote {

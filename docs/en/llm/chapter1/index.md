@@ -1,357 +1,419 @@
-# Hardcore Breakdown of Hermes-Agent: The Architecture and Implementation Principles Behind Its Self-Learning Skill Mechanism
+# Deep Dive: How Function Calling, MCP, ReAct, and Skills Form the Full AI Agent Stack
 
-<p class="hermes-subtitle"><strong>From skill manuals to self-evolving capabilities: a close look at how Hermes-Agent learns, patches, and activates Skills through real execution</strong></p>
+<p class="llm-stack-subtitle"><strong>From function execution to protocol standardization, then up to reasoning loops and reusable capability layers — one article to connect the four core layers of modern AI Agents</strong></p>
 
-<div class="hermes-cover hermes-figure">
-  <img src="./images/hermes-agent/cover_gif.gif" width="360" />
-</div>
-
-OpenClaw has an extremely powerful Skill ecosystem. So how can an emerging Agent challenge this "lobster"? Hermes-Agent offers a distinctly different answer.
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/hermes_intro.webp" width="680" />
-</div>
-
-<div class="hermes-meta-card">
+<div class="llm-stack-meta-card">
   <ul>
-    <li><strong>Core question</strong>: why an Agent should evolve from “being able to use Skills” to “being able to create new Skills by itself”</li>
-    <li><strong>What this article covers</strong>: self-learning awareness injection, trigger chains, background review, patch-based repair, conditional activation, and safety guards</li>
-    <li><strong>What you gain</strong>: a practical mental model of how Hermes-Agent turns one-off execution experience into reusable long-term capability assets</li>
+    <li><strong>Core question</strong>: what problem does each layer solve — Function Calling, MCP, ReAct, and Skills — and why do they only become powerful when combined</li>
+    <li><strong>What you gain</strong>: a unified architectural lens you can use to analyze most AI Agent products and systems</li>
+    <li><strong>Best for</strong>: developers, architects, and product builders who want to connect tool calling, protocol design, agent loops, and workflow encapsulation into one coherent mental model</li>
   </ul>
 </div>
 
-Its core philosophy is not to keep expanding Skill breadth alone, but to let the Agent **learn and evolve through practice**, so it becomes stronger the more it is used.
+When you ask an AI assistant, "Check today's weather in Beijing," it is no longer just inventing a plausible answer. It can actually call an API, fetch real data, and return a grounded response in natural language. Behind that experience sits the coordinated work of **Function Calling, MCP, ReAct, and Skills**.
 
-This article breaks down one of Hermes-Agent’s key mechanisms: how self-learning Skills are actually implemented:
+This article walks through those four layers from protocol details to architectural roles, so you can see how a modern AI Agent stack is really assembled.
 
-1. Why we need self-learning Agents
-2. How Hermes-Agent learns a Skill in practice
-3. A full breakdown of the Hermes-Agent Skill mechanism
-   - How self-learning awareness is implanted
-   - The complete trigger chain and timing of Skill learning
-   - Automatic Skill repair: patching a broken Skill
-   - Conditional activation and safety guards
+## I. Function Calling: The First Step from "Can Talk" to "Can Act"
 
-Let us step into the world of a self-improving Agent.
+### 1.1 What problem does it solve?
 
----
+At its core, a large language model is still a **text continuation machine**. Give it text, and it predicts the next most likely chunk of text. That creates two built-in limitations:
 
-## Part 01 — Why do we need self-learning Agents?
+**Limitation 1: knowledge cutoff** — its training data stops at a certain date, so it cannot directly know real-time information.
 
-Looking back at this wave of AI systems, we have gone from passive **ChatBots**, to simple **Agents** that can call tools, and then to more complex Agents with persistent memory and continuous work loops.
+**Limitation 2: no native execution ability** — it can describe what should be done, but it cannot actually perform the operation by itself.
 
-Capabilities have improved, but most Agents still lack one of the most human abilities of all: **the ability to summarize experience from repeated real work, learn new techniques, and gradually form problem-solving "muscle memory" and SOPs.**
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/agent_evolution.webp" width="720" />
-  <p><sub><b>Agent capability evolution: from ChatBot → simple Agent → complex Agent → self-learning Agent</b></sub></p>
-</div>
-
-### ACE: Agentic Context Engineering
-
-Research and engineering have not stopped exploring this problem. One example is **ACE (Agentic Context Engineering)**: after each task, the Agent reviews the historical messages and summarizes reusable experience into **bullet-style memory items**.
-
-The limitation of ACE is that these bullets are usually **simple, unstructured natural-language hints**. For example: “For key data such as price or quantity, compare multiple authoritative sources and verify accuracy.” Knowledge like this behaves like scattered fragments in a human mind. It is hard to solidify into precise workflows or executable logic. As the memory base grows, the system also starts facing context overload and rule conflicts. And for complex tasks, the model still needs to do a large amount of fresh reasoning from scratch, which is both inefficient and unstable.
-
-### Skill: structured knowledge cards
-
-Skills are undoubtedly a major Agent-engineering breakthrough. **They organize experience in a structured, standardized form and use progressive loading to reduce context pressure.**
-
-But a Skill is still not self-driven. It is a handbook written by humans and handed to the model — when the Agent encounters a problem, it first looks up the answer in a manual.
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_vs_manual.webp" width="680" />
-  <p><sub><b>The nature of a Skill: a structured handbook of experience that still depends on manual authoring</b></sub></p>
-</div>
-
-The real-world issue is that Agent tasks and environments are always changing. Not every problem has a predefined standard solution. At that point, the Agent needs to be able to **write the handbook itself** — extracting best practices from trial and error, then solidifying them into brand-new Skills.
-
-> And that is exactly the gap **Hermes-Agent** is trying to cross.
-
-### Going one step further: the RL loop
-
-Even though many people now emphasize **harness engineering**, the base model is still the brain of the Agent. In a traditional Agent system, once the model choice is made, the capability baseline is largely fixed.
-
-So is there a way to automatically absorb experience from Agent execution traces, turn that into training data, and quickly feed it into reinforcement learning?
-
-That would let the model develop something closer to an instinctive response for certain complex tasks, instead of always consulting an “operations manual.” This is where Hermes-Agent becomes even more ambitious: it introduces an **RL training loop**. How Agent trajectories are collected, labeled through reward models, and used to reinforce the base model deserves its own article. For now, we stay focused on the earlier step: how Hermes-Agent automatically “writes the manual” — in other words, how it creates Skills.
+The core idea of Function Calling is straightforward: **instead of only generating text, let the model output structured JSON that declares “I want to call this function.”** The host application intercepts that request, executes the function, and feeds the result back into the model.
 
 ---
 
-## Part 02 — How Hermes-Agent learns a Skill in practice
+### 1.2 What actually happens during a Function Call?
 
-In this section, we design a concrete task so we can experience Hermes-Agent’s self-learning Skill capability directly. Before that, let us first look at its overall architecture and basic setup path.
-
-### The overall Hermes-Agent architecture
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/architecture.webp" width="760" />
-  <p><sub><b>The overall Hermes-Agent architecture — note the Skill evolution subsystem on the right</b></sub></p>
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/function-call-sequence.png" alt="Full Function Calling execution sequence" />
+  <p><sub><b>Figure 1</b> — Full Function Calling execution sequence</sub></p>
 </div>
 
-Unlike OpenClaw, the **Hermes-Agent Gateway** is not a mandatory core module. If you are not connecting external message channels, you may not need to start it at all. Here we mainly care about its Skill-evolution subsystem.
+A complete Function Calling flow has several important technical ingredients.
 
-### Installation and configuration
+**Tool schema**: each callable function is described with a structured schema, typically JSON Schema. That is the basis on which the model understands what a tool does and which parameters it accepts.
 
-Hermes-Agent is simpler to install, configure, and use. It omits many of the more complicated option layers that exist in OpenClaw and focuses on the core capabilities.
+```json
+{
+  "name": "get_weather",
+  "description": "Query weather for a city",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "city": {"type": "string", "description": "City name"},
+      "date": {"type": "string", "description": "Date in YYYY-MM-DD"}
+    },
+    "required": ["city"]
+  }
+}
+```
 
-In the minimalist path, you only need three steps: install, configure the model, then run the `hermes` command.
+**The model's decision process** is not just keyword matching. In a real Function Calling flow, the model usually does four things:
 
-One especially interesting detail for personal use is that Hermes not only supports direct access to common model providers through API keys, but can also reuse subscriptions from AI coding tools such as Codex and Copilot. That means it can directly call top-tier models already included in your subscription plan, without extra provider setup. For example, it can connect to an existing GitHub Copilot subscription:
+1. Understand the user's intent semantically rather than by naive token matching.
+2. Choose the most relevant tool among the available ones — possibly none, one, or several.
+3. Infer missing arguments from context, such as assuming "today" when the user does not specify a date.
+4. Generate a parameter object that conforms to the declared schema.
 
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/copilot_config.webp" width="560" />
-  <p><sub>Example configuration: connect a GitHub Copilot subscription and reuse the model quota you already have</sub></p>
+---
+
+### 1.3 From single-call tools to parallel tool use
+
+When Function Calling first appeared in 2023, the common pattern was **single-call execution**: the model could request only one tool call in a given turn.
+
+By late 2024, mainstream models had broadly moved toward **parallel tool use**. That means the model can request multiple function calls in one round, the host can execute them concurrently, and then feed all results back together.
+
+That improvement matters a lot for efficiency. If a user asks for a weather comparison between Beijing and Shanghai, the model can request two weather calls in parallel rather than serializing them one after another.
+
+Still, Function Calling is fundamentally **stateless and one-shot**. If you want the model to handle a multi-step goal such as "research material, write an article, then publish it," you need a stronger orchestration pattern.
+
+## II. ReAct: Teaching the Model to Think While Acting
+
+---
+
+### 2.1 Why combine reasoning and action?
+
+In 2022, Yao et al. from Princeton introduced the influential paper *ReAct: Synergizing Reasoning and Acting in Language Models*. The core insight was simple but profound.
+
+**Pure reasoning**, such as chain-of-thought style prompting, can lead to deep analysis — but it can also drift into hallucination because the model is trapped inside its own internal world model.
+
+**Pure action**, where the model just calls tools, can retrieve information — but it lacks planning and strategy. It may not know why a tool should be called, or what to do with the result afterward.
+
+ReAct solves this by letting **reasoning guide action, and action results correct reasoning**.
+
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/react-loop.png" alt="ReAct reasoning and acting loop" />
+  <p><sub><b>Figure 2</b> — ReAct reasoning-and-acting loop</sub></p>
 </div>
 
-### Designing a task that can trigger self-learning
+---
 
-So when does **Hermes-Agent** decide that it should summarize a new method and create a Skill by itself? Even before we inspect the implementation, we can infer that at least three conditions should hold:
+### 2.2 A full ReAct example
 
-1. The task cannot be completed directly with an existing Skill
-2. The task has enough complexity, for example more than N tool calls
-3. The task is likely to be repeated in the future
-
-With that in mind, let us design a multi-step code-audit task:
+Take a request like: "Find Apple's latest market cap and compare it with Microsoft." A simplified ReAct loop might look like this:
 
 ```text
-Run a codebase quality audit on ~/hermes-agent and complete the following:
-1. Count the total number of .py files and total lines, and find the 5 largest files
-2. Search TODO/FIXME/HACK comments and group the counts by subdirectory
-3. Read the first 20 and last 20 lines of the largest file, then inspect the context around each TODO in it
-4. Search for password=, secret=, api_key= in non-test files and judge whether they are placeholders or hard-coded credentials
-5. Under tools/, find “orphan” modules imported ≤1 time in the whole project
-6. Find the 5 most-referenced modules and read the first 50 lines of the top one
-7. Write the full report to /tmp/source_checkreport_$(date +%Y%m%d).md,
-   including summary tables for each step and at least 8 technical-debt findings ranked high/medium/low priority
-Finally tell me which step you would start with next time for a similar audit.
+[Thought 1] The user wants a comparison between Apple and Microsoft.
+I need fresh market-cap data for both companies.
+I'll search Apple first.
+
+[Action 1] search_web("Apple Inc market cap 2026")
+
+[Observation 1] Apple's market cap is about 3.8 trillion USD (April 2026).
+
+[Thought 2] I have Apple's number.
+Now I need Microsoft's market cap before I can compare them.
+
+[Action 2] search_web("Microsoft market cap 2026")
+
+[Observation 2] Microsoft's market cap is about 3.4 trillion USD (April 2026).
+
+[Thought 3] I now have both values.
+Apple: 3.8T vs Microsoft: 3.4T.
+Apple leads by roughly 11.8%.
+I can answer now.
+
+[Final Answer] As of April 2026, Apple's market cap is roughly 3.8 trillion USD...
 ```
-
-The final sentence is there to hint that this kind of task may recur. Now feed the task into Hermes-Agent.
-
-> **Below is the complete six-step demonstration of self-learning Skill creation:**
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/tui_input.webp" width="720" />
-  <p><sub><b>Step 1</b> — Paste the code-audit task into the Hermes-Agent TUI input box</sub></p>
-</div>
-
-After waiting for a while, you can see the task execution output:
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/task_output.webp" width="720" />
-  <p><sub><b>Step 2</b> — The Agent autonomously completes the multi-step code-audit task</sub></p>
-</div>
-
-At the end of the output, a crucial log message appears:
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_created_log.webp" width="720" />
-  <p><sub><b>Step 3</b> — The log shows that a brand-new Skill was created automatically</sub></p>
-</div>
-
-At this point, you can find a new Skill under `~/.hermes/skills/`:
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_directory.webp" width="560" />
-  <p><sub><b>Step 4</b> — The auto-generated Skill directory, categorized under software-development</sub></p>
-</div>
-
-When you open its `SKILL.md`, you will find a code-audit Skill corresponding exactly to the workflow above:
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_md_content.webp" width="720" />
-  <p><sub><b>Step 5</b> — The generated SKILL.md contains the full code-audit workflow</sub></p>
-</div>
-
-This shows that the test task successfully triggered reflection and learning in Hermes-Agent. A new Skill was created and classified under `software-development`. The Agent has effectively “secretly learned” a code-audit Skill. The next time you send a similar request — for example, “run a code audit on project X” — that Skill may be activated automatically:
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_triggered.webp" width="720" />
-  <p><sub><b>Step 6</b> — On a similar future instruction, the learned Skill is triggered automatically</sub></p>
-</div>
-
-Throughout the whole process, you do not need to intervene, and you do not need to install anything from a Skill Hub. The Agent reflects on its own work and learns a new Skill by itself.
 
 ---
 
-## Part 03 — Full breakdown of the Hermes-Agent Skill mechanism
+### 2.3 Three key ReAct design choices
 
-Now let us unpack the logic behind Hermes-Agent’s self-learning Skill system. Once you understand the points below, you can borrow the same patterns in your own Agent stack:
-
-- How is self-learning awareness implanted?
-- What is the full trigger chain and timing for Skill learning?
-- How does automatic Skill repair work?
-- How do conditional activation and safety guards fit into the system?
-
-### How is self-learning awareness implanted?
-
-Everything begins at the moment you start a Hermes-Agent session. In the Agent’s startup and initialization entry point (`run_agent.py`), there is a very explicit system-prompt assembly pipeline. One of its important steps is to implant the idea that the Agent should learn Skills, use Skills, and repair Skills.
-
-```python
-SKILLS_GUIDANCE = (
-    "When you complete a complex task (for example one requiring many tool calls, usually 5 or more),"
-    "solve a tricky error, or discover a non-obvious but reusable workflow,"
-    "use skill_manage to save that method as a skill,"
-    "so it can be reused in similar situations next time.\n"
-    "When you are using a skill and discover that it is outdated, incomplete, or wrong,"
-    "immediately use skill_manage(action='patch') to repair it,"
-    "do not wait until someone explicitly asks you to fix it."
-    "If a skill is not maintained, it eventually turns from an asset into a burden."
-)
-```
-
-After that, the current categorized Skill index is injected into the system prompt as well.
-
-At this point, the Agent has effectively gone through onboarding. It now carries the awareness that it should learn and repair Skills by itself. But this front-stage awareness is only one of the trigger mechanisms.
-
-### The complete self-learning chain and its trigger timing
-
-Self-learning does **not** mean that every time the Agent finishes a task or uses a tool, it immediately performs a mechanical check of whether a new Skill should be written. Hermes-Agent uses a dual mechanism instead:
-
-- **Front-stage initiative**: thanks to the system guidance above, the model can decide during a complex task that a workflow deserves to become a Skill, and proactively call `skill_manage`.
-- **Back-stage review**: even if the model does not proactively save anything in the current run, the controller still tracks tool-call counts and can later trigger a background review as an asynchronous safety net.
-
-The background trigger is based on cumulative tool-calling iterations across tasks (`_iters_since_skill`). Once the counter reaches a threshold (default: 10), a background asynchronous review is launched.
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/review-trigger.webp" width="720" />
-  <p><sub><b>Background review trigger</b> — once cumulative tool iterations pass the threshold, the system launches an asynchronous reflection path</sub></p>
-</div>
-
-Two examples make the two mechanisms easier to understand:
-
-- **Front-stage initiative**
-
-  During normal task execution, the model may judge by itself that “this method is worth saving as a Skill.” At that moment, it calls `skill_manage`, creates the Skill, and resets the `_iters_since_skill` counter to 0. Once the counter is reset, no background review will be triggered for that round.
-
-- **Back-stage review**
-
-  If a task finishes without ever calling `skill_manage`, the counter keeps accumulating. Once the threshold is reached, the system triggers a background review through an independent thread and a dedicated `review_agent`. For example:
-
-> Task 1: a complex task, 8 tool iterations (`_iters_since_skill = 8`)  
-> Task 2: a simple task, 3 tool iterations (`_iters_since_skill = 11`) → background review is triggered
-
-| Mechanism | Timing | Trigger condition |
-|------|------|----------|
-| Front-stage initiative | During task execution | The model decides to call `skill_manage` |
-| Back-stage review | After task completion | Cumulative tool iterations >= 10 (configurable) |
-
-Once the background reflection path starts, how does the system decide whether some experience deserves to become a new Skill? It depends on the prompt used by `review_agent`:
-
-```python
-_SKILL_REVIEW_PROMPT = (
-    "Review the conversation above and decide whether it is worth saving or updating a skill.\n\n"
-    "Pay close attention to whether a non-obvious method was used,"
-    "whether there was repeated trial and error,"
-    "whether the direction changed based on feedback during execution,"
-    "or whether the user expected or needed a different method or result.\n\n"
-    "If a related skill already exists, update it using the current experience;"
-    "if no such skill exists and the method is reusable, create a new skill.\n"
-    "If nothing is worth saving, output 'Nothing to save.' and stop."
-)
-```
-
-In plain language, only experience that truly came from detours, failed attempts, and revised approaches deserves to become a Skill. The background reflection phase is asynchronous, so it does not block the main session.
-
-### Automatic Skill repair: patching a broken Skill
-
-Hermes-Agent also designs in automatic Skill repair. **It is a self-repair behavior jointly driven by system prompts and the `skill_manage` tool while the Agent is actively using a Skill** — similar to how an experienced operator revises the handbook while doing the work.
-
-The core logic is simple: if the model judges that the problem lies in the Skill itself rather than the surrounding environment, it starts Skill repair by calling `skill_manage(action='patch')`.
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill-patch-flow.webp" width="720" />
-  <p><sub><b>Skill patching and repair</b> — when a Skill itself has become outdated or broken, the system attempts to patch the Skill directly</sub></p>
-</div>
-
-At the implementation level, a patch is essentially a string replacement. The system rewrites the broken part inside `SKILL.md` (and potentially other Skill-related files too).
-
-For example, imagine you have a `feature-publish` Skill, but it fails because the publishing URL has changed. After analysis, the Agent calls:
-
-```python
-skill_manage(action="patch",
-             old_string="https://old-registry.xx.xx",
-             new_string="https://registry.xx.xx")
-```
-
-That patches the Skill in place and lets execution continue. To find the new value, the Agent may use other tools such as search.
-
-### Conditional activation and safety guards
-
-As the number of Skills and tools grows, overlap and dependency relationships naturally appear. That means not every Skill should always be shown or activated every time the Skill index is injected. Hermes performs filtering based on a simple principle:
-
-> When the primary tool is available, the “backup” Skill stays hidden. When a Skill’s prerequisite tool is missing, that Skill also stays hidden.
-
-The activation path for each Skill looks like this:
-
-<div class="hermes-figure">
-  <img src="./images/hermes-agent/skill-activation-guard.webp" width="720" />
-  <p><sub><b>Conditional activation and safety guards</b> — Skill visibility is governed by tool availability, fallback relationships, and risk checks</sub></p>
-</div>
-
-For example:
-
-If a `duckduckgo-search` Skill is configured with `fallback_for_toolsets: [web]`, that means it is the backup for the primary web toolset. When the user has already configured the web tool and its API key, the `duckduckgo-search` Skill disappears from the available list. Likewise, if a `deep-research` Skill depends on a prerequisite tool such as `web-fetch`, it will not load when `web-fetch` is unavailable.
-
-On top of that, every Skill must pass through a **safety-guard scan** at load time. The main checks include:
-
-- hard-coded secrets such as API keys
-- suspicious code-execution patterns that may indicate backdoors
-- prompt-injection attempts intended to manipulate the Agent
-- dangerous commands such as `rm -rf` and `chmod 777`
-
-Hermes then combines the detected risk level (`safe`, `caution`, `dangerous`) with the Skill source (built-in, officially verified, community-provided, and so on) to decide whether the Skill should be allowed. Together, these mechanisms make Skills both stable and safe enough to run in production-like environments.
+| Design choice | Why it matters | What happens if it is missing |
+| --- | --- | --- |
+| Visible thought steps | Keeps the evolving reasoning trace in context | The model may repeat tool calls or fall into loops |
+| Observation injection | Replaces guesses with real external evidence | The model falls back to stale training-time knowledge |
+| Termination condition | Lets the model decide when the task is complete | The loop may continue wasting tokens and time |
 
 ---
 
-At this point, we have fully unpacked the logic behind Hermes-Agent’s self-learning Skill mechanism. It breaks through the traditional bottleneck where Agents depend on humans to keep feeding and maintaining Skill libraries. By combining **front-stage initiative + back-stage review**, Hermes-Agent automatically captures new reusable workflows, uses hot patching for self-correction, and relies on safety guards to provide a solid execution foundation.
+### 2.4 How ReAct evolved by 2026
 
-For anyone building long-running production-grade Agents, this is an especially compelling direction: let the Agent iterate through real work, continuously extend its own capability boundary, and gradually convert execution into reusable intelligence.
+By 2026, ReAct had already expanded far beyond a single-agent loop.
+
+**Plan-and-Execute** introduces a planner model that creates a full plan first, then a separate execution model that carries it out step by step. It is better suited to longer tasks than vanilla ReAct.
+
+**Reflexion** adds a reflection stage outside the main loop, so the system can review what happened after task completion and improve future behavior.
+
+**Multi-Agent ReAct** allows multiple agents to run their own reasoning-action loops and collaborate via agent-to-agent protocols, with a coordinator agent handling decomposition and synthesis.
+
+## III. MCP: Standardizing Tool Connectivity
+
+---
+
+### 3.1 The fragmentation problem behind Function Calling
+
+Function Calling is powerful, but it also creates a major engineering problem: **every AI application has to wire up every tool integration itself**.
+
+Imagine your application needs five kinds of tools — search, filesystem, database access, browser automation, and calendar APIs. If there are three AI applications on the market, then you end up with 5 × 3 = 15 separate integrations. Every new tool or every new application expands that matrix.
+
+This is the classic **M × N integration problem**. HTTP solved an M × N problem for the web. USB solved one for hardware peripherals. AI systems need their own equivalent for tool connectivity.
+
+---
+
+### 3.2 MCP's architectural idea
+
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/mcp-architecture.png" alt="MCP three-layer protocol architecture" />
+  <p><sub><b>Figure 3</b> — MCP three-layer protocol architecture</sub></p>
+</div>
+
+MCP, the **Model Context Protocol**, was proposed and open-sourced by Anthropic in late 2024. Its design can be understood in three layers.
+
+**Layer 1: transport**
+
+- **stdio mode**: the MCP server runs as a child process and communicates over standard input/output. This is the simplest and safest setup for local tools.
+- **HTTP + SSE mode**: the MCP server runs as an independent service and supports remote access. This is suitable for shared infrastructure such as cloud databases and organizational services.
+
+The transport can change without affecting the higher-level protocol.
+
+**Layer 2: protocol**
+
+MCP reuses the mature **JSON-RPC 2.0** standard instead of inventing a brand-new protocol. Core methods include:
+
+- `initialize` — capability negotiation during the handshake
+- `tools/list` — list all tools exposed by the server
+- `tools/call` — invoke a tool with arguments
+- `resources/read` — read data resources
+
+**Layer 3: capabilities**
+
+| Primitive | Meaning | Who controls it |
+| --- | --- | --- |
+| Tools | Executable operations such as fetching weather or writing files | **Model-driven** |
+| Resources | Readable data such as files or database records | **Application-controlled** |
+| Prompts | Predefined interaction flows such as code-review templates | **User-selected** |
+
+---
+
+### 3.3 What does an MCP server actually look like?
+
+```python
+from mcp.server import Server
+from mcp.types import Tool, TextContent
+
+app = Server("weather-server")
+
+@app.list_tools()
+async def list_tools():
+    return [Tool(
+        name="get_weather",
+        description="Query weather for a city",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "city": {"type": "string"}
+            }
+        }
+    )]
+
+@app.call_tool()
+async def call_tool(name, arguments):
+    if name == "get_weather":
+        result = await weather_api.query(arguments["city"])
+        return [TextContent(text=json.dumps(result))]
+
+app.run(transport="stdio")
+```
+
+Write an MCP server once, and any MCP-compatible client — Claude Desktop, VS Code Copilot, Cursor, or your own app — can discover and call it. That is the real value of standardization: **M × N becomes M + N**.
+
+---
+
+### 3.4 The MCP ecosystem explosion
+
+By April 2026, the MCP ecosystem already spans a huge range of infrastructure:
+
+**Files and code**: filesystem, Git, GitHub, GitLab
+
+**Databases**: PostgreSQL, MySQL, SQLite, MongoDB
+
+**Browsers**: Puppeteer, Playwright, Browser MCP
+
+**Design tools**: Figma, Pencil, and figure-generation pipelines like the matplotlib-based flow used for diagrams in this article
+
+**Cloud services**: AWS, GCP, Cloudflare, Docker
+
+...plus thousands of community-contributed servers.
+
+## IV. Skills: Reusable Capability Packaging
+
+---
+
+### 4.1 Why do we still need Skills?
+
+Once you have Function Calling, ReAct, and MCP, the model can already call tools and complete tasks autonomously. But in real deployments, you quickly notice another problem: **the same tool combinations and workflow patterns appear again and again across recurring tasks**.
+
+Take a workflow such as "publish a WeChat article." It often includes steps like:
+
+```text
+1. Search for references (via a search MCP server)
+2. Draft the article (via the base LLM)
+3. Convert it to publishable HTML (via formatting tools)
+4. Generate accompanying images (via an image-generation server)
+5. Publish through the WeChat API
+6. Verify the final result
+```
+
+If the agent has to rediscover this workflow from scratch every single time through ReAct alone, it becomes slower and less stable. It may forget steps, change the order, or vary unnecessarily.
+
+That is why a **Skill** matters. A Skill is a way to freeze working experience into a reusable capability unit: a verified combination of tools, a known execution flow, and domain-specific knowledge packaged together.
+
+---
+
+### 4.2 What a Skill is made of
+
+A Skill usually contains four parts:
+
+| Component | Meaning |
+| --- | --- |
+| Prompt template | System instructions that define the role and goal of the agent in this workflow |
+| Tool set | The MCP servers and tools the workflow depends on |
+| Execution logic | Optional deterministic steps that do not need fresh LLM reasoning every time |
+| Domain knowledge | Constraints and best practices from the target domain |
+
+---
+
+### 4.3 Skill vs Prompt vs Agent
+
+These three terms are often confused, but they operate at different levels.
+
+**Prompt**: a static piece of instruction text. It has no tools, no execution flow, and no runtime behavior. Think of it as a recipe card.
+
+**Skill**: a packaged capability made of prompt + tools + flow + knowledge. It can be activated and executed by an agent. Think of it as a trained chef.
+
+**Agent**: the complete decision-making entity that owns multiple Skills and decides which one to activate. Think of it as a restaurant manager.
+
+## V. The Four Layers Together: A Complete AI Agent Stack
+
+<div class="llm-stack-figure">
+  <img src="./images/function-call-stack/agent-stack.png" alt="Four-layer collaborative AI Agent architecture" />
+  <p><sub><b>Figure 4</b> — Four-layer collaborative AI Agent architecture</sub></p>
+</div>
+
+Now let us put the four layers together. Suppose a user says: **"Research AI Agent trends, write a WeChat article, and publish it."** Internally, a capable agent may work like this:
+
+**Step 1 — Skills layer**: the system recognizes this as a research-and-publish workflow and activates a suitable publishing Skill.
+
+**Step 2 — ReAct layer**: the Skill starts a reasoning-action loop. Thought: "First, gather up-to-date AI Agent trend material."
+
+**Step 3 — MCP layer**: ReAct decides to call a search tool through an MCP server and sends a `tools/call` request.
+
+**Step 4 — Function Calling layer**: the search tool is executed and returns the results.
+
+**Step 5 — ReAct layer**: the model reads the observations and decides that it now has enough evidence to start writing.
+
+**Step 6 — MCP layer**: it connects to a diagram-generation or chart-generation tool.
+
+**Step 7 — Function Calling layer**: the chart tool runs and returns image output.
+
+**Step 8 — ReAct layer**: the model determines that the text and figures are ready and prepares to publish.
+
+**Step 9 — Function Calling layer**: the publishing API is called and returns success.
+
+**Step 10 — Skills layer**: the workflow completes and reports the outcome back to the user.
+
+That stack is not just hypothetical. It is the architectural pattern behind many production AI systems today.
+
+## VI. Comparison and Final Thoughts
+
+---
+
+### 6.1 One table to summarize the four layers
+
+| Dimension | Function Calling | MCP | ReAct | Skills |
+| --- | --- | --- | --- | --- |
+| Layer | Execution layer | Protocol layer | Orchestration layer | Capability layer |
+| Granularity | Single call | Connection standard | Multi-step loop | End-to-end workflow |
+| Analogy | Fingers | Nervous system | Brain | Muscle memory |
+| Stateful? | Stateless | Connection state | Reasoning state | Domain memory |
+| Usable by itself? | Yes | Needs tools | Needs tools | Needs an agent |
+
+---
+
+### 6.2 Why security becomes more important
+
+As AI systems evolve from "can answer questions" into systems that can call tools, run loops, and complete multi-step operations, the attack surface changes fundamentally.
+
+**Prompt injection becomes more dangerous** because malicious content can arrive through tool outputs such as webpages or files, then poison the agent's context.
+
+**Permission expansion becomes more consequential** because once the agent can read files, write files, or invoke external APIs, one bad decision can have far more impact than a text-only conversation.
+
+**Tool confusion becomes a real risk** because a malicious MCP server can present itself as a normal tool while exfiltrating data or triggering unsafe actions.
+
+The common defenses today include MCP capability negotiation, user approval steps for sensitive operations, and sandboxed execution environments. Even so, this remains a fast-moving frontier.
+
+## Closing
+
+Function Calling gives the model fingers. MCP connects those fingers to a nervous system. ReAct gives the system a way to think while acting. Skills preserve repeated success as muscle memory.
+
+Together, they are turning AI from a passive answer engine into an active problem-solving system. And that shift is not a distant future trend — it is already the architectural reality of modern AI Agents.
 
 <style>
-.hermes-subtitle {
-  margin: -4px 0 20px;
+.llm-stack-subtitle {
+  margin: -6px 0 22px;
   text-align: center;
   color: #6b7280;
   font-size: 1.05rem;
   letter-spacing: 0.02em;
 }
 
-.hermes-cover,
-.hermes-figure {
-  margin: 28px auto;
-  padding: 14px;
+.llm-stack-meta-card,
+.llm-stack-source,
+.llm-stack-figure {
   border-radius: 20px;
-  background: linear-gradient(180deg, #fffaf2 0%, #ffffff 100%);
   border: 1px solid rgba(222, 180, 106, 0.28);
   box-shadow: 0 14px 34px rgba(148, 101, 28, 0.08);
 }
 
-.hermes-cover img,
-.hermes-figure img {
-  width: 100% !important;
-  max-height: none !important;
-  border-radius: 12px;
-}
-
-.hermes-meta-card {
-  margin: 20px 0 28px;
+.llm-stack-meta-card {
+  margin: 20px 0 18px;
   padding: 18px 20px;
-  background: linear-gradient(135deg, rgba(255, 246, 221, 0.92), rgba(255, 255, 255, 0.98));
-  border: 1px solid rgba(226, 179, 76, 0.34);
-  border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(201, 145, 38, 0.08);
+  background: linear-gradient(135deg, rgba(255, 246, 221, 0.96), rgba(255, 255, 255, 0.98));
 }
 
-.hermes-meta-card ul {
+.llm-stack-meta-card ul {
   margin: 0;
   padding-left: 1.1rem;
 }
 
-.hermes-meta-card li {
-  margin: 0.45rem 0;
+.llm-stack-meta-card li {
+  margin: 0.5rem 0;
   line-height: 1.75;
+}
+
+.llm-stack-source {
+  margin: 0 0 28px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, #fffaf2 0%, #ffffff 100%);
+}
+
+.llm-stack-source p {
+  margin: 0.35rem 0;
+}
+
+.llm-stack-figure {
+  margin: 28px auto;
+  padding: 14px;
+  background: linear-gradient(180deg, #fffaf2 0%, #ffffff 100%);
+}
+
+.llm-stack-figure img {
+  width: 100% !important;
+  border-radius: 12px;
+}
+
+.llm-stack-figure p {
+  margin: 12px 0 4px;
+  text-align: center;
+  color: #7c5a1f;
 }
 
 .vp-doc h2 {
@@ -361,7 +423,7 @@ For anyone building long-running production-grade Agents, this is an especially 
 }
 
 .vp-doc h3 {
-  margin-top: 28px;
+  margin-top: 30px;
 }
 
 .vp-doc blockquote {
@@ -380,20 +442,20 @@ For anyone building long-running production-grade Agents, this is an especially 
   background-color: rgba(255, 248, 230, 0.45);
 }
 
-.dark .hermes-subtitle {
+.dark .llm-stack-subtitle {
   color: #c8d0da;
 }
 
-.dark .hermes-cover,
-.dark .hermes-figure {
+.dark .llm-stack-meta-card,
+.dark .llm-stack-source,
+.dark .llm-stack-figure {
   background: linear-gradient(180deg, rgba(56, 43, 20, 0.65), rgba(30, 30, 30, 0.92));
   border-color: rgba(226, 173, 71, 0.28);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
-.dark .hermes-meta-card {
-  background: linear-gradient(135deg, rgba(73, 53, 20, 0.86), rgba(30, 30, 30, 0.95));
-  border-color: rgba(226, 173, 71, 0.28);
+.dark .llm-stack-figure p {
+  color: #f2d7a0;
 }
 
 .dark .vp-doc blockquote {

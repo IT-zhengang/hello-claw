@@ -20,7 +20,7 @@ hero:
       link: /cn/build/
     - theme: alt
       text: GitHub
-      link: https://github.com/datawhalechina/hello-claw
+      link: https://github.com/IT-zhengang/hello-claw
 
 features:
   - title: 从零上手
@@ -136,7 +136,8 @@ features:
 | 章节 | 内容简介 | 状态 |
 | ---- | ---- | ---- |
 | **写在开头** | **模型能力边界、推理链路与上下文机制的专题入口** | ✅ |
-| 第1章：Hermes-Agent 自学习 Skill 机制 | 自学习 Skill 的架构设计、触发链路、补丁修复与实现原理 | ✅ |
+| 第1章：Function Call / MCP / ReAct / Skills 技术栈 | 拆解 AI Agent 从工具调用、推理循环、协议标准到能力封装的完整分层 | ✅ |
+| 第2章：Hermes-Agent 自学习 Skill 机制 | 自学习 Skill 的架构设计、触发链路、补丁修复与实现原理 | ✅ |
 
 ## 🦞 应用场景
 

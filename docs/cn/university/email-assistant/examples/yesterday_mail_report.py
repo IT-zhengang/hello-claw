@@ -113,7 +113,7 @@ def send_imap_id(mail: imaplib.IMAP4_SSL) -> None:
         '("name" "hello-claw-mail-report" '
         '"version" "1.0" '
         '"vendor" "datawhale" '
-        '"support-url" "https://github.com/datawhalechina/hello-claw")'
+        '"support-url" "https://github.com/IT-zhengang/hello-claw")'
     )
     mail.xatom("ID", id_payload)
 

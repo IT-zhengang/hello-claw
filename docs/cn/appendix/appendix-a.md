@@ -63,7 +63,7 @@ next:
 
 | 资源 | 地址 | 说明 |
 |------|------|------|
-| ⭐ Hello Claw 教程 | <https://github.com/datawhalechina/hello-claw> | Datawhale 开源教程，从零领养到构建 AI 助手（本教程） |
+| ⭐ Hello Claw 教程 | <https://github.com/IT-zhengang/hello-claw> | Datawhale 开源教程，从零领养到构建 AI 助手（本教程） |
 | ⭐ Awesome OpenClaw 教程 | <https://github.com/xianyu110/awesome-openclaw-tutorial> | 35 万字完整中文教程，70+ 实战案例 |
 | OpenClaw 中文文档 | <https://github.com/yeuxuan/openclaw-docs> | 276 篇深度教程与源码剖析 |
 | AI 驱动中文文档 | <https://github.com/wszhxz/openclaw-chinese-docs> | AI 自动化翻译维护的完整中文文档 |

@@ -63,7 +63,7 @@ The biggest challenge in learning OpenClaw isn't the technology itself — it's 
 
 | Resource | URL | Description |
 |----------|-----|-------------|
-| ⭐ Hello Claw Tutorial | <https://github.com/datawhalechina/hello-claw> | Datawhale open-source tutorial, from zero to building an AI assistant (this tutorial) |
+| ⭐ Hello Claw Tutorial | <https://github.com/IT-zhengang/hello-claw> | Datawhale open-source tutorial, from zero to building an AI assistant (this tutorial) |
 | ⭐ Awesome OpenClaw Tutorial | <https://github.com/xianyu110/awesome-openclaw-tutorial> | Complete Chinese tutorial with 350,000+ characters and 70+ hands-on cases |
 | OpenClaw Chinese Docs | <https://github.com/yeuxuan/openclaw-docs> | 276 in-depth tutorials and source code analysis |
 | AI-Driven Chinese Docs | <https://github.com/wszhxz/openclaw-chinese-docs> | Complete Chinese documentation maintained via AI-automated translation |

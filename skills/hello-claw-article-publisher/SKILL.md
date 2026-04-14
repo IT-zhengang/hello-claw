@@ -1,7 +1,7 @@
 ---
 name: hello-claw-article-publisher
 description: 将外部文章、Markdown 草稿或专题文档整理并发布到 hello-claw 文档站中。适用于新增章节、迁移文章到新目录、保留原文与图片、本地化远程图片、统一中英文结构、更新 VitePress 导航/侧边栏/首页 README、并执行 docs build 校验的场景。
-homepage: https://github.com/datawhalechina/hello-claw
+homepage: https://github.com/IT-zhengang/hello-claw
 metadata: {"openclaw":{"emoji":"🦞","requires":{"bins":["node","npm","python3","curl"]},"install":{"npm":["vitepress"]}}}
 ---
 

@@ -432,9 +432,9 @@
           <span class="text-gray-600">•</span>
           <a :href="withBase('/cn/build/')" class="hover:text-[#ff6b6b] transition-colors">构建龙虾</a>
           <span class="text-gray-600">•</span>
-          <a href="https://github.com/datawhalechina/hello-claw" target="_blank" rel="noreferrer" class="hover:text-[#ff6b6b] transition-colors">GitHub</a>
+          <a href="https://github.com/IT-zhengang/hello-claw" target="_blank" rel="noreferrer" class="hover:text-[#ff6b6b] transition-colors">GitHub</a>
           <span class="text-gray-600">•</span>
-          <a href="https://github.com/datawhalechina/hello-claw/issues" target="_blank" rel="noreferrer" class="hover:text-[#ff6b6b] transition-colors">提 Issue</a>
+          <a href="https://github.com/IT-zhengang/hello-claw/issues" target="_blank" rel="noreferrer" class="hover:text-[#ff6b6b] transition-colors">提 Issue</a>
         </div>
         
         <p class="text-gray-400 text-sm mb-4">
@@ -486,7 +486,7 @@
             <a :href="withBase('/cn/build/')" @click.prevent="navigateTo('/cn/build/')" class="w-full sm:w-auto group flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-full py-3 px-7 transition-all duration-300 hover:scale-105 active:scale-95">
               构建龙虾 <span class="text-[#ff4d4d] group-hover:text-[#ff6b6b] transition-colors">→</span>
             </a>
-            <a href="https://github.com/datawhalechina/hello-claw" target="_blank" rel="noreferrer" class="w-full sm:w-auto group flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-full py-3 px-7 transition-all duration-300 hover:scale-105 active:scale-95">
+            <a href="https://github.com/IT-zhengang/hello-claw" target="_blank" rel="noreferrer" class="w-full sm:w-auto group flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-full py-3 px-7 transition-all duration-300 hover:scale-105 active:scale-95">
               GitHub <span class="text-[#ff4d4d] group-hover:text-[#ff6b6b] transition-colors">↗</span>
             </a>
           </div>
@@ -725,7 +725,7 @@ const clearHintTimer = () => {
 const isHome = computed(() => {
   const path = route.path
   return path === '/' || path === '/index.html' || 
-         path === '/hello-claw/' || path === '/hello-claw/index.html'
+         path === withBase('/') || path === withBase('/index.html')
 })
 const isLobsterUniversity = computed(() => {
   return false
@@ -857,7 +857,7 @@ const quickLinks = [
   { icon: '📱', text: '领养：移动端接入', link: '/cn/adopt/chapter3' },
   { icon: '🛠️', text: '构建：写在开头', link: '/cn/build/' },
   { icon: '📚', text: '附录：社区之声', link: '/cn/appendix/appendix-b' },
-  { icon: '🐙', text: 'GitHub', link: 'https://github.com/datawhalechina/hello-claw', external: true },
+  { icon: '🐙', text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw', external: true },
 ]
 
 const topRecommendedSkills = [
@@ -1022,7 +1022,7 @@ onUnmounted(() => {
 // 监听路由变化，返回首页时重置提示
 watch(() => route.path, (newPath) => {
   if (newPath === '/' || newPath === '/index.html' || 
-      newPath === '/hello-claw/' || newPath === '/hello-claw/index.html') {
+      newPath === withBase('/') || newPath === withBase('/index.html')) {
     showHint.value = false
     clearHintTimer()
     startHintTimer()

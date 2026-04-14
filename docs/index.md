@@ -8,9 +8,9 @@ import { onMounted } from 'vue'
 onMounted(() => {
   const lang = navigator.language || navigator.userLanguage || ''
   if (lang.startsWith('zh')) {
-    window.location.href = '/hello-claw/cn/adopt/intro'
+    window.location.href = './cn/adopt/intro'
   } else {
-    window.location.href = '/hello-claw/en/adopt/intro'
+    window.location.href = './en/adopt/intro'
   }
 })
 </script>
@@ -19,7 +19,7 @@ onMounted(() => {
   <h1>🦞 Hello Claw</h1>
   <p>Redirecting...</p>
   <p>
-    <a href="/hello-claw/cn/adopt/intro">简体中文</a> |
-    <a href="/hello-claw/en/adopt/intro">English</a>
+    <a href="./cn/adopt/intro">简体中文</a> |
+    <a href="./en/adopt/intro">English</a>
   </p>
 </div>

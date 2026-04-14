@@ -20,7 +20,7 @@ hero:
       link: /en/build/
     - theme: alt
       text: GitHub
-      link: https://github.com/datawhalechina/hello-claw
+      link: https://github.com/IT-zhengang/hello-claw
 
 features:
   - title: Get Started Fast
@@ -116,6 +116,21 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 11: Memory System Design | Compare OpenClaw, Droid, and Hermes memory architectures and their tradeoffs | ✅ |
 | **🟡 Tier 3: Customize Your Claw** (Chapters 11-15) | | |
 | Chapter 13: Skill Development | Skill file structure, Frontmatter format, async handling & debugging | ✅ |
+
+### Part 3: AI Agent Systems
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Introduction** | **Why system foundations and agent capabilities should be organized separately** | ✅ |
+| Chapter 1: Memory System Design | Compare OpenClaw, Droid, and Hermes memory architectures and their tradeoffs | ✅ |
+
+### Part 4: LLM Architecture Analysis
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Introduction** | **A thematic entry for model boundaries, reasoning paths, and context mechanisms** | ✅ |
+| Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
+| Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
 
 ## 🦞 Use Cases
 

@@ -9,14 +9,14 @@
 <p align="center"><em>Hello Claw: AIロブスターアシスタントを迎え、ロブスター大学でSkillsを学び、あなただけの知的エージェントをゼロから構築しよう</em></p>
 
 <p align="center">
-  📌 <a href="https://datawhalechina.github.io/hello-claw/">オンラインで読む</a> | 🚀 <a href="https://github.com/datawhalechina/easy-vibe">Vibe Coding も学びたい？</a>
+  📌 <a href="http://claw.newcode.top/">オンラインで読む</a> | 🚀 <a href="https://github.com/datawhalechina/easy-vibe">Vibe Coding も学びたい？</a>
 </p>
 
 <p align="center">
-    <a href="https://github.com/datawhalechina/hello-claw/stargazers" target="_blank">
-        <img src="https://img.shields.io/github/stars/datawhalechina/hello-claw?color=660874&style=for-the-badge&logo=star&logoColor=white&labelColor=1a1a2e" alt="Stars"></a>
-    <a href="https://github.com/datawhalechina/hello-claw/network/members" target="_blank">
-        <img src="https://img.shields.io/github/forks/datawhalechina/hello-claw?color=660874&style=for-the-badge&logo=git-fork&logoColor=white&labelColor=1a1a2e" alt="Forks"></a>
+    <a href="https://github.com/IT-zhengang/hello-claw/stargazers" target="_blank">
+        <img src="https://img.shields.io/github/stars/IT-zhengang/hello-claw?color=660874&style=for-the-badge&logo=star&logoColor=white&labelColor=1a1a2e" alt="Stars"></a>
+    <a href="https://github.com/IT-zhengang/hello-claw/network/members" target="_blank">
+        <img src="https://img.shields.io/github/forks/IT-zhengang/hello-claw?color=660874&style=for-the-badge&logo=git-fork&logoColor=white&labelColor=1a1a2e" alt="Forks"></a>
     <a href="LICENSE" target="_blank">
         <img src="https://img.shields.io/badge/License-CC_BY_NC_SA_4.0-4ecdc4?style=for-the-badge&logo=creative-commons&logoColor=white&labelColor=1a1a2e" alt="License"></a>
 </p>
@@ -31,7 +31,7 @@
 
 ## オンラインで読む
 
-https://datawhalechina.github.io/hello-claw
+http://claw.newcode.top
 
 ## はじめに
 
@@ -256,4 +256,4 @@ https://datawhalechina.github.io/hello-claw
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=datawhalechina/hello-claw&type=Date)](https://star-history.com/?type=date&legend=top-left&repos=datawhalechina%2Fhello-claw)
+[![Star History Chart](https://api.star-history.com/svg?repos=IT-zhengang/hello-claw&type=Date)](https://star-history.com/?type=date&legend=top-left&repos=IT-zhengang%2Fhello-claw)

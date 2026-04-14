@@ -5,7 +5,7 @@ description: 爬取网页内容并生成结构化的 Markdown 文档，支持可
 
 # Webpage to Markdown
 
-爬取网页并转换为格式规范的 Markdown 文档，保存到 `/Users/yanxiao/Desktop/workbook/mds/`。
+爬取网页并转换为格式规范的 Markdown 文档，默认保存到当前工作目录下的 `./mds/`。
 
 ## 依赖
 
@@ -51,7 +51,7 @@ chrome_get_web_content(htmlContent=true, tabId=tabId)
 python3 scripts/convert_webpage.py <input_json> [output_path]
 ```
 
-- 省略 `output_path` 时自动保存到 `/Users/yanxiao/Desktop/workbook/mds/<标题>.md`
+- 省略 `output_path` 时自动保存到当前工作目录下的 `./mds/<标题>.md`
 - 脚本自动完成的处理：
   - 提取主内容区域
   - **微信公众号专用预处理**：data-src 图片修复、多行 code 合并、空标签清理
@@ -60,6 +60,28 @@ python3 scripts/convert_webpage.py <input_json> [output_path]
   - **格式优化**：空标题移除、加粗标记修复、H2 章节分隔线
   - **文件头生成**：自动添加作者、原文链接元信息
   - 表格/链接修复、空行规范化
+
+#### 当前项目中的常用写法
+
+如果你在 `hello-claw` 项目根目录执行脚本：
+
+```bash
+python3 skills/webpage-to-markdown/scripts/convert_webpage.py <input_json>
+```
+
+生成的 Markdown 会默认保存到：
+
+```text
+./mds/<标题>.md
+```
+
+如果你想显式指定输出文件，也可以这样写：
+
+```bash
+python3 skills/webpage-to-markdown/scripts/convert_webpage.py <input_json> ./mds/custom-name.md
+```
+
+建议优先在项目根目录执行，这样输出位置、后续整理和版本管理都会更清晰。
 
 ### 4. 内容区域识别（脚本自动处理）
 

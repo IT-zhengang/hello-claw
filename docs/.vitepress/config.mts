@@ -4,8 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 const isVercel = process.env.VERCEL === '1' || !!process.env.VERCEL_URL
 const isEdgeOne = !!process.env.EDGEONE || process.env.EDGEONE === '1'
+const defaultSiteUrl = 'http://claw.newcode.top'
 
-const base = process.env.BASE || (isVercel || isEdgeOne ? '/' : '/hello-claw/')
+const base = process.env.BASE || (isVercel || isEdgeOne ? '/' : '/')
 
 const getSiteUrl = () => {
   if (isVercel && process.env.VERCEL_URL) {
@@ -17,7 +18,7 @@ const getSiteUrl = () => {
   if (process.env.SITE_URL) {
     return process.env.SITE_URL
   }
-  return 'https://datawhalechina.github.io/hello-claw'
+  return defaultSiteUrl
 }
 
 const siteUrl = getSiteUrl()
@@ -75,7 +76,7 @@ export default defineConfig({
           { text: '构建龙虾', link: '/cn/build/' },
           { text: 'AI Agent智能体', link: '/cn/agent/' },
           { text: 'AI大模型架构解析', link: '/cn/llm/' },
-          { text: 'GitHub', link: 'https://github.com/datawhalechina/hello-claw' },
+          { text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw' },
         ],
         search: {
           provider: 'local',
@@ -252,7 +253,8 @@ export default defineConfig({
               text: 'AI大模型架构解析',
               items: [
                 { text: '写在开头', link: '/cn/llm/' },
-                { text: '第一章 Hermes-Agent 自学习 Skill 机制', link: '/cn/llm/chapter1/' },
+                { text: '第一章 Function Call / MCP / ReAct / Skills 技术栈', link: '/cn/llm/chapter1/' },
+                { text: '第二章 Hermes-Agent 自学习 Skill 机制', link: '/cn/llm/chapter2/' },
               ]
             }
           ],
@@ -316,10 +318,10 @@ export default defineConfig({
           ]
         },
         socialLinks: [
-          { icon: 'github', link: 'https://github.com/datawhalechina/hello-claw' }
+          { icon: 'github', link: 'https://github.com/IT-zhengang/hello-claw' }
         ],
         editLink: {
-          pattern: 'https://github.com/datawhalechina/hello-claw/blob/main/docs/:path'
+          pattern: 'https://github.com/IT-zhengang/hello-claw/blob/main/docs/:path'
         },
         footer: {
           message: '<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2026002630号-1</a> | <a href="https://beian.mps.gov.cn/#/query/webSearch?code=11010602202215" rel="noreferrer" target="_blank">京公网安备11010602202215号</a>',
@@ -344,7 +346,7 @@ export default defineConfig({
           { text: 'Build', link: '/en/build/' },
           { text: 'AI Agent Systems', link: '/en/agent/' },
           { text: 'LLM Architecture', link: '/en/llm/' },
-          { text: 'GitHub', link: 'https://github.com/datawhalechina/hello-claw' },
+          { text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw' },
         ],
         sidebar: {
           '/en/adopt/': [
@@ -502,7 +504,8 @@ export default defineConfig({
               text: 'LLM Architecture Analysis',
               items: [
                 { text: 'Introduction', link: '/en/llm/' },
-                { text: 'Chapter 1: Hermes-Agent Self-Learning Skill Mechanism', link: '/en/llm/chapter1/' },
+                { text: 'Chapter 1: Function Calling, MCP, ReAct, and Skills', link: '/en/llm/chapter1/' },
+                { text: 'Chapter 2: Hermes-Agent Self-Learning Skill Mechanism', link: '/en/llm/chapter2/' },
               ]
             }
           ],
@@ -526,10 +529,10 @@ export default defineConfig({
           ]
         },
         socialLinks: [
-          { icon: 'github', link: 'https://github.com/datawhalechina/hello-claw' }
+          { icon: 'github', link: 'https://github.com/IT-zhengang/hello-claw' }
         ],
         editLink: {
-          pattern: 'https://github.com/datawhalechina/hello-claw/blob/main/docs/:path'
+          pattern: 'https://github.com/IT-zhengang/hello-claw/blob/main/docs/:path'
         },
         footer: {
           message: 'Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>',
