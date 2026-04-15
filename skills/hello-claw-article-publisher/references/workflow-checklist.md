@@ -12,7 +12,7 @@
 
 - Create target directories
 - Add `index.md`
-- Add `images/` for local assets
+- Add `docs/static/.../images/` for shared CN/EN assets
 - Mirror the structure in `docs/en/` when appropriate
 
 ## 3. Content Processing
@@ -34,5 +34,5 @@
 ## 5. Verification
 
 - Search for old chapter references with `rg`
-- Build docs with `npm run docs:build --prefix hello-claw`
+- Build docs with `npm run docs:build`
 - Review build errors before finishing

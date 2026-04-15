@@ -26,11 +26,17 @@ When publishing a new article into `hello-claw`, the most common touchpoints are
 
 ## Asset placement rule
 
-Prefer article-local assets:
+Prefer shared assets under `docs/static` when CN/EN pages use the same image:
 
 ```text
-docs/cn/<section>/chapterX/images/
-docs/en/<section>/chapterX/images/
+docs/static/<section>/<article>/images/
 ```
 
-This keeps chapter assets self-contained and easier to migrate.
+Examples:
+
+- `docs/cn/agent/chapter3/index.md` + `docs/en/agent/chapter3/index.md`
+  -> `docs/static/agent/chapter3/images/`
+- `docs/cn/university/email-assistant/index.md` + `docs/en/university/email-assistant/index.md`
+  -> `docs/static/university/email-assistant/images/`
+
+For existing language-specific illustrations, keep the current article-local `images/` directories if the content is not identical across languages.

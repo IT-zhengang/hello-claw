@@ -32,11 +32,12 @@ metadata: {"openclaw":{"emoji":"🦞","requires":{"bins":["node","npm","python3"
    - 若用户强调“保留原文”“保留图片”“内容不变”，先保留内容，再做样式与结构适配
 3. **远程图片默认本地化**
    - 外链图片在文档站经常受防盗链、权限或热链失效影响
-   - 优先下载到当前文章目录下的 `images/` 子目录，再改成本地相对路径
+   - 优先下载到 `docs/static/.../images/` 共享静态目录，再改成本地相对路径
+   - 中英文镜像文章默认引用同一份图片，不再分别保存到 `docs/cn/.../images/` 与 `docs/en/.../images/`
 4. **目录、导航、首页入口要同步**
    - 文章接入不只是一篇 `index.md`，还要同步更新 `docs/.vitepress/config.mts`、首页、README 等入口
 5. **发布前必须构建校验**
-   - 最低标准是运行 `npm run docs:build --prefix hello-claw`
+   - 最低标准是运行 `npm run docs:build`
 
 ## 标准工作流
 
@@ -59,13 +60,12 @@ metadata: {"openclaw":{"emoji":"🦞","requires":{"bins":["node","npm","python3"
 
 ### 第二步：创建目标目录结构
 
-对 `hello-claw` 中的新文章，优先使用如下结构：
+对 `hello-claw` 中的新文章，正文与共享图片优先使用如下结构：
 
 ```text
 hello-claw/docs/cn/<section>/chapterX/index.md
-hello-claw/docs/cn/<section>/chapterX/images/
 hello-claw/docs/en/<section>/chapterX/index.md
-hello-claw/docs/en/<section>/chapterX/images/
+hello-claw/docs/static/<section>/chapterX/images/
 ```
 
 如果是顶层栏目导言页，则使用：
@@ -74,6 +74,12 @@ hello-claw/docs/en/<section>/chapterX/images/
 hello-claw/docs/cn/<section>/index.md
 hello-claw/docs/en/<section>/index.md
 ```
+
+补充规则：
+
+- 如果文章位于目录入口页，例如 `docs/cn/university/email-assistant/index.md`，共享图片目录应为 `docs/static/university/email-assistant/images/`
+- 如果文章是扁平文件而不是目录入口页，优先参考同目录现有结构；如无既有约定，再按“栏目/文章名/images”创建共享目录
+- 对已有历史目录，不要为了统一而强行搬迁语言专属图片；只有中英文共用同一内容的图片才放进 `docs/static/`
 
 ### 第三步：处理正文内容
 
@@ -96,26 +102,40 @@ hello-claw/docs/en/<section>/index.md
 
 如果文中有远程图片：
 
-1. 在当前文章目录创建 `images/`
+1. 根据文章路径，在 `docs/static/.../images/` 下创建共享图片目录
 2. 使用 `curl -L` 下载资源到本地
-3. 将正文中的远程链接改为 `./images/<name>.png` 之类的相对路径
-4. 中英文镜像目录如需相同图片，可复制一份到英文目录对应 `images/`
+3. 将正文中的远程链接改为指向 `docs/static` 的相对路径
+4. 中英文镜像目录引用同一份图片，不要额外复制一份到英文目录
 
 命名建议：
 
 - 使用语义化 kebab-case，如 `memory-overview.png`
 - 同一文章图片命名风格统一
 
+示例：
+
+```text
+文章：
+docs/cn/agent/chapter3/index.md
+docs/en/agent/chapter3/index.md
+
+共享图片：
+docs/static/agent/chapter3/images/cover.png
+
+正文引用：
+../../../static/agent/chapter3/images/cover.png
+```
+
 ### 第五步：做 hello-claw 风格适配
 
 需要优先检查这些位置：
 
-- `hello-claw/docs/.vitepress/config.mts`
-- `hello-claw/docs/cn/index.md`
-- `hello-claw/docs/en/index.md`
-- `hello-claw/README.md`
-- `hello-claw/README_EN.md`
-- `hello-claw/README_JA.md`
+- `docs/.vitepress/config.mts`
+- `docs/cn/index.md`
+- `docs/en/index.md`
+- `README.md`
+- `README_EN.md`
+- `README_JA.md`
 
 常见适配动作：
 
@@ -139,7 +159,7 @@ hello-claw/docs/en/<section>/index.md
 完成后必须运行：
 
 ```bash
-npm run docs:build --prefix hello-claw
+npm run docs:build
 ```
 
 如果失败：
@@ -172,22 +192,23 @@ npm run docs:build --prefix hello-claw
 
 ```bash
 # 查看目标目录结构
-find hello-claw/docs/cn -maxdepth 3 -type d | sort
+find docs/cn -maxdepth 3 -type d | sort
 
 # 搜索导航与章节引用
-rg -n "chapter11|记忆系统设计|Memory System Design|AI Agent智能体" hello-claw/docs hello-claw/README*.md
+rg -n "chapter11|记忆系统设计|Memory System Design|AI Agent智能体" docs README*.md
 
-# 下载图片到本地
-curl -L "<image-url>" -o hello-claw/docs/cn/<section>/chapterX/images/<name>.png
+# 下载图片到共享静态目录
+curl -L "<image-url>" -o docs/static/<section>/<article>/images/<name>.png
 
 # 构建校验
-npm run docs:build --prefix hello-claw
+npm run docs:build
 ```
 
 ## 不要做的事
 
 - 不要只改文章正文而忘记更新导航和首页入口
 - 不要保留不稳定的外链图片作为最终发布资源
+- 不要把同一张中英文共用图片重复存到 `docs/cn/.../images/` 和 `docs/en/.../images/`
 - 不要在用户要求“保留原文”时做大幅重写
 - 不要跳过构建校验
 - 不要提交 git commit，除非用户明确要求
