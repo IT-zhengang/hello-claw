@@ -652,7 +652,7 @@ clawhub install github</pre>
   <div v-if="isDocMarkdownAvailable" class="md-source-launcher">
     <button @click="openMarkdownPanel" class="md-source-launcher__button">
       <span>Markdown</span>
-      <span class="md-source-launcher__hint">View / Edit / Copy</span>
+      <span class="md-source-launcher__hint">Read / Edit / Copy</span>
     </button>
   </div>
 
@@ -668,7 +668,12 @@ clawhub install github</pre>
           <button @click="closeMarkdownPanel" class="md-source-panel__icon" aria-label="Close markdown panel">✕</button>
         </div>
 
-        <div class="md-source-panel__toolbar">
+        <div v-if="markdownViewMode !== 'reader'" class="md-source-panel__toolbar">
+          <div class="md-source-panel__view-switch">
+            <button @click="markdownViewMode = 'source'" class="md-source-panel__view-button" :class="{ 'is-active': markdownViewMode === 'source' }">Source</button>
+            <button @click="markdownViewMode = 'split'" class="md-source-panel__view-button" :class="{ 'is-active': markdownViewMode === 'split' }">Split Preview</button>
+            <button @click="markdownViewMode = 'reader'" class="md-source-panel__view-button" :class="{ 'is-active': markdownViewMode === 'reader' }">Reader</button>
+          </div>
           <button @click="copyMarkdownSource" class="md-source-panel__action">Copy</button>
           <button @click="resetMarkdownDraft" class="md-source-panel__action" :disabled="!hasMarkdownDraft">Reset Draft</button>
           <button @click="reloadMarkdownSource" class="md-source-panel__action">Reload</button>
@@ -677,23 +682,52 @@ clawhub install github</pre>
           </span>
         </div>
 
-        <p class="md-source-panel__note">
+        <p v-if="markdownViewMode !== 'reader'" class="md-source-panel__note">
           Editing here is browser-local only. It is meant for online reading, temporary edits, and quick copying.
         </p>
+
+        <div v-if="hasStoredMarkdownDraft && markdownViewMode !== 'reader'" class="md-source-panel__draft-banner">
+          <div>
+            <strong>Last draft available.</strong>
+            <span>You have a browser-local draft from a previous edit session.</span>
+          </div>
+          <div class="md-source-panel__draft-actions">
+            <button @click="restoreMarkdownDraft" class="md-source-panel__draft-button">Restore last draft</button>
+            <button @click="discardStoredMarkdownDraft" class="md-source-panel__draft-button md-source-panel__draft-button--ghost">Dismiss</button>
+          </div>
+        </div>
 
         <div v-if="markdownLoadError" class="md-source-panel__error">
           {{ markdownLoadError }}
         </div>
 
-        <textarea
-          v-model="markdownSource"
-          class="md-source-panel__editor"
-          spellcheck="false"
-          autocapitalize="off"
-          autocomplete="off"
-          autocorrect="off"
-          :placeholder="markdownLoading ? 'Loading markdown...' : 'Markdown source is unavailable for this page.'"
-        />
+        <div v-if="markdownViewMode === 'reader'" class="md-source-panel__reader-toolbar">
+          <div class="md-source-panel__view-switch md-source-panel__view-switch--reader">
+            <button @click="markdownViewMode = 'source'" class="md-source-panel__view-button" :class="{ 'is-active': markdownViewMode === 'source' }">Source</button>
+            <button @click="markdownViewMode = 'split'" class="md-source-panel__view-button" :class="{ 'is-active': markdownViewMode === 'split' }">Split Preview</button>
+            <button @click="markdownViewMode = 'reader'" class="md-source-panel__view-button" :class="{ 'is-active': markdownViewMode === 'reader' }">Reader</button>
+          </div>
+        </div>
+
+        <div class="md-source-panel__body" :class="`is-${markdownViewMode}`">
+          <div v-if="markdownViewMode === 'source' || markdownViewMode === 'split'" class="md-source-panel__pane md-source-panel__pane--editor">
+            <div class="md-source-panel__pane-title">Markdown</div>
+            <textarea
+              v-model="markdownSource"
+              class="md-source-panel__editor"
+              spellcheck="false"
+              autocapitalize="off"
+              autocomplete="off"
+              autocorrect="off"
+              :placeholder="markdownLoading ? 'Loading markdown...' : 'Markdown source is unavailable for this page.'"
+            />
+          </div>
+
+          <div v-if="markdownViewMode === 'split' || markdownViewMode === 'reader'" class="md-source-panel__pane md-source-panel__pane--preview">
+            <div class="md-source-panel__pane-title">{{ markdownViewMode === 'reader' ? 'Reading Preview' : 'Preview' }}</div>
+            <div class="md-source-panel__preview vp-doc" v-html="renderedMarkdownHtml" />
+          </div>
+        </div>
       </div>
     </div>
   </Teleport>
@@ -720,10 +754,12 @@ const navigateTo = (path) => {
 const markdownPanelOpen = ref(false)
 const markdownSource = ref('')
 const markdownOriginalSource = ref('')
+const markdownSavedDraft = ref('')
 const markdownLoadError = ref('')
 const markdownLoading = ref(false)
 const markdownLoadedKey = ref('')
 const markdownCopied = ref(false)
+const markdownViewMode = ref('split')
 
 const normalizedDocPath = computed(() => {
   let path = route.path.split('#')[0].split('?')[0]
@@ -785,9 +821,17 @@ const hasMarkdownDraft = computed(
   () => Boolean(markdownSource.value) && markdownSource.value !== markdownOriginalSource.value
 )
 
+const hasStoredMarkdownDraft = computed(
+  () =>
+    Boolean(markdownSavedDraft.value) &&
+    markdownSavedDraft.value !== markdownOriginalSource.value &&
+    markdownSavedDraft.value !== markdownSource.value
+)
+
 const markdownStatusText = computed(() => {
   if (markdownLoading.value) return 'Loading...'
   if (markdownCopied.value) return 'Copied'
+  if (hasStoredMarkdownDraft.value) return 'Draft available'
   if (hasMarkdownDraft.value) return 'Local draft saved'
   return 'Synced with source'
 })
@@ -814,7 +858,8 @@ const loadMarkdownSource = async (force = false) => {
     const savedDraft = typeof window !== 'undefined' ? window.localStorage.getItem(getMarkdownDraftKey()) : null
 
     markdownOriginalSource.value = rawSource
-    markdownSource.value = savedDraft ?? rawSource
+    markdownSavedDraft.value = savedDraft ?? ''
+    markdownSource.value = rawSource
     markdownLoadedKey.value = key
   } catch (error) {
     markdownLoadError.value = error instanceof Error ? error.message : 'Failed to load markdown source.'
@@ -864,14 +909,209 @@ const resetMarkdownDraft = () => {
   if (typeof window !== 'undefined') {
     window.localStorage.removeItem(getMarkdownDraftKey())
   }
+  markdownSavedDraft.value = ''
+}
+
+const restoreMarkdownDraft = () => {
+  if (!markdownSavedDraft.value) return
+  markdownSource.value = markdownSavedDraft.value
+}
+
+const discardStoredMarkdownDraft = () => {
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(getMarkdownDraftKey())
+  }
+  markdownSavedDraft.value = ''
 }
 
 const reloadMarkdownSource = async () => {
   if (typeof window !== 'undefined') {
     window.localStorage.removeItem(getMarkdownDraftKey())
   }
+  markdownSavedDraft.value = ''
   await loadMarkdownSource(true)
 }
+
+const escapeHtml = (value) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+const parseInlineMarkdown = (value) => {
+  const placeholders = []
+  const hold = (html) => {
+    const token = `@@MD_INLINE_${placeholders.length}@@`
+    placeholders.push({ token, html })
+    return token
+  }
+
+  let text = value
+  text = text.replace(/`([^`]+)`/g, (_, code) => hold(`<code>${escapeHtml(code)}</code>`))
+  text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, url) =>
+    hold(`<img src="${escapeHtml(url)}" alt="${escapeHtml(alt)}" />`)
+  )
+  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) =>
+    hold(`<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`)
+  )
+
+  text = escapeHtml(text)
+  text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>')
+  text = text.replace(/~~([^~]+)~~/g, '<del>$1</del>')
+
+  for (const { token, html } of placeholders) {
+    text = text.replace(token, html)
+  }
+
+  return text
+}
+
+const isTableSeparator = (line) =>
+  /^\s*\|?(?:\s*:?-{3,}:?\s*\|)+\s*:?-{3,}:?\s*\|?\s*$/.test(line)
+
+const renderMarkdownToHtml = (markdown) => {
+  const lines = markdown.replace(/\r\n/g, '\n').split('\n')
+  const html = []
+  let i = 0
+
+  while (i < lines.length) {
+    const line = lines[i]
+    const trimmed = line.trim()
+
+    if (!trimmed) {
+      i += 1
+      continue
+    }
+
+    if (trimmed.startsWith('<style')) {
+      i += 1
+      while (i < lines.length && !lines[i].includes('</style>')) {
+        i += 1
+      }
+      i += 1
+      continue
+    }
+
+    if (trimmed.startsWith('```')) {
+      const lang = trimmed.slice(3).trim()
+      i += 1
+      const codeLines = []
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        codeLines.push(lines[i])
+        i += 1
+      }
+      i += 1
+      html.push(
+        `<pre><code class="${lang ? `language-${escapeHtml(lang)}` : ''}">${escapeHtml(codeLines.join('\n'))}</code></pre>`
+      )
+      continue
+    }
+
+    const heading = trimmed.match(/^(#{1,6})\s+(.*)$/)
+    if (heading) {
+      const level = heading[1].length
+      html.push(`<h${level}>${parseInlineMarkdown(heading[2])}</h${level}>`)
+      i += 1
+      continue
+    }
+
+    if (trimmed === '---') {
+      html.push('<hr />')
+      i += 1
+      continue
+    }
+
+    if (trimmed.startsWith('>')) {
+      const quoteLines = []
+      while (i < lines.length && lines[i].trim().startsWith('>')) {
+        quoteLines.push(parseInlineMarkdown(lines[i].trim().replace(/^>\s?/, '')))
+        i += 1
+      }
+      html.push(`<blockquote><p>${quoteLines.join('<br />')}</p></blockquote>`)
+      continue
+    }
+
+    if (/^(\-|\*|\+)\s+/.test(trimmed) || /^\d+\.\s+/.test(trimmed)) {
+      const isOrdered = /^\d+\.\s+/.test(trimmed)
+      const items = []
+      while (
+        i < lines.length &&
+        (isOrdered ? /^\d+\.\s+/.test(lines[i].trim()) : /^(\-|\*|\+)\s+/.test(lines[i].trim()))
+      ) {
+        items.push(parseInlineMarkdown(lines[i].trim().replace(isOrdered ? /^\d+\.\s+/ : /^(\-|\*|\+)\s+/, '')))
+        i += 1
+      }
+      html.push(
+        isOrdered
+          ? `<ol>${items.map((item) => `<li>${item}</li>`).join('')}</ol>`
+          : `<ul>${items.map((item) => `<li>${item}</li>`).join('')}</ul>`
+      )
+      continue
+    }
+
+    if (trimmed.startsWith('|') && i + 1 < lines.length && isTableSeparator(lines[i + 1])) {
+      const headerCells = trimmed
+        .split('|')
+        .slice(1, -1)
+        .map((cell) => `<th>${parseInlineMarkdown(cell.trim())}</th>`)
+      i += 2
+      const bodyRows = []
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        const row = lines[i]
+          .trim()
+          .split('|')
+          .slice(1, -1)
+          .map((cell) => `<td>${parseInlineMarkdown(cell.trim())}</td>`)
+        bodyRows.push(`<tr>${row.join('')}</tr>`)
+        i += 1
+      }
+      html.push(`<table><thead><tr>${headerCells.join('')}</tr></thead><tbody>${bodyRows.join('')}</tbody></table>`)
+      continue
+    }
+
+    if (trimmed.startsWith('<')) {
+      const rawLines = []
+      while (i < lines.length && lines[i].trim()) {
+        rawLines.push(lines[i])
+        i += 1
+      }
+      html.push(rawLines.join('\n'))
+      continue
+    }
+
+    const paragraphLines = []
+    while (i < lines.length) {
+      const current = lines[i]
+      const currentTrimmed = current.trim()
+      if (
+        !currentTrimmed ||
+        currentTrimmed.startsWith('```') ||
+        currentTrimmed.startsWith('<') ||
+        currentTrimmed.startsWith('>') ||
+        currentTrimmed === '---' ||
+        /^(#{1,6})\s+/.test(currentTrimmed) ||
+        /^(\-|\*|\+)\s+/.test(currentTrimmed) ||
+        /^\d+\.\s+/.test(currentTrimmed) ||
+        (currentTrimmed.startsWith('|') && i + 1 < lines.length && isTableSeparator(lines[i + 1]))
+      ) {
+        break
+      }
+      paragraphLines.push(currentTrimmed)
+      i += 1
+    }
+    html.push(`<p>${parseInlineMarkdown(paragraphLines.join(' '))}</p>`)
+  }
+
+  return html.join('\n')
+}
+
+const renderedMarkdownHtml = computed(() =>
+  markdownSource.value ? renderMarkdownToHtml(markdownSource.value) : '<p class="md-source-panel__empty">No markdown source loaded.</p>'
+)
+
 
 const isWaving = ref(false)
 const triggerWave = () => {
@@ -1240,10 +1480,12 @@ watch(() => route.path, (newPath) => {
   markdownPanelOpen.value = false
   markdownSource.value = ''
   markdownOriginalSource.value = ''
+  markdownSavedDraft.value = ''
   markdownLoadError.value = ''
   markdownLoading.value = false
   markdownLoadedKey.value = ''
   markdownCopied.value = false
+  markdownViewMode.value = 'split'
 })
 
 watch(markdownSource, (value) => {
@@ -1253,10 +1495,14 @@ watch(markdownSource, (value) => {
 
   if (!value || value === markdownOriginalSource.value) {
     window.localStorage.removeItem(getMarkdownDraftKey())
+    if (markdownSavedDraft.value === value) {
+      markdownSavedDraft.value = ''
+    }
     return
   }
 
   window.localStorage.setItem(getMarkdownDraftKey(), value)
+  markdownSavedDraft.value = value
 })
 
 // Simple intersection observer for fade-in animations
@@ -1980,6 +2226,44 @@ const vFadeIn = {
   margin-bottom: 12px;
 }
 
+.md-source-panel__view-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.md-source-panel__view-button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.md-source-panel__view-button.is-active {
+  background: rgba(255, 107, 107, 0.2);
+  color: #fff;
+}
+
+.md-source-panel__reader-toolbar {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 16px;
+}
+
+.md-source-panel__view-switch--reader {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+}
+
 .md-source-panel__action {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
@@ -2018,6 +2302,51 @@ const vFadeIn = {
   color: rgba(255, 255, 255, 0.66);
 }
 
+.md-source-panel__draft-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 211, 127, 0.28);
+  border-radius: 16px;
+  background: rgba(255, 211, 127, 0.12);
+  color: #ffe6ae;
+}
+
+.md-source-panel__draft-banner strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.md-source-panel__draft-banner span {
+  font-size: 13px;
+  color: rgba(255, 240, 211, 0.82);
+}
+
+.md-source-panel__draft-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.md-source-panel__draft-button {
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 107, 107, 0.2);
+  color: #fff;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.md-source-panel__draft-button--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.86);
+}
+
 .md-source-panel__error {
   margin-bottom: 12px;
   padding: 12px 14px;
@@ -2026,6 +2355,49 @@ const vFadeIn = {
   background: rgba(255, 107, 107, 0.12);
   color: #ffd1d1;
   font-size: 13px;
+}
+
+.md-source-panel__body {
+  display: grid;
+  gap: 14px;
+  min-height: 0;
+  flex: 1;
+}
+
+.md-source-panel__body.is-source {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.md-source-panel__body.is-split,
+.md-source-panel__body.is-reader {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.md-source-panel__body.is-reader {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.md-source-panel__pane {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.md-source-panel__pane-title {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.md-source-panel__body.is-reader .md-source-panel__pane-title {
+  margin-bottom: 16px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 211, 127, 0.72);
 }
 
 .md-source-panel__editor {
@@ -2049,6 +2421,90 @@ const vFadeIn = {
   box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.12);
 }
 
+.md-source-panel__preview {
+  flex: 1;
+  min-height: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(2, 6, 12, 0.84);
+  overflow: auto;
+  padding: 22px 24px;
+  color: #edf3ff;
+}
+
+.md-source-panel__body.is-reader .md-source-panel__preview {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 42px 56px;
+  border-color: rgba(255, 255, 255, 0.05);
+  background:
+    radial-gradient(circle at top, rgba(255, 107, 107, 0.08), transparent 28%),
+    rgba(4, 8, 14, 0.96);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.32);
+}
+
+.md-source-panel__body.is-reader .md-source-panel__preview p,
+.md-source-panel__body.is-reader .md-source-panel__preview li,
+.md-source-panel__body.is-reader .md-source-panel__preview blockquote {
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.md-source-panel__body.is-reader .md-source-panel__preview h1 {
+  font-size: 2.3rem;
+  line-height: 1.16;
+  margin-bottom: 1rem;
+}
+
+.md-source-panel__body.is-reader .md-source-panel__preview h2 {
+  margin-top: 2.8rem;
+  margin-bottom: 1rem;
+  font-size: 1.65rem;
+}
+
+.md-source-panel__body.is-reader .md-source-panel__preview h3 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
+
+.md-source-panel__body.is-reader .md-source-panel__preview img {
+  margin: 26px auto;
+  display: block;
+}
+
+.md-source-panel__body.is-reader .md-source-panel__preview table {
+  margin: 24px 0;
+}
+
+.md-source-panel__preview h1,
+.md-source-panel__preview h2,
+.md-source-panel__preview h3,
+.md-source-panel__preview h4,
+.md-source-panel__preview h5,
+.md-source-panel__preview h6 {
+  color: #fff;
+}
+
+.md-source-panel__preview a {
+  color: #ff8c8c;
+}
+
+.md-source-panel__preview img {
+  border-radius: 12px;
+}
+
+.md-source-panel__preview blockquote {
+  margin: 16px 0;
+}
+
+.md-source-panel__preview pre {
+  overflow-x: auto;
+}
+
+.md-source-panel__empty {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 @media (max-width: 768px) {
   .md-source-launcher {
     right: 14px;
@@ -2064,6 +2520,30 @@ const vFadeIn = {
   .md-source-panel {
     width: 100vw;
     padding: 18px 16px;
+  }
+
+  .md-source-panel__draft-banner,
+  .md-source-panel__toolbar {
+    align-items: flex-start;
+  }
+
+  .md-source-panel__reader-toolbar {
+    justify-content: stretch;
+  }
+
+  .md-source-panel__view-switch--reader {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .md-source-panel__body.is-split,
+  .md-source-panel__body.is-reader {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .md-source-panel__body.is-reader .md-source-panel__preview {
+    max-width: 100%;
+    padding: 24px 18px;
   }
 
   .md-source-panel__title {
