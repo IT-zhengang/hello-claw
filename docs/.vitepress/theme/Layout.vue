@@ -432,6 +432,8 @@
           <span class="text-gray-600">•</span>
           <a :href="withBase('/cn/build/')" class="hover:text-[#ff6b6b] transition-colors">构建龙虾</a>
           <span class="text-gray-600">•</span>
+          <a :href="withBase('/cn/ai-open-source-picks/')" class="hover:text-[#ff6b6b] transition-colors">AI 开源精选集</a>
+          <span class="text-gray-600">•</span>
           <a href="https://github.com/IT-zhengang/hello-claw" target="_blank" rel="noreferrer" class="hover:text-[#ff6b6b] transition-colors">GitHub</a>
           <span class="text-gray-600">•</span>
           <a href="https://github.com/IT-zhengang/hello-claw/issues" target="_blank" rel="noreferrer" class="hover:text-[#ff6b6b] transition-colors">提 Issue</a>
@@ -1305,6 +1307,7 @@ const quickLinks = [
   { icon: '🎓', text: '龙虾大学', link: '/cn/university/intro.html' },
   { icon: '📱', text: '领养：移动端接入', link: '/cn/adopt/chapter3' },
   { icon: '🛠️', text: '构建：写在开头', link: '/cn/build/' },
+  { icon: '🌟', text: 'AI 开源精选集', link: '/cn/ai-open-source-picks/' },
   { icon: '📚', text: '附录：社区之声', link: '/cn/appendix/appendix-b' },
   { icon: '🐙', text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw', external: true },
 ]

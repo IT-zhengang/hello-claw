@@ -75,6 +75,7 @@ export default defineConfig({
           { text: '领养龙虾', link: '/cn/adopt/intro' },
           { text: '龙虾大学', link: '/cn/university/intro.html', activeMatch: '^/cn/university/' },
           { text: '构建龙虾', link: '/cn/build/' },
+          { text: 'AI 开源精选集', link: '/cn/ai-open-source-picks/', activeMatch: '^/cn/ai-open-source-picks/' },
           { text: 'AI Agent智能体', link: '/cn/agent/' },
           { text: 'AI大模型架构解析', link: '/cn/llm/' },
           { text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw' },
@@ -250,6 +251,15 @@ export default defineConfig({
               ]
             }
           ],
+          '/cn/ai-open-source-picks/': [
+            {
+              text: 'AI 开源精选集',
+              items: [
+                { text: '写在开头', link: '/cn/ai-open-source-picks/' },
+                { text: 'OpenSandbox：给 AI Agent 装上安全边界', link: '/cn/ai-open-source-picks/opensandbox/' },
+              ]
+            }
+          ],
           '/cn/llm/': [
             {
               text: 'AI大模型架构解析',
@@ -346,6 +356,7 @@ export default defineConfig({
           { text: 'Adopt', link: '/en/adopt/intro' },
           { text: 'Lobster University', link: '/en/university/intro', activeMatch: '^/en/university/' },
           { text: 'Build', link: '/en/build/' },
+          { text: 'AI Open Source Picks', link: '/en/ai-open-source-picks/', activeMatch: '^/en/ai-open-source-picks/' },
           { text: 'AI Agent Systems', link: '/en/agent/' },
           { text: 'LLM Architecture', link: '/en/llm/' },
           { text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw' },
@@ -488,6 +499,15 @@ export default defineConfig({
                     { text: 'Chapter 10: Hardware Solutions', link: '/en/build/chapter10' },
                   ]
                 },
+              ]
+            }
+          ],
+          '/en/ai-open-source-picks/': [
+            {
+              text: 'AI Open Source Picks',
+              items: [
+                { text: 'Opening Notes', link: '/en/ai-open-source-picks/' },
+                { text: 'OpenSandbox: Building Safe Boundaries for AI Agents', link: '/en/ai-open-source-picks/opensandbox/' },
               ]
             }
           ],

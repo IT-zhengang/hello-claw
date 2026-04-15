@@ -37,11 +37,13 @@ http://claw.newcode.top
 
 This project is a complete learning guide for OpenClaw, designed to help you master this powerful command-line AI assistant system from zero. Whether you want to use OpenClaw quickly to boost your productivity or deeply understand how it works and build your own version, this tutorial gives you a clear path forward.
 
-**This project contains three core modules:**
+**This project includes five core modules:**
 
-1. **Adopt Claw (User Guide)**: 11 chapters plus 7 appendices, covering installation (Ch. 1-3), core configuration (Ch. 4-6), operations and extensions (Ch. 7-9), and security plus client interfaces (Ch. 10-11)
-2. **Lobster University (Practical Scenarios)**: hands-on case studies centered on Skills selection and reusable workflow patterns
-3. **Build Claw (Developer Guide)**: 11 chapters + 1 practical chapter covering OpenClaw internals, alternative designs, memory-system architecture, and hands-on Skill customization
+1. **Adopt Claw (User Guide)**: 11 chapters + 7 appendices, covering Installation (Ch1-3) + Core Configuration (Ch4-6) + Operations & Extensions (Ch7-9) + Security & Clients (Ch10-11), read as needed
+2. **Build Claw (Developer Guide)**: source walkthroughs, architecture, and customization paths for building your own Claw
+3. **Lobster University**: scenario-driven playbooks built around Skills selection and reusable workflow patterns
+4. **AI Agent Systems**: deeper discussions of memory, tool design, coordination, and execution loops
+5. **AI Open Source Picks**: ecosystem infrastructure worth studying for agent runtimes, sandboxing, browser automation, and safe execution
 
 **Who is this for:**
 
@@ -55,9 +57,12 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 - Beginners: start with Part 1 "Adopt Claw" and get installation plus basic automation working first
 - If you want scenario-driven outcomes fast: jump into "Lobster University" and pick 5-10 Skills by use case
 - Developers: go to "Build Claw" to study the underlying implementation and customize your own Claw
+- If you want the capability layer: continue with "AI Agent Systems" and "LLM Architecture Analysis"
+- If you care about the surrounding ecosystem: continue with "AI Open Source Picks" for reusable infrastructure patterns around safe execution and agent runtimes
 
 ## 🔥 News
 
+- **[2026-04-15]** ✅ Added AI Open Source Picks Issue 01: OpenSandbox, focused on sandbox architecture, execution safety, and agent runtime boundaries
 - **[2026-03-25]** ✅ Lobster University completed a round of scenario expansion and beginner-friendly rewrite, adding 11 ready-to-use case studies across personal productivity, programming, content creation, business sales, multi-agent collaboration, and more, organized by README category
 - **[2026-03-25]** 🔥 OpenClaw v2026.3.24: Gateway OpenAI-compatible endpoints (`/v1/models`, `/v1/embeddings`), Microsoft Teams official SDK integration (streaming replies / welcome cards / message edit and delete), one-click Skills installation recipes and Control UI status filtering, Slack rich reply restoration, CLI `--container` for in-container execution, Discord LLM auto thread naming, `before_dispatch` plugin hook, sandbox media security fix — all tutorial chapters synced
 - **[2026-03-23]** 🔥 OpenClaw 3.22 major release: Plugin SDK refactor (old `extension-api` deprecated), security hardening (SMB credential leak / env var injection / Unicode spoofing fixes), GPT-5.4 as new default, Feishu interactive cards / Telegram topic auto-naming, Agent timeout extended to 48h
@@ -166,6 +171,32 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Ch. 11 Memory System Design | Compare OpenClaw, Droid, and Hermes memory architectures and tradeoffs | ✅ |
 | **🟡 Level 3: Customize Your Claw** (1 Practical Chapter) |  |  |
 | Practical Chapter: Skill Authoring | Skill file structure, frontmatter, async handling, and debugging | ✅ |
+
+---
+
+### Part 3: AI Agent Systems
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Introduction** | **Why system foundations and agent capabilities should be organized separately** | ✅ |
+| Chapter 1: Memory System Design | Compare OpenClaw, Droid, and Hermes memory architectures and their tradeoffs | ✅ |
+| Chapter 2: Tool-System Design | Compare how OpenClaw, Claude Code, and Hermes Agent design tool systems, permissions, and safety boundaries | ✅ |
+| Chapter 3: Task Planning and Execution Loops | Compare how OpenClaw, Claude Code, and Hermes Agent design planning, scheduling, recovery, and stopping behavior | ✅ |
+
+### Part 4: LLM Architecture Analysis
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Introduction** | **A thematic entry for model boundaries, reasoning paths, and context mechanisms** | ✅ |
+| Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
+| Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
+
+### Part 5: AI Open Source Picks
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Opening Notes** | **Why ecosystem infrastructure deserves its own engineering-focused reading list** | ✅ |
+| Issue 01: OpenSandbox | A four-layer sandbox platform for safe agent execution, browser automation, and remote development environments | ✅ |
 
 ---
 

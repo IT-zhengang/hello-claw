@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hello Claw Publisher"
+  short_description: "Publish articles into the hello-claw docs site"
+  default_prompt: "Use $hello-claw-article-publisher to place this article into the hello-claw docs structure, localize remote images, sync navigation/readmes as needed, and run docs build validation."

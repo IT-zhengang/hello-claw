@@ -1,0 +1,4 @@
+interface:
+  display_name: "Webpage to Markdown"
+  short_description: "Fetch a webpage and convert it into structured Markdown"
+  default_prompt: "Use $webpage-to-markdown to load the page, capture the full HTML, run the bundled converter script, and review the generated Markdown for formatting issues."

@@ -53,10 +53,13 @@ features:
 
 This project is a comprehensive learning tutorial for OpenClaw, helping you master this powerful command-line AI assistant system from scratch. Whether you want to quickly get started using OpenClaw to boost productivity, or deep dive into its internals and build your own version, this tutorial provides a clear learning path.
 
-**This project includes two core modules:**
+**This project includes five core modules:**
 
 1. **Adopt Claw (User Guide)**: 11 chapters + 7 appendices, covering Installation (Ch1-3) + Core Configuration (Ch4-6) + Operations & Extensions (Ch7-9) + Security & Clients (Ch10-11), read as needed
-2. **Build Claw (Developer Guide)**: 15 chapters, from dissecting OpenClaw source code to analyzing alternatives to customizing your own Claw
+2. **Build Claw (Developer Guide)**: source walkthroughs, architecture, and customization paths for building your own Claw
+3. **Lobster University**: scenario-driven playbooks built around Skills selection and reusable workflow patterns
+4. **AI Agent Systems**: deeper discussions of memory, tool design, coordination, and execution loops
+5. **AI Open Source Picks**: ecosystem infrastructure worth studying for agent runtimes, sandboxing, browser automation, and safe execution
 
 **Who should learn this:**
 
@@ -134,6 +137,13 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
 | Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
 
+### Part 5: AI Open Source Picks
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Opening Notes** | **Why ecosystem infrastructure deserves its own engineering-focused reading list** | ✅ |
+| Issue 01: OpenSandbox | A four-layer sandbox platform for safe agent execution, browser automation, and remote development environments | ✅ |
+
 ## 🦞 Use Cases
 
 <table>
@@ -183,6 +193,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 
 ## 🔥 Latest Updates
 
+- **[2026-04-15]** ✅ Added AI Open Source Picks Issue 01 in both Chinese and English: OpenSandbox, focused on sandbox architecture, runtime isolation, and agent safety boundaries
 - **[2026-04-14]** ✅ Added Build Chapter 11: Memory System Design, comparing OpenClaw, Droid, and Hermes Agent memory architectures
 
 - **[2026-03-10]** ✅ New Lobster University: Menu-style Skills elective guide, equip your lobster with "combat power-ups"
