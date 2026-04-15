@@ -17,7 +17,7 @@ next:
 
 **Onboarding (Configuration Wizard)** helps you tell the lobster three things: which model to use, which channel to contact you through, and where to work. OpenClaw provides two paths:
 
-![OpenClaw Onboarding](./images/OpenClaw-Onboarding.png)
+![OpenClaw Onboarding](../../../static/adopt/chapter3/images/OpenClaw-Onboarding.png)
 
 ```mermaid
 flowchart TB

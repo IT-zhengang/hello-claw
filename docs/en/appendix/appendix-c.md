@@ -261,7 +261,7 @@ The following projects each have a distinct focus — minimalist design, securit
 
 ## 9. The Hundred-Shrimp Battle: A Panorama of Chinese Tech Giants
 
-![The Hundred-Shrimp Battle](./images/hundred-shrimp-battle.jpg)
+![The Hundred-Shrimp Battle](../../static/appendix/images/hundred-shrimp-battle.jpg)
 
 In early 2026, OpenClaw sparked a "Hundred-Shrimp Battle" in China — 20+ tech companies quickly followed suit, launching their own Claw-like products or deployment solutions.
 

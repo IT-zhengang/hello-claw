@@ -261,7 +261,7 @@ OpenClaw 的爆发催生了一个庞大的"龙虾生态"——从开源框架到
 
 ## 9. 百虾大战：国内大厂全景图
 
-![百虾大战](./images/百虾大战.jpg)
+![百虾大战](../../static/appendix/images/hundred-shrimp-battle.jpg)
 
 2026 年初，OpenClaw 在国内引发了一场"百虾大战"——20+ 家科技公司迅速跟进，推出各自的类 Claw 产品或部署方案。
 

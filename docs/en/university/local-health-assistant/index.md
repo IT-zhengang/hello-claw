@@ -302,7 +302,7 @@ This guide uses the open-source project MediWise as its example:
 
 It is used here only as a runnable example to demonstrate how to set up a "record, track, and organize" health management workflow. You can substitute your own existing health management Skill — the approach is the same.
 
-![](images/yd_clawhub_01.jpg)
+![](../../../static/university/local-health-assistant/images/yd_clawhub_01.jpg)
 
 ## 2.3 Install Directly
 
@@ -391,13 +391,13 @@ python3 setup.py test-vision
 
 | 1 | 2 |
 |---|---|
-| ![](images/yd_health_feishu_01.jpg) | ![](images/yd_health_feishu_02.jpg) |
+| ![](../../../static/university/local-health-assistant/images/yd_health_feishu_01.jpg) | ![](../../../static/university/local-health-assistant/images/yd_health_feishu_02.jpg) |
 
 #### 2) Configure the multimodal model and upload a test image to verify recognition
 
 | 1 | 2 | 3 |
 |---|---|---|
-| ![](images/yd_health_feishu_05.jpg) | ![](images/yd_health_feishu_06.jpg) | ![](images/yd_health_feishu_07.jpg) |
+| ![](../../../static/university/local-health-assistant/images/yd_health_feishu_05.jpg) | ![](../../../static/university/local-health-assistant/images/yd_health_feishu_06.jpg) | ![](../../../static/university/local-health-assistant/images/yd_health_feishu_07.jpg) |
 
 ### Conversation Verification
 
@@ -409,7 +409,7 @@ Log today's blood pressure: 130/85, heart rate 72
 Show me the recent health status
 ```
 
-![](images/yd_health_feishu_03.jpg)
+![](../../../static/university/local-health-assistant/images/yd_health_feishu_03.jpg)
 
 ## 2.6 Four Capabilities to Try First
 
@@ -418,7 +418,7 @@ Show me the recent health status
 3. Weight and exercise management (`weight-manager`)
 4. Pre-appointment summary preparation (text first, then export to image/PDF)
 
-![](images/yd_health_qq_01.jpg)
+![](../../../static/university/local-health-assistant/images/yd_health_qq_01.jpg)
 
 ## 2.7 Recommended Practical Workflow: From Daily Logging to Pre-Appointment Preparation
 

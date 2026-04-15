@@ -145,11 +145,11 @@ AutoResearchClaw interacts with you via Telegram, so you first need to create a 
 
 Open the Telegram App and search for `BotFather` in the search bar — select the official account with the blue verification badge:
 
-![Searching for BotFather in Telegram](./images/telegram-botfather.jpg)
+![Searching for BotFather in Telegram](../../../static/university/vibe-research/images/telegram-botfather.jpg)
 
 Click **Start** to begin the conversation, then type `/newbot` to create a new bot:
 
-![Sending /newbot to BotFather](./images/telegram-newbot.jpg)
+![Sending /newbot to BotFather](../../../static/university/vibe-research/images/telegram-newbot.jpg)
 
 BotFather will ask you two questions in sequence:
 
@@ -199,7 +199,7 @@ Next, you need to fill in `allowFrom` (which users are allowed to chat with the 
 
 The method is simple — find the bot you just created in Telegram and send `/start`:
 
-![Sending /start to get your Telegram User ID](./images/telegram-user-id.jpg)
+![Sending /start to get your Telegram User ID](../../../static/university/vibe-research/images/telegram-user-id.jpg)
 
 The bot will reply with your User ID:
 
@@ -378,7 +378,7 @@ arXiv is rate-limiting, circuit breaker entering cooldown. Waiting for recovery.
 
 When the paper is ready, ask Lobster to send the PDF to Telegram. It's recommended to say upfront when submitting the topic: "Please notify me and send the PDF when complete":
 
-![AutoResearchClaw-generated paper PDF delivered via Telegram](./images/telegram-autoresearchclaw-pdf.jpg)
+![AutoResearchClaw-generated paper PDF delivered via Telegram](../../../static/university/vibe-research/images/telegram-autoresearchclaw-pdf.jpg)
 
 Lobster will tell you the PDF storage path and file size, and send it directly to the chat for you to preview and download.
 

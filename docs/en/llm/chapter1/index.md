@@ -31,7 +31,7 @@ The core idea of Function Calling is straightforward: **instead of only generati
 ### 1.2 What actually happens during a Function Call?
 
 <div class="llm-stack-figure">
-  <img src="./images/function-call-stack/function-call-sequence.png" alt="Full Function Calling execution sequence" />
+  <img src="../../../static/llm/chapter1/images/function-call-stack/function-call-sequence.png" alt="Full Function Calling execution sequence" />
   <p><sub><b>Figure 1</b> — Full Function Calling execution sequence</sub></p>
 </div>
 
@@ -88,7 +88,7 @@ In 2022, Yao et al. from Princeton introduced the influential paper *ReAct: Syne
 ReAct solves this by letting **reasoning guide action, and action results correct reasoning**.
 
 <div class="llm-stack-figure">
-  <img src="./images/function-call-stack/react-loop.png" alt="ReAct reasoning and acting loop" />
+  <img src="../../../static/llm/chapter1/images/function-call-stack/react-loop.png" alt="ReAct reasoning and acting loop" />
   <p><sub><b>Figure 2</b> — ReAct reasoning-and-acting loop</sub></p>
 </div>
 
@@ -161,7 +161,7 @@ This is the classic **M × N integration problem**. HTTP solved an M × N proble
 ### 3.2 MCP's architectural idea
 
 <div class="llm-stack-figure">
-  <img src="./images/function-call-stack/mcp-architecture.png" alt="MCP three-layer protocol architecture" />
+  <img src="../../../static/llm/chapter1/images/function-call-stack/mcp-architecture.png" alt="MCP three-layer protocol architecture" />
   <p><sub><b>Figure 3</b> — MCP three-layer protocol architecture</sub></p>
 </div>
 
@@ -294,7 +294,7 @@ These three terms are often confused, but they operate at different levels.
 ## V. The Four Layers Together: A Complete AI Agent Stack
 
 <div class="llm-stack-figure">
-  <img src="./images/function-call-stack/agent-stack.png" alt="Four-layer collaborative AI Agent architecture" />
+  <img src="../../../static/llm/chapter1/images/function-call-stack/agent-stack.png" alt="Four-layer collaborative AI Agent architecture" />
   <p><sub><b>Figure 4</b> — Four-layer collaborative AI Agent architecture</sub></p>
 </div>
 

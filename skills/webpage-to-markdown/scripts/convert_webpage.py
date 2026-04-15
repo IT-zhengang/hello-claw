@@ -62,6 +62,8 @@ def is_wechat(html_str):
 
 def preprocess_wechat_html(content_el):
     """预处理微信公众号的 HTML，修复常见问题"""
+    tag_factory = content_el if callable(getattr(content_el, 'new_tag', None)) else BeautifulSoup('', 'html.parser')
+
     # 1. 图片：将 data-src 覆盖到 src（微信懒加载）
     for img in content_el.find_all('img'):
         data_src = img.get('data-src')
@@ -74,8 +76,8 @@ def preprocess_wechat_html(content_el):
         codes = pre_section.find_all('code')
         if codes:
             lines = [c.get_text() for c in codes]
-            new_pre = content_el.new_tag('pre')
-            new_code = content_el.new_tag('code')
+            new_pre = tag_factory.new_tag('pre')
+            new_code = tag_factory.new_tag('code')
             new_code.string = '\n'.join(lines)
             new_pre.append(new_code)
             pre_section.replace_with(new_pre)
@@ -86,7 +88,7 @@ def preprocess_wechat_html(content_el):
         if len(codes) > 1:
             lines = [c.get_text() for c in codes]
             pre.clear()
-            new_code = content_el.new_tag('code')
+            new_code = tag_factory.new_tag('code')
             new_code.string = '\n'.join(lines)
             pre.append(new_code)
 

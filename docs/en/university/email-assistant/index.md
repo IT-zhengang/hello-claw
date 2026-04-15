@@ -53,7 +53,7 @@ NetEase's help center makes this explicit: once `IMAP` is enabled, actions like 
 
 The comparison diagram below makes the difference more concrete:
 
-![Differences between IMAP and POP3](./images/imap-vs-pop3-differences.png)
+![Differences between IMAP and POP3](../../../static/university/email-assistant/images/imap-vs-pop3-differences.png)
 
 If you want one sentence to remember:
 
@@ -64,11 +64,11 @@ If you want one sentence to remember:
 
 Start by opening the NetEase mail login page: <https://email.163.com/>
 
-![NetEase 163 mail login page](./images/163-login-page.png)
+![NetEase 163 mail login page](../../../static/university/email-assistant/images/163-login-page.png)
 
 After logging in, you will land on the 163 mail home page.
 
-![NetEase 163 mail home page](./images/163-webmail-home.png)
+![NetEase 163 mail home page](../../../static/university/email-assistant/images/163-webmail-home.png)
 
 At this point, you have only completed "web mail login."
 There is one critical step remaining before a script can read mail: enabling the mail protocol service and generating an authorization code.
@@ -77,7 +77,7 @@ There is one critical step remaining before a script can read mail: enabling the
 
 Click "Settings" in the top navigation, then go to `POP3/SMTP/IMAP`.
 
-![POP3/SMTP/IMAP entry in 163 settings](./images/163-settings-pop3-smtp-imap-menu.png)
+![POP3/SMTP/IMAP entry in 163 settings](../../../static/university/email-assistant/images/163-settings-pop3-smtp-imap-menu.png)
 
 This is also the official path given in NetEase's help center:
 
@@ -93,16 +93,16 @@ If your goal is "let a script read 163 mail," enable `IMAP/SMTP` first.
 
 After clicking "Enable," the page will show a confirmation prompt before proceeding:
 
-![Confirmation dialog before enabling IMAP/SMTP](./images/163-imap-smtp-enable-confirm.png)
+![Confirmation dialog before enabling IMAP/SMTP](../../../static/university/email-assistant/images/163-imap-smtp-enable-confirm.png)
 
 After completing the verification required by the page, you will see a success message:
 
-![IMAP/SMTP enabled successfully](./images/163-imap-smtp-enable-success.png)
+![IMAP/SMTP enabled successfully](../../../static/university/email-assistant/images/163-imap-smtp-enable-success.png)
 
 If you later need to support legacy devices, old systems, or an existing `POP3` workflow, you can also enable `POP3/SMTP` in addition.
 The corresponding success message looks like this:
 
-![POP3/SMTP enabled successfully](./images/163-pop3-smtp-enable-success.png)
+![POP3/SMTP enabled successfully](../../../static/university/email-assistant/images/163-pop3-smtp-enable-success.png)
 
 But for Python-based automated reading, `IMAP/SMTP` remains the first priority.
 
@@ -113,13 +113,13 @@ Once `IMAP/SMTP` is enabled, an authorization code management section will appea
 - Whether you have already generated an authorization code
 - Whether you need to generate a new one for your script
 
-![163 mail authorization code management section](./images/163-authorization-code-management.png)
+![163 mail authorization code management section](../../../static/university/email-assistant/images/163-authorization-code-management.png)
 
 If you already have old authorization code records here, it is safer to clean up unused old records before generating a new one.
 
 If you click to add or regenerate, the page will show a dialog with the authorization code. This string of characters is the login credential that third-party clients or Python scripts will use.
 
-![163 mail authorization code dialog](./images/163-authorization-code-dialog.png)
+![163 mail authorization code dialog](../../../static/university/email-assistant/images/163-authorization-code-dialog.png)
 
 One important detail: the authorization code is not permanently displayed like a web password.
 Once you close the dialog, it is gone — so make sure to copy it carefully.
@@ -156,7 +156,7 @@ Keep these two addresses separate:
 
 You can also see this set of protocol server addresses in the 163 mail settings page:
 
-![163 mail protocol server address reference](./images/163-mail-server-endpoints.png)
+![163 mail protocol server address reference](../../../static/university/email-assistant/images/163-mail-server-endpoints.png)
 
 This also matches the third-party mail configuration documentation from Huawei's official support pages.
 

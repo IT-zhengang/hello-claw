@@ -302,7 +302,7 @@ MediWise Health Suite 是一个面向家庭场景的 OpenClaw Skill 套件，核
 
 这里仅把它作为一个可运行示例，方便演示“记录、追踪、整理”这一类健康管理工作流的搭建方式。你也可以替换成自己已有的健康管理 Skill，方法是一样的。
 
-![](images/yd_clawhub_01.jpg)
+![](../../../static/university/local-health-assistant/images/yd_clawhub_01.jpg)
 
 ## 2.3 直接安装
 
@@ -391,13 +391,13 @@ python3 setup.py test-vision
 
 | 1 | 2 |
 |---|---|
-| ![](images/yd_health_feishu_01.jpg) | ![](images/yd_health_feishu_02.jpg) |
+| ![](../../../static/university/local-health-assistant/images/yd_health_feishu_01.jpg) | ![](../../../static/university/local-health-assistant/images/yd_health_feishu_02.jpg) |
 
 #### 2）配置多模态模型与上传测试图片验证识别
 
 | 1 | 2 | 3 |
 |---|---|---|
-| ![](images/yd_health_feishu_05.jpg) | ![](images/yd_health_feishu_06.jpg) | ![](images/yd_health_feishu_07.jpg) |
+| ![](../../../static/university/local-health-assistant/images/yd_health_feishu_05.jpg) | ![](../../../static/university/local-health-assistant/images/yd_health_feishu_06.jpg) | ![](../../../static/university/local-health-assistant/images/yd_health_feishu_07.jpg) |
 
 ### 对话验证
 
@@ -409,7 +409,7 @@ python3 setup.py test-vision
 帮我看看最近的健康情况
 ```
 
-![](images/yd_health_feishu_03.jpg)
+![](../../../static/university/local-health-assistant/images/yd_health_feishu_03.jpg)
 
 ## 2.6 推荐你先体验这 4 个现成能力
 
@@ -418,7 +418,7 @@ python3 setup.py test-vision
 3. 体重与运动管理（`weight-manager`）
 4. 就医前摘要整理（先文本，再导出图片/PDF）
 
-![](images/yd_health_qq_01.jpg)
+![](../../../static/university/local-health-assistant/images/yd_health_qq_01.jpg)
 
 ## 2.7 推荐实战工作流：从日常记录到就医前整理
 

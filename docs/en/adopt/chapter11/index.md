@@ -38,7 +38,7 @@ openclaw dashboard
 
 The browser opens `http://localhost:18789` automatically. If it doesn't, navigate there manually.
 
-![Web Dashboard browser interface](./images/openclaw-dashboard-browser.png)
+![Web Dashboard browser interface](../../../static/adopt/chapter11/images/openclaw-dashboard-browser.png)
 
 <details>
 <summary>Dashboard sections at a glance</summary>

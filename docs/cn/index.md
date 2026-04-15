@@ -117,6 +117,8 @@ features:
 | 第10章：硬件方案 | PicoClaw 硬件选型、低功耗嵌入式部署 | ✅ |
 | **🤖 第三层：AI Agent智能体** | | |
 | 第11章：记忆系统设计 | OpenClaw、Droid、Hermes 三种记忆架构对比与设计取舍 | ✅ |
+| 第12章：工具系统设计 | OpenClaw、Claude Code、Hermes Agent 三种工具系统设计对比 | ✅ |
+| 第13章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
 | **🧠 第四层：AI大模型架构解析** | | |
 | *敬请期待* | 将承接模型能力边界、推理链路、上下文机制等内容 | 规划中 |
 | **🟡 第五层：从原理到实战** | | |
@@ -130,6 +132,7 @@ features:
 | **写在开头** | **为什么要把“系统底座”和“智能体能力”分开组织** | ✅ |
 | 第1章：记忆系统设计 | OpenClaw、Droid、Hermes 三种记忆架构对比与设计取舍 | ✅ |
 | 第2章：工具系统设计 | OpenClaw、Claude Code、Hermes Agent 三种工具系统设计对比 | ✅ |
+| 第3章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
 
 ### 第四部分：AI大模型架构解析
 

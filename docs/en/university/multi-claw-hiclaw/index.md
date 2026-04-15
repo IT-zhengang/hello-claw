@@ -291,7 +291,7 @@ If the login screen asks you to manually enter a Homeserver, add:
 
 After logging in successfully, you should see a home page similar to this:
 
-![Element Web Home Page](./images/element-web-home.png)
+![Element Web Home Page](../../../static/university/multi-claw-hiclaw/images/element-web-home.png)
 
 If you can see the `manager` user in the left-side list, you're in an interactive state.
 
@@ -301,7 +301,7 @@ Fourth, open the Higress console:
 
 The default account is `admin`, and the default password is typically `admin123456` or whatever you set in your configuration. After logging in, you'll automatically be added to an Admin Room for receiving system notifications:
 
-![Admin Room](./images/admin-room.png)
+![Admin Room](../../../static/university/multi-claw-hiclaw/images/admin-room.png)
 
 At this point, you've completed the "service is up" verification. The next step verifies that "collaboration actually works."
 
@@ -311,11 +311,11 @@ Now go back to Element Web.
 
 Click on `manager` in the left conversation list to open the conversation window. The first time you open it, read through its welcome message and description of its capabilities:
 
-![Manager Welcome Message](./images/manager-welcome.png)
+![Manager Welcome Message](../../../static/university/multi-claw-hiclaw/images/manager-welcome.png)
 
 The Manager will typically explain that it's responsible for assigning tasks, tracking progress, resolving blockers, and waking the appropriate Workers. As you continue the conversation, you'll see more detailed information:
 
-![Manager Conversation](./images/manager-conversation.png)
+![Manager Conversation](../../../static/university/multi-claw-hiclaw/images/manager-conversation.png)
 
 Next, send it a message to create a Worker, for example:
 
@@ -325,13 +325,13 @@ Create a backend engineer Worker
 
 If the creation succeeds, the Manager will return the Worker's details and current progress:
 
-![Worker Created Detail](./images/worker-created-detail.png)
+![Worker Created Detail](../../../static/university/multi-claw-hiclaw/images/worker-created-detail.png)
 
 You'll typically see the Worker's name, role, configured capabilities, and whether steps like account registration, room creation, permission configuration, and container startup have completed.
 
 After a moment, you'll receive a Worker room invitation:
 
-![Worker Room Invite](./images/worker-room-invite.png)
+![Worker Room Invite](../../../static/university/multi-claw-hiclaw/images/worker-room-invite.png)
 
 Click "Accept" to join the room. At this point, it's confirmed that the Manager isn't just alive — it's actually starting to schedule Workers.
 
@@ -343,13 +343,13 @@ Create a Worker named alice
 
 The Manager will continue returning creation progress:
 
-![Worker Creation Progress](./images/worker-creation-progress.png)
+![Worker Creation Progress](../../../static/university/multi-claw-hiclaw/images/worker-creation-progress.png)
 
 The creation process typically involves several actions: registering a Matrix account, creating a Consumer in Higress, establishing room relationships between you, the Manager, and Alice, and finally starting the Worker container.
 
 After joining the room, you can also invite other people or other Workers to join:
 
-![Invite to Worker Room](./images/invite-to-worker-room.png)
+![Invite to Worker Room](../../../static/university/multi-claw-hiclaw/images/invite-to-worker-room.png)
 
 ### Step 6: Verify the Worker Can Actually Call the Model
 
@@ -367,7 +367,7 @@ If Alice responds normally, it means at least three chains are working together:
 
 An actual conversation would look something like this:
 
-![Worker Alice Conversation](./images/worker-alice-conversation.png)
+![Worker Alice Conversation](../../../static/university/multi-claw-hiclaw/images/worker-alice-conversation.png)
 
 Only when you see this can you truly consider the "local single-machine HiClaw is operational" verification complete.
 

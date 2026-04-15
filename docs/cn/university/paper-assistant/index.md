@@ -3,7 +3,7 @@
 > 每天 arXiv 会新增上百篇论文。很多时候，我们只是扫几眼标题就关掉页面，或者收藏一堆 PDF 却从未真正读过。这篇文章将用 **OpenClaw** 搭建一个自动化科研助理，让论文跟踪变成一条自动化流程： **抓取论文 → 智能筛选 → 自动精读 → 推送通知** 。
 > 跑通后，你将拥有一个  **7×24 小时在线的数字科研助理** 。
 
-![](images/image1.png)
+![](../../../static/university/paper-assistant/images/image1.png)
 
 # 1 这个科研助理能做什么
 
@@ -12,7 +12,7 @@
 
 本文以 **Agent 领域论文** 为例进行演示，但只需要修改关键词，就可以应用到任何研究方向。
 
-![](images/image2.png)
+![](../../../static/university/paper-assistant/images/image2.png)
 
 这个科研助理本质上是一条  **自动化科研情报流水线** ，主要包含三个能力模块：
 
@@ -40,7 +40,7 @@ clawhub install so-send-message  # 飞书推送插件（闭环）
 
 安装完成后，一个最小可用的 **论文自动化流水线**就搭建好了：
 
-![](images/image3.png)
+![](../../../static/university/paper-assistant/images/image3.png)
 
 *注意：如果不做去重处理，系统可能每天推送重复论文。*
 
@@ -69,7 +69,7 @@ clawhub install so-send-message  # 飞书推送插件（闭环）
 
 如果安装成功，你便可以在 `skills`目录中看到名为 `paper-assistant`的文件
 
-![](images/image4.png)
+![](../../../static/university/paper-assistant/images/image4.png)
 
 3. 启动一个新的 OpenClaw 会话，以加载新 Skills
 
@@ -501,7 +501,7 @@ OpenClaw 会自动：
 * 检查依赖是否安装
 * 生成 Skill 发布表单
 
-![](images/image5.png)
+![](../../../static/university/paper-assistant/images/image5.png)
 
 3. 你需要确认的字段包括：
 
@@ -516,7 +516,7 @@ OpenClaw 会自动：
 ~/.openclaw/skills/paper-assistant
 ```
 
-![](images/image6.png)
+![](../../../static/university/paper-assistant/images/image6.png)
 
 # 4 集成精读与推送（安装 ljg-paper）
 
@@ -557,7 +557,7 @@ mv temp_repo/ljg-paper ./
 
 观察输出是否符合预期，类似：
 
-![](images/image7.png)
+![](../../../static/university/paper-assistant/images/image7.png)
 
 ## 5.2 跑通第一次论文推送
 
@@ -565,7 +565,7 @@ mv temp_repo/ljg-paper ./
 现在执行一次上述工作流，帮我从 arXiv 找一篇最新的 Agent 论文，精读后推送到飞书。
 ```
 
-![](images/image8.png)
+![](../../../static/university/paper-assistant/images/image8.png)
 
 ## 5.3 设置定时任务
 
@@ -575,7 +575,7 @@ openclaw gateway cron add "30 9 * * *" --message "推送论文日报"
 
 观察输出是否符合预期，类似：
 
-![](images/image9.png)
+![](../../../static/university/paper-assistant/images/image9.png)
 
 # 6 可能遇到的问题与处理
 

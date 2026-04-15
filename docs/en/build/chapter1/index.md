@@ -96,7 +96,7 @@ As of March 2026, OpenClaw has accumulated over 300,000 Stars, becoming **the fa
 
 From ChatGPT's "can talk but can't act," to Function Calling's "can act one step at a time," to Agent frameworks' "developers can use it," to OpenClaw's "everyone can use it" — AI has officially moved from the "conversation era" into the "execution era."
 
-![AI Agent Architecture Evolution Overview](./images/evolution-table.png)
+![AI Agent Architecture Evolution Overview](../../../static/build/chapter1/images/evolution-table.png)
 
 ---
 
@@ -127,7 +127,7 @@ Neither can handle **real-world uncertainty** — you can't plan all the steps i
 
 OpenClaw's core engine is a perpetual **Observe-Think-Act** loop:
 
-![ReAct Loop](./images/react-loop.png)
+![ReAct Loop](../../../static/build/chapter1/images/react-loop.png)
 
 This loop has three key characteristics:
 
@@ -225,7 +225,7 @@ Every time you connect a new messaging platform, you have to rewrite connection 
 
 OpenClaw's Gateway acts like a translator:
 
-![Gateway Unified Architecture](./images/gateway.png)
+![Gateway Unified Architecture](../../../static/build/chapter1/images/gateway.png)
 
 The core design is the **adapter pattern**: each platform implements a `ChannelPlugin` interface, responsible for "translating" platform-specific message formats into a unified format. Want to connect a new platform? Just implement one interface — not a single line of Agent core code needs to change.
 

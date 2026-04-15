@@ -246,6 +246,7 @@ export default defineConfig({
                 { text: '写在开头', link: '/cn/agent/' },
                 { text: '第一章 记忆系统设计', link: '/cn/agent/chapter1/' },
                 { text: '第二章 工具系统设计', link: '/cn/agent/chapter2/' },
+                { text: '第三章 任务规划与执行循环', link: '/cn/agent/chapter3/' },
               ]
             }
           ],
@@ -497,6 +498,7 @@ export default defineConfig({
                 { text: 'Introduction', link: '/en/agent/' },
                 { text: 'Chapter 1: Memory System Design', link: '/en/agent/chapter1/' },
                 { text: 'Chapter 2: Tool-System Design', link: '/en/agent/chapter2/' },
+                { text: 'Chapter 3: Task Planning and Execution Loops', link: '/en/agent/chapter3/' },
               ]
             }
           ],

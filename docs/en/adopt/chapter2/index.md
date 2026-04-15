@@ -77,7 +77,7 @@ A terminal is a text interface where you type commands and your computer execute
 - **macOS**: Press `Cmd + Space`, search for "Terminal"
 - **Linux**: Press `Ctrl + Alt + T`
 
-![Windows PowerShell terminal](./images/windows-powershell.png)
+![Windows PowerShell terminal](../../../static/adopt/chapter2/images/windows-powershell.png)
 
 </details>
 
@@ -111,7 +111,7 @@ openclaw --version
 <details>
 <summary>View verification screenshot</summary>
 
-![openclaw --version terminal output](./images/openclaw-version.png)
+![openclaw --version terminal output](../../../static/adopt/chapter2/images/openclaw-version.png)
 
 </details>
 
@@ -168,7 +168,7 @@ OpenClaw does not include an AI brain of its own — it needs to connect to a "m
 openclaw onboard --install-daemon
 ```
 
-![openclaw onboard configuration wizard](./images/openclaw-onboard.png)
+![openclaw onboard configuration wizard](../../../static/adopt/chapter2/images/openclaw-onboard.png)
 
 The wizard will guide you through all configuration steps. Key steps:
 
@@ -206,7 +206,7 @@ The wizard will subsequently ask about channels, skills, and other settings — 
 1. Visit the [OpenRouter website](https://openrouter.ai)
 2. Click **Sign In** in the top right; supports Google, GitHub, email, and other registration methods
 
-![OpenRouter sign-up page](./images/openrouter-signup.png)
+![OpenRouter sign-up page](../../../static/adopt/chapter2/images/openrouter-signup.png)
 
 **Step 2: Create an API key**
 
@@ -215,7 +215,7 @@ The wizard will subsequently ask about channels, skills, and other settings — 
 3. Click **Create** to generate a new API Key
 4. Copy the generated key (starts with `sk-or-v1-`)
 
-![OpenRouter API Key creation page](./images/openrouter-token.png)
+![OpenRouter API Key creation page](../../../static/adopt/chapter2/images/openrouter-token.png)
 
 > **Important**: The API key is only shown once — copy and save it immediately. If lost, you will need to create a new one.
 
@@ -228,7 +228,7 @@ Models with a `:free` suffix on OpenRouter are completely free, such as `qwen/qw
 3. OpenRouter supports UnionPay, VISA, and other common card types, and even supports cryptocurrency payments
 4. The recommended minimum first top-up is **$5 USD**, which is more than enough for practice
 
-![OpenRouter credits page](./images/openrouter-credits.png)
+![OpenRouter credits page](../../../static/adopt/chapter2/images/openrouter-credits.png)
 
 > **Convenience tip**: If your usage grows later, you can enable **Auto Top Up** on the credits page to automatically replenish your balance when it runs low, avoiding service interruptions.
 
@@ -244,9 +244,9 @@ If you prefer to use a domestic provider, SiliconFlow is recommended — new reg
 1. Visit the [SiliconFlow website](https://cloud.siliconflow.cn) and register with your phone number
 2. After logging in, go to the [console](https://cloud.siliconflow.cn/account/ak) and create an API key (starts with `sk-`)
 
-![SiliconFlow sign-up page](./images/siliconflow-register.png)
+![SiliconFlow sign-up page](../../../static/adopt/chapter2/images/siliconflow-register.png)
 
-![API key creation page](./images/siliconflow-api-key.png)
+![API key creation page](../../../static/adopt/chapter2/images/siliconflow-api-key.png)
 
 **Fill in the QuickStart wizard**:
 
@@ -280,7 +280,7 @@ openclaw status
 <details>
 <summary>View status output screenshot</summary>
 
-![openclaw status output](./images/openclaw-status.png)
+![openclaw status output](../../../static/adopt/chapter2/images/openclaw-status.png)
 
 </details>
 
@@ -300,7 +300,7 @@ openclaw dashboard
 
 The browser will automatically open the dashboard at `http://localhost:18789`:
 
-![Web dashboard in browser](./images/openclaw-dashboard-browser.png)
+![Web dashboard in browser](../../../static/adopt/chapter2/images/openclaw-dashboard-browser.png)
 
 > **What is localhost?** `localhost` means "this machine" — this page can only be opened by you.
 

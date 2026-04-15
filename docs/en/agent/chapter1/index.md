@@ -3,7 +3,7 @@
 <p class="memory-subtitle"><strong>Comparing OpenClaw, Claude, and Hermes Agent</strong></p>
 
 <div class="memory-cover memory-figure">
-  <img src="./images/overview.png" style="max-width: 100%; width: 100%; border-radius: 8px;" />
+  <img src="../../../static/agent/chapter1/images/overview.png" style="max-width: 100%; width: 100%; border-radius: 8px;" />
 </div>
 
 <div class="memory-meta-card">
@@ -54,7 +54,7 @@ The most interesting architecture questions lie in how external memory and episo
 ## OpenClaw: the filesystem *is* memory
 
 <div class="memory-figure">
-  <img src="./images/openclaw-memory.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
+  <img src="../../../static/agent/chapter1/images/openclaw-memory.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
   <p style="color: #888; font-size: 14px; margin-top: 8px;">Figure 1: OpenClaw memory-system architecture</p>
 </div>
 
@@ -156,7 +156,7 @@ At the moment it is still experimental and disabled by default. The core difficu
 ## Claude: context engineering first
 
 <div class="memory-figure">
-  <img src="./images/droid-context.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
+  <img src="../../../static/agent/chapter1/images/droid-context.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
   <p style="color: #888; font-size: 14px; margin-top: 8px;">Figure 2: Claude (Droid) context-engineering architecture</p>
 </div>
 
@@ -224,7 +224,7 @@ That allows the Agent to make proactive decisions — which files to prioritize,
 ## Hermes Agent: four-layer separation, with episodic memory at the center
 
 <div class="memory-figure">
-  <img src="./images/hermes-layers.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
+  <img src="../../../static/agent/chapter1/images/hermes-layers.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
   <p style="color: #888; font-size: 14px; margin-top: 8px;">Figure 3: Hermes Agent four-layer memory architecture</p>
 </div>
 
@@ -277,7 +277,7 @@ FTS5 full-text search has an obvious weakness: it is poor at semantic matching. 
 ### Layer 3: episodic memory (Skills, Hermes’s defining difference)
 
 <div class="memory-figure">
-  <img src="./images/hermes-skills.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
+  <img src="../../../static/agent/chapter1/images/hermes-skills.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
   <p style="color: #888; font-size: 14px; margin-top: 8px;">Figure 4: Hermes Skills as an episodic-memory system</p>
 </div>
 
@@ -327,7 +327,7 @@ This comes closest to “truly understanding the user,” but it is also the hea
 ## The essential differences between the three architectural philosophies
 
 <div class="memory-figure">
-  <img src="./images/philosophy-compare.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
+  <img src="../../../static/agent/chapter1/images/philosophy-compare.png" style="max-width: 680px; width: 100%; border-radius: 8px;" />
   <p style="color: #888; font-size: 14px; margin-top: 8px;">Figure 5: Comparing the three architectural philosophies</p>
 </div>
 

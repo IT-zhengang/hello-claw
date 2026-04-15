@@ -11,7 +11,7 @@ next:
 
 2026 年初，[OpenClaw](https://github.com/openclaw/openclaw) 两个月斩获 247,000 GitHub 星标，超越 Linux 成为史上增长最快的开源项目。13 家国内大厂跟进，掀起"[百虾大战](#百虾大战)"。
 
-![英伟达 CEO 黄仁勋在 GTC 2026 上展示 OpenClaw 星标增长](images/openclaw-stars.png)
+![英伟达 CEO 黄仁勋在 GTC 2026 上展示 OpenClaw 星标增长](../../../static/adopt/intro/images/openclaw-stars.png)
 <small>GTC 2026 主题演讲：黄仁勋展示 OpenClaw 四个月内星标从零飙升至 318K 的增长曲线</small>
 
 它不是又一个聊天机器人。它是一个**住在你电脑里、真正能干活的 AI 员工**——而这背后，是 AI 交互范式的一次根本跃迁。
@@ -88,7 +88,7 @@ OpenClaw 是一个开源的自主式 AI Agent 执行引擎，由开发者 Peter 
 
 13 家国内大厂跟进 OpenClaw 全景图：
 
-![国内大厂 OpenClaw 生态全景](./images/openclaw-landscape.jpg)
+![国内大厂 OpenClaw 生态全景](../../../static/adopt/intro/images/openclaw-landscape.jpg)
 <small>图片来源：[TheBlockBeats](https://www.theblockbeats.info)</small>
 
 <details>
@@ -154,7 +154,7 @@ OpenClaw 的架构分为四层：
 
 领养一只龙虾，本质上和雇一个员工一样——准备四样东西就行：
 
-![养一只龙虾需要做的4件事情](./images/龙虾套装.png)
+![养一只龙虾需要做的4件事情](../../../static/adopt/intro/images/lobster-starter-kit.png)
 
 | 步骤 | 类比 | 你要做的 | 对应章节 |
 |------|------|---------|---------|

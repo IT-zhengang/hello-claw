@@ -265,7 +265,7 @@ Funnel 限制：需要 Tailscale v1.38.3+、MagicDNS、HTTPS，只支持端口 4
 
 笔记本经常合盖休眠？把 Gateway 跑在 VPS 或家庭服务器上：
 
-![云服务器 24 小时在线部署架构：Gateway 部署在 VPS 上，笔记本通过 SSH 隧道远程连接](./images/OpenClaw云服务器.png)
+![云服务器 24 小时在线部署架构：Gateway 部署在 VPS 上，笔记本通过 SSH 隧道远程连接](../../../static/adopt/chapter9/images/openclaw-cloud-server.png)
 
 ```mermaid
 flowchart LR

@@ -42,7 +42,7 @@ openclaw status           # Check overall runtime status
 <details>
 <summary>Gateway Architecture Details (connection protocols, node system)</summary>
 
-![OpenClaw Gateway Architecture](./images/OpenClaw-Gateway.png)
+![OpenClaw Gateway Architecture](../../../static/adopt/chapter6/images/OpenClaw-Gateway.png)
 
 ```mermaid
 flowchart LR

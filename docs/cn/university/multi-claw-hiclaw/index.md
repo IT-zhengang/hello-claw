@@ -291,7 +291,7 @@ Get-Content $HOME\hiclaw-manager.env | Select-String 'LLM|BASE_URL|MODEL'
 
 登录成功后，你应该会看到类似下面的首页：
 
-![Element Web 首页](./images/element-web-home.png)
+![Element Web 首页](../../../static/university/multi-claw-hiclaw/images/element-web-home.png)
 
 左侧列表中如果能看到 `manager` 用户，说明你已经进入了可交互状态。
 
@@ -301,7 +301,7 @@ Get-Content $HOME\hiclaw-manager.env | Select-String 'LLM|BASE_URL|MODEL'
 
 默认账号是 `admin`，默认密码通常是 `admin123456`，或者你在配置里设置的密码。进入之后，你还会自动加入一个 Admin Room，用来接收系统通知：
 
-![Admin Room](./images/admin-room.png)
+![Admin Room](../../../static/university/multi-claw-hiclaw/images/admin-room.png)
 
 到这里为止，你已经完成了“服务起来了”的验证。下一步才是“协作真的能工作”的验证。
 
@@ -311,11 +311,11 @@ Get-Content $HOME\hiclaw-manager.env | Select-String 'LLM|BASE_URL|MODEL'
 
 先点击左侧对话历史里的 `manager`，进入对话窗口。第一次进去时，先看看它的欢迎说明和能力范围：
 
-![Manager 欢迎消息](./images/manager-welcome.png)
+![Manager 欢迎消息](../../../static/university/multi-claw-hiclaw/images/manager-welcome.png)
 
 Manager 一般会说明自己负责分配任务、跟进进度、处理卡点、唤醒对应 Worker 等工作。继续往下对话时，你还会看到更具体的说明界面：
 
-![Manager 对话](./images/manager-conversation.png)
+![Manager 对话](../../../static/university/multi-claw-hiclaw/images/manager-conversation.png)
 
 接着，直接给它发一条创建 Worker 的消息，例如：
 
@@ -325,13 +325,13 @@ Manager 一般会说明自己负责分配任务、跟进进度、处理卡点、
 
 如果创建顺利，Manager 会返回 Worker 的详情和当前处理进度：
 
-![Worker 创建完成详情](./images/worker-created-detail.png)
+![Worker 创建完成详情](../../../static/university/multi-claw-hiclaw/images/worker-created-detail.png)
 
 你通常会在这里看到 Worker 名称、角色、已配置能力，以及账号注册、房间创建、权限配置、容器启动这些步骤是否完成。
 
 过一会后，你会收到 Worker 房间邀请：
 
-![Worker 房间邀请](./images/worker-room-invite.png)
+![Worker 房间邀请](../../../static/university/multi-claw-hiclaw/images/worker-room-invite.png)
 
 点击“接受”加入房间。到这一步，说明 Manager 不只是活着，而是真的开始调度 Worker 了。
 
@@ -343,13 +343,13 @@ Manager 一般会说明自己负责分配任务、跟进进度、处理卡点、
 
 Manager 会继续返回创建进度：
 
-![Worker 创建进度](./images/worker-creation-progress.png)
+![Worker 创建进度](../../../static/university/multi-claw-hiclaw/images/worker-creation-progress.png)
 
 创建过程通常会包含几个动作：注册 Matrix 账号、在 Higress 里创建 Consumer、建立你和 Manager 与 Alice 的房间关系、最后启动 Worker 容器。
 
 加入房间之后，你还可以邀请其他人或其他 Worker 加入这个房间：
 
-![邀请加入 Worker 房间](./images/invite-to-worker-room.png)
+![邀请加入 Worker 房间](../../../static/university/multi-claw-hiclaw/images/invite-to-worker-room.png)
 
 ### 第六步：验证 Worker 真的能调用模型
 
@@ -367,7 +367,7 @@ Manager 会继续返回创建进度：
 
 实际对话大概会像这样：
 
-![Worker Alice 对话](./images/worker-alice-conversation.png)
+![Worker Alice 对话](../../../static/university/multi-claw-hiclaw/images/worker-alice-conversation.png)
 
 看到这里，才算真正完成了“本地单机版 HiClaw 可用”的验证。
 

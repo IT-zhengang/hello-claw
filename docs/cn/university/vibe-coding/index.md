@@ -31,7 +31,7 @@
 
 ### 核心架构
 
-![Vibe Coding 工作流架构](./images/lark-vibe-coding-workflow.png)
+![Vibe Coding 工作流架构](../../../static/university/vibe-coding/images/lark-vibe-coding-workflow.png)
 
 ```mermaid
 flowchart TB
@@ -184,7 +184,7 @@ clawhub install github                # 可选：PR 状态查询 + Cron 轮询
 
    > **API Key 获取**：前往 [Anthropic Console](https://console.anthropic.com/) → API Keys → API Keys → Create Key。建议创建一个专门用于 Vibe Coding 的独立 Key，便于追踪用量。
    >
-   > ![Anthropic API Key 创建页面](./images/anthropic-token.png)
+   > ![Anthropic API Key 创建页面](../../../static/university/vibe-coding/images/anthropic-token.png)
    >
    > ⚠️ API Key 只显示一次，务必立即保存到安全位置。如果遗失，需要删除后重新创建。
 
@@ -207,7 +207,7 @@ clawhub install github                # 可选：PR 状态查询 + Cron 轮询
      - Metadata → **Read-only**（只读元数据，默认已勾选）
    - 其余权限保持默认（No access）即可。设置完成后，滚动到页面底部点击 **Generate token**，复制生成的 Token（**只显示一次，务必立即保存**）
 
-   ![GitHub Token 创建页面](./images/github-token.png)
+   ![GitHub Token 创建页面](../../../static/university/vibe-coding/images/github-token.png)
 
    ```bash
    export GITHUB_TOKEN="github_pat_xxxxx"
@@ -321,19 +321,19 @@ openclaw doctor           # OpenClaw 整体健康
 
 **① 发送需求**：在飞书里用自然语言描述任务，机器人自动检查历史状态后开始执行。
 
-![用户在飞书发送代码需求](./images/lark-vibe-coding-requirement-1.png)
+![用户在飞书发送代码需求](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-1.png)
 
 **② 收到 PR 摘要**：机器人完成后回传 PR 编号、状态、修改文件和添加详情。飞书里的 PR 链接可以直接点击跳转 GitHub。
 
-![机器人回传 PR 摘要与链接](./images/lark-vibe-coding-requirement-2.png)
+![机器人回传 PR 摘要与链接](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-2.png)
 
 **③ 审查 diff**：点击 PR 链接在手机浏览器里查看代码变更，确认修改内容是否符合预期。
 
-![GitHub PR 页面的文件 diff 视图](./images/lark-vibe-coding-requirement-3.png)
+![GitHub PR 页面的文件 diff 视图](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-3.png)
 
 **④ 确认合并**：回到飞书说一句"合并并清理分支"，机器人执行 merge + 删除分支，全程完成。
 
-![用户确认合并，机器人执行并汇报结果](./images/lark-vibe-coding-requirement-4.png)
+![用户确认合并，机器人执行并汇报结果](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-4.png)
 
 到这里为止，分支前缀、Copilot 审查、结果回传格式都应该由 `IDENTITY.md` 自动兜底；后面示例默认都沿用这套规则，除非我明确写"这次要覆盖默认行为"。
 

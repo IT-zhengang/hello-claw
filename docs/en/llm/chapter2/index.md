@@ -3,13 +3,13 @@
 <p class="hermes-subtitle"><strong>From skill manuals to self-evolving capabilities: a close look at how Hermes-Agent learns, patches, and activates Skills through real execution</strong></p>
 
 <div class="hermes-cover hermes-figure">
-  <img src="./images/hermes-agent/cover_gif.gif" width="360" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/cover_gif.gif" width="360" />
 </div>
 
 OpenClaw has an extremely powerful Skill ecosystem. So how can an emerging Agent challenge this "lobster"? Hermes-Agent offers a distinctly different answer.
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/hermes_intro.webp" width="680" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/hermes_intro.webp" width="680" />
 </div>
 
 <div class="hermes-meta-card">
@@ -43,7 +43,7 @@ Looking back at this wave of AI systems, we have gone from passive **ChatBots**,
 Capabilities have improved, but most Agents still lack one of the most human abilities of all: **the ability to summarize experience from repeated real work, learn new techniques, and gradually form problem-solving "muscle memory" and SOPs.**
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/agent_evolution.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/agent_evolution.webp" width="720" />
   <p><sub><b>Agent capability evolution: from ChatBot → simple Agent → complex Agent → self-learning Agent</b></sub></p>
 </div>
 
@@ -60,7 +60,7 @@ Skills are undoubtedly a major Agent-engineering breakthrough. **They organize e
 But a Skill is still not self-driven. It is a handbook written by humans and handed to the model — when the Agent encounters a problem, it first looks up the answer in a manual.
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_vs_manual.webp" width="680" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/skill_vs_manual.webp" width="680" />
   <p><sub><b>The nature of a Skill: a structured handbook of experience that still depends on manual authoring</b></sub></p>
 </div>
 
@@ -85,7 +85,7 @@ In this section, we design a concrete task so we can experience Hermes-Agent’s
 ### The overall Hermes-Agent architecture
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/architecture.webp" width="760" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/architecture.webp" width="760" />
   <p><sub><b>The overall Hermes-Agent architecture — note the Skill evolution subsystem on the right</b></sub></p>
 </div>
 
@@ -100,7 +100,7 @@ In the minimalist path, you only need three steps: install, configure the model,
 One especially interesting detail for personal use is that Hermes not only supports direct access to common model providers through API keys, but can also reuse subscriptions from AI coding tools such as Codex and Copilot. That means it can directly call top-tier models already included in your subscription plan, without extra provider setup. For example, it can connect to an existing GitHub Copilot subscription:
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/copilot_config.webp" width="560" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/copilot_config.webp" width="560" />
   <p><sub>Example configuration: connect a GitHub Copilot subscription and reuse the model quota you already have</sub></p>
 </div>
 
@@ -132,42 +132,42 @@ The final sentence is there to hint that this kind of task may recur. Now feed t
 > **Below is the complete six-step demonstration of self-learning Skill creation:**
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/tui_input.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/tui_input.webp" width="720" />
   <p><sub><b>Step 1</b> — Paste the code-audit task into the Hermes-Agent TUI input box</sub></p>
 </div>
 
 After waiting for a while, you can see the task execution output:
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/task_output.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/task_output.webp" width="720" />
   <p><sub><b>Step 2</b> — The Agent autonomously completes the multi-step code-audit task</sub></p>
 </div>
 
 At the end of the output, a crucial log message appears:
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_created_log.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/skill_created_log.webp" width="720" />
   <p><sub><b>Step 3</b> — The log shows that a brand-new Skill was created automatically</sub></p>
 </div>
 
 At this point, you can find a new Skill under `~/.hermes/skills/`:
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_directory.webp" width="560" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/skill_directory.webp" width="560" />
   <p><sub><b>Step 4</b> — The auto-generated Skill directory, categorized under software-development</sub></p>
 </div>
 
 When you open its `SKILL.md`, you will find a code-audit Skill corresponding exactly to the workflow above:
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_md_content.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/skill_md_content.webp" width="720" />
   <p><sub><b>Step 5</b> — The generated SKILL.md contains the full code-audit workflow</sub></p>
 </div>
 
 This shows that the test task successfully triggered reflection and learning in Hermes-Agent. A new Skill was created and classified under `software-development`. The Agent has effectively “secretly learned” a code-audit Skill. The next time you send a similar request — for example, “run a code audit on project X” — that Skill may be activated automatically:
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/skill_triggered.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/skill_triggered.webp" width="720" />
   <p><sub><b>Step 6</b> — On a similar future instruction, the learned Skill is triggered automatically</sub></p>
 </div>
 
@@ -215,7 +215,7 @@ Self-learning does **not** mean that every time the Agent finishes a task or use
 The background trigger is based on cumulative tool-calling iterations across tasks (`_iters_since_skill`). Once the counter reaches a threshold (default: 10), a background asynchronous review is launched.
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/review-trigger.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/review-trigger.webp" width="720" />
   <p><sub><b>Background review trigger</b> — once cumulative tool iterations pass the threshold, the system launches an asynchronous reflection path</sub></p>
 </div>
 
@@ -261,7 +261,7 @@ Hermes-Agent also designs in automatic Skill repair. **It is a self-repair behav
 The core logic is simple: if the model judges that the problem lies in the Skill itself rather than the surrounding environment, it starts Skill repair by calling `skill_manage(action='patch')`.
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/skill-patch-flow.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/skill-patch-flow.webp" width="720" />
   <p><sub><b>Skill patching and repair</b> — when a Skill itself has become outdated or broken, the system attempts to patch the Skill directly</sub></p>
 </div>
 
@@ -286,7 +286,7 @@ As the number of Skills and tools grows, overlap and dependency relationships na
 The activation path for each Skill looks like this:
 
 <div class="hermes-figure">
-  <img src="./images/hermes-agent/skill-activation-guard.webp" width="720" />
+  <img src="../../../static/llm/chapter2/images/hermes-agent/skill-activation-guard.webp" width="720" />
   <p><sub><b>Conditional activation and safety guards</b> — Skill visibility is governed by tool availability, fallback relationships, and risk checks</sub></p>
 </div>
 

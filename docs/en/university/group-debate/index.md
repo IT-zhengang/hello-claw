@@ -430,7 +430,7 @@ After discussion ends, the human @Architect in the group: "Please summarize the 
 4. Search for your app name (e.g., "Lobster-Architect") and click to add it
 5. Repeat steps 3-4 to add all three bots (Architect, SRE, Product Manager) to the group
 
-![Adding bots through group settings](./images/lark-group-add-bot.png)
+![Adding bots through group settings](../../../static/university/group-debate/images/lark-group-add-bot.png)
 
 ### Step 2: Start All Three OpenClaw Instances
 
@@ -464,7 +464,7 @@ perspective: should we split the order service into an independent microservice?
 Please share your view first, then @Lobster-SRE for the operations perspective.
 ```
 
-![Starting a discussion by @mentioning a bot in the group](./images/lark-group-chat.jpg)
+![Starting a discussion by @mentioning a bot in the group](../../../static/university/group-debate/images/lark-group-chat.jpg)
 
 ### Step 4: Watch the Autonomous Discussion
 

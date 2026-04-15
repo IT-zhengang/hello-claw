@@ -37,7 +37,7 @@ next:
 
 ## 2. 开始对话
 
-![AutoClaw 初始界面](./images/autoclaw.png)
+![AutoClaw 初始界面](../../../static/adopt/chapter1/images/autoclaw.png)
 
 左侧有四个预置分身，选一个点进去就能聊：
 
@@ -79,7 +79,7 @@ next:
 
 首次对话前会弹出 **Quick Setup** 卡片。花 30 秒填一下，分身就知道你是谁、擅长什么：
 
-![Quick Setup](./images/autoclaw-agent-quick-setup.png)
+![Quick Setup](../../../static/adopt/chapter1/images/autoclaw-agent-quick-setup.png)
 
 填写你的名字、角色、给分身取个名字、选择专长领域，点 **Done** 即可。错过了也没关系——随时在对话中告诉分身，它会自己配好。
 
@@ -111,7 +111,7 @@ next:
 
 点击左下角头像，进入风格设置界面：
 
-![头像风格设置](./images/autoclaw-avatar.png)
+![头像风格设置](../../../static/adopt/chapter1/images/autoclaw-avatar.png)
 
 选择预设风格（Cute Cat / Cyberpunk / Watercolor / Pixel Art / Anime Style / Minimalist），或输入自定义描述后点 **Generate** 实时生成。
 
@@ -145,7 +145,7 @@ next:
 
 点击左下角头像旁的设置图标（⚙），进入 Preferences 页面：
 
-![Preferences 设置页面](./images/autoclaw_preferences.png)
+![Preferences 设置页面](../../../static/adopt/chapter1/images/autoclaw_preferences.png)
 
 左侧菜单共 11 项，以下逐一说明。
 

@@ -53,7 +53,7 @@
 
 下面这张对照图能更直观看出差异：
 
-![IMAP 与 POP3 的差异](./images/imap-vs-pop3-differences.png)
+![IMAP 与 POP3 的差异](../../../static/university/email-assistant/images/imap-vs-pop3-differences.png)
 
 如果只记一句话，可以先这么理解：
 
@@ -64,11 +64,11 @@
 
 先打开网易邮箱入口：<https://email.163.com/>
 
-![网易 163 邮箱登录页](./images/163-login-page.png)
+![网易 163 邮箱登录页](../../../static/university/email-assistant/images/163-login-page.png)
 
 登录完成后，你会进入 163 邮箱主页。
 
-![网易 163 邮箱主页](./images/163-webmail-home.png)
+![网易 163 邮箱主页](../../../static/university/email-assistant/images/163-webmail-home.png)
 
 到这里为止，你还只是完成了“网页邮箱登录”。  
 这一步离脚本可读邮件还差关键一步：开启邮件协议服务并生成授权码。
@@ -77,7 +77,7 @@
 
 在顶部导航里点击“设置”，再进入 `POP3/SMTP/IMAP`。
 
-![163 设置页中的 POP3/SMTP/IMAP 入口](./images/163-settings-pop3-smtp-imap-menu.png)
+![163 设置页中的 POP3/SMTP/IMAP 入口](../../../static/university/email-assistant/images/163-settings-pop3-smtp-imap-menu.png)
 
 这也是网易帮助中心给出的官方开启路径：
 
@@ -93,16 +93,16 @@
 
 点击“开启”后，页面会先弹出继续开启的确认提示：
 
-![开启 IMAP/SMTP 前的确认弹窗](./images/163-imap-smtp-enable-confirm.png)
+![开启 IMAP/SMTP 前的确认弹窗](../../../static/university/email-assistant/images/163-imap-smtp-enable-confirm.png)
 
 完成页面要求的验证后，会看到开启成功的提示：
 
-![IMAP/SMTP 开启成功提示](./images/163-imap-smtp-enable-success.png)
+![IMAP/SMTP 开启成功提示](../../../static/university/email-assistant/images/163-imap-smtp-enable-success.png)
 
 如果你后面还要兼容某些历史设备、旧系统，或者沿用既有的 `POP3` 收信流程，也可以额外开启 `POP3/SMTP`。  
 对应的成功提示长这样：
 
-![POP3/SMTP 开启成功提示](./images/163-pop3-smtp-enable-success.png)
+![POP3/SMTP 开启成功提示](../../../static/university/email-assistant/images/163-pop3-smtp-enable-success.png)
 
 但对 Python 自动化读取来说，第一优先级仍然是先把 `IMAP/SMTP` 跑通。
 
@@ -113,13 +113,13 @@
 - 你当前是否已经生成过授权码
 - 你是否需要重新生成一枚新的授权码给脚本使用
 
-![163 邮箱授权码管理区域](./images/163-authorization-code-management.png)
+![163 邮箱授权码管理区域](../../../static/university/email-assistant/images/163-authorization-code-management.png)
 
 如果你这里已经有旧授权码记录，先处理掉不再使用的旧记录，再重新生成新的授权码会更稳。
 
 如果你点击新增或重新生成，页面会弹出授权码窗口。这里展示的这串字符，就是后面第三方客户端或 Python 脚本要使用的登录凭证。
 
-![163 邮箱授权码弹窗](./images/163-authorization-code-dialog.png)
+![163 邮箱授权码弹窗](../../../static/university/email-assistant/images/163-authorization-code-dialog.png)
 
 一个很重要的细节是：授权码不会像网页密码那样一直摆在那里。  
 复制之后，就消失了，所以注意复制好之后保管好。
@@ -156,7 +156,7 @@ MAIL_FETCH_LIMIT=10
 
 163 邮箱设置页里也能看到这组协议服务器地址：
 
-![163 邮箱协议服务器地址说明](./images/163-mail-server-endpoints.png)
+![163 邮箱协议服务器地址说明](../../../static/university/email-assistant/images/163-mail-server-endpoints.png)
 
 这点也能和华为官方支持页里的第三方邮箱配置说明对上。
 

@@ -145,11 +145,11 @@ AutoResearchClaw 通过 Telegram 与你交互，因此需要先创建一个 Tele
 
 打开 Telegram App，在搜索栏输入 `BotFather` 并选择带蓝色认证标志的官方账号：
 
-![在 Telegram 中搜索 BotFather](./images/telegram-botfather.jpg)
+![在 Telegram 中搜索 BotFather](../../../static/university/vibe-research/images/telegram-botfather.jpg)
 
 点击 **Start** 开始对话，然后输入 `/newbot` 创建一个新机器人：
 
-![向 BotFather 发送 /newbot 命令](./images/telegram-newbot.jpg)
+![向 BotFather 发送 /newbot 命令](../../../static/university/vibe-research/images/telegram-newbot.jpg)
 
 BotFather 会依次询问你两个问题：
 
@@ -199,7 +199,7 @@ openclaw onboard
 
 获取方法很简单——在 Telegram 中找到你刚创建的机器人，发送 `/start`：
 
-![发送 /start 获取 Telegram User ID](./images/telegram-user-id.jpg)
+![发送 /start 获取 Telegram User ID](../../../static/university/vibe-research/images/telegram-user-id.jpg)
 
 机器人会回复你的 User ID：
 
@@ -377,7 +377,7 @@ arXiv 在限速，circuit breaker 进入冷却。等它恢复...
 
 论文生成完毕后，让龙虾把 PDF 发送到 Telegram。建议在发起课题时就提前说明"完成后请提醒我并发送 PDF"：
 
-![AutoResearchClaw 生成的论文 PDF 通过 Telegram 推送](./images/telegram-autoresearchclaw-pdf.jpg)
+![AutoResearchClaw 生成的论文 PDF 通过 Telegram 推送](../../../static/university/vibe-research/images/telegram-autoresearchclaw-pdf.jpg)
 
 龙虾会告诉你 PDF 的存储路径和文件大小，并直接发送到聊天窗口供你预览和下载。
 

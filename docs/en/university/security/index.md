@@ -2,7 +2,7 @@
 
 > If you can't control the lobster, cage it first — this guide explains why it goes rogue and how to put it back in a safe enclosure.
 
-![](images/image1.png)
+![](../../../static/university/security/images/image1.png)
 
 This article starts from **real-world security risks**, analyzes the problems an AI Agent can cause under "god mode" permissions, and introduces a **three-layer defense architecture** as an overarching security philosophy. Building on that foundation, it provides a **seven-step security hardening plan** you can act on immediately. If your system is already showing anomalies, you can follow the **incident response process** to contain and investigate damage; in the most extreme cases, a guide to **complete uninstallation and credential rotation** is also provided to ensure the system is fully restored to a safe state.
 
@@ -24,7 +24,7 @@ In other words, it operates in a state of near-**"god mode"** permissions. Sound
 
 When an AI Agent simultaneously holds **filesystem, command-line, and network access permissions**, without clear security boundaries it is no longer just a tool — it is more like a **lobster that can crawl everywhere**. And in OpenClaw's default design, those boundaries are actually blurry.
 
-![](images/image2.png)
+![](../../../static/university/security/images/image2.png)
 
 #### **Core Problem**: Blurry Trust Boundaries
 
@@ -56,9 +56,9 @@ The following cases are the most representative examples to date.
 
 > **Key Takeaway**: These four cases expose four categories of risk — **instruction loss**, **prompt injection**, **supply chain poisoning**, and **privilege abuse** — which correspond to the defensive measures in the subsequent chapters of this guide.
 
-![](images/image3.png)![](images/image4.png)
+![](../../../static/university/security/images/image3.png)![](../../../static/university/security/images/image4.png)
 
-![img](images/image5.png)
+![img](../../../static/university/security/images/image5.png)
 
 ### 3. Alarming Risk Statistics
 
@@ -80,13 +80,13 @@ As a result, a new security issue has emerged: **AI Agents are being exposed to 
 
 What these numbers really mean can be summed up in one sentence: many lobsters have already been dropped directly into the public internet pond — **and with their permissions wide open.**
 
-![](images/image6.png)![](images/image7.png)
+![](../../../static/university/security/images/image6.png)![](../../../static/university/security/images/image7.png)
 
 Looking at the geographic breakdown, the United States (28%), China (17%), Germany (9%), the United Kingdom (7%), and India (6%) are the five countries with the most exposed instances. By industry, internet and technology companies account for the highest share (41%), but finance, healthcare, and government systems combined account for **26% of exposed instances** — and their risk is actually higher because those systems typically involve sensitive personal information and critical business data. Put simply: **many lobsters have already been dropped straight into the public internet, permissions and all.**
 
 ### 4. Use-Case Traffic Light
 
-![](images/image8.png)![](images/image9.png)
+![](../../../static/university/security/images/image8.png)![](../../../static/university/security/images/image9.png)
 
 Of course, OpenClaw itself is not "dangerous software" — what actually determines the risk is the **deployment context and permission boundaries**. In environments such as personal learning, public data analysis, or non-core business automation, it remains a highly efficient AI Agent tool. However, in environments involving **sensitive credential management, core production systems, strict compliance requirements, or unattended high-privilege tasks**, deploying OpenClaw directly tends to carry enormous security risk.
 

@@ -11,7 +11,7 @@ next:
 
 In early 2026, [OpenClaw](https://github.com/openclaw/openclaw) amassed 247,000 GitHub stars in just two months, surpassing Linux to become the fastest-growing open-source project in history. Thirteen major domestic tech companies followed suit, sparking the ["Lobster Wars"](#lobster-wars).
 
-![NVIDIA CEO Jensen Huang showcasing OpenClaw's star growth at GTC 2026](images/openclaw-stars.png)
+![NVIDIA CEO Jensen Huang showcasing OpenClaw's star growth at GTC 2026](../../../static/adopt/intro/images/openclaw-stars.png)
 <small>GTC 2026 Keynote: Jensen Huang presenting OpenClaw's growth curve from zero to 318K stars in four months</small>
 
 This is not another chatbot. It is an **AI employee that lives on your computer and actually gets work done** — and behind this lies a fundamental leap in how we interact with AI.
@@ -88,7 +88,7 @@ These three elements form a **flywheel effect**: memory compounds data, skills e
 
 A panoramic view of 13 major domestic tech companies following OpenClaw:
 
-![Domestic tech company OpenClaw ecosystem landscape](./images/openclaw-landscape.jpg)
+![Domestic tech company OpenClaw ecosystem landscape](../../../static/adopt/intro/images/openclaw-landscape.jpg)
 <small>Image source: [TheBlockBeats](https://www.theblockbeats.info)</small>
 
 <details>
@@ -154,7 +154,7 @@ This layered design makes OpenClaw both flexible and controllable. For details, 
 
 Adopting a lobster is essentially like hiring an employee — you just need four things:
 
-![4 things you need to raise a lobster](./images/lobster-starter-kit.png)
+![4 things you need to raise a lobster](../../../static/adopt/intro/images/lobster-starter-kit.png)
 
 | Step | Analogy | What You Do | Chapter |
 |------|---------|------------|---------|

@@ -265,7 +265,7 @@ Reference docs: [Tailscale Serve](https://tailscale.com/kb/1312/serve) · [Tails
 
 Laptop frequently sleeping with the lid closed? Run Gateway on a VPS or home server:
 
-![Cloud server 24/7 deployment architecture: Gateway deployed on VPS, laptop connects remotely via SSH tunnel](./images/openclaw-cloud-server.png)
+![Cloud server 24/7 deployment architecture: Gateway deployed on VPS, laptop connects remotely via SSH tunnel](../../../static/adopt/chapter9/images/openclaw-cloud-server.png)
 
 ```mermaid
 flowchart LR

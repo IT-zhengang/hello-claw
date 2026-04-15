@@ -37,7 +37,7 @@ New users receive a limited-time gift of **2,000 credits** — get started at ze
 
 ## 2. Start a Conversation
 
-![AutoClaw initial interface](./images/autoclaw.png)
+![AutoClaw initial interface](../../../static/adopt/chapter1/images/autoclaw.png)
 
 There are four preset agents on the left. Click any one to start chatting:
 
@@ -79,7 +79,7 @@ You can modify this prompt to suit your actual needs and have it complete any mu
 
 A **Quick Setup** card will pop up before your first conversation. Take 30 seconds to fill it in so the agent knows who you are and what you're good at:
 
-![Quick Setup](./images/autoclaw-agent-quick-setup.png)
+![Quick Setup](../../../static/adopt/chapter1/images/autoclaw-agent-quick-setup.png)
 
 Enter your name, your role, give the agent a name, and choose your areas of expertise, then click **Done**. If you skip this, no worries — just tell the agent in conversation at any time and it will configure itself.
 
@@ -111,7 +111,7 @@ Click **Buy now** in the top-right corner to purchase a credit package. Top up a
 
 Click the avatar in the bottom-left corner to enter the style settings page:
 
-![Avatar style settings](./images/autoclaw-avatar.png)
+![Avatar style settings](../../../static/adopt/chapter1/images/autoclaw-avatar.png)
 
 Choose a preset style (Cute Cat / Cyberpunk / Watercolor / Pixel Art / Anime Style / Minimalist), or enter a custom description and click **Generate** to create one in real time.
 
@@ -145,7 +145,7 @@ The **Cron Jobs** tab on the left shows all scheduled tasks. Create them by chat
 
 Click the settings icon (⚙) next to the avatar in the bottom-left corner to enter the Preferences page:
 
-![Preferences settings page](./images/autoclaw_preferences.png)
+![Preferences settings page](../../../static/adopt/chapter1/images/autoclaw_preferences.png)
 
 The left menu has 11 sections, each described below.
 

@@ -237,7 +237,7 @@ Sandbox mode can restrict the file access scope, but it is not a physical bounda
 
 The core idea: use two virtual machines to build an isolation boundary. OpenClaw runs with full capabilities inside VM1, but real keys never enter VM1.
 
-![OpenClaw Three-Layer Isolation Architecture](./images/openclaw-three-layer-isolation.png)
+![OpenClaw Three-Layer Isolation Architecture](../../../static/adopt/chapter10/images/openclaw-three-layer-isolation.png)
 
 ```mermaid
 flowchart TB
@@ -410,7 +410,7 @@ If you understand the risks but still need to use OpenClaw in a group chat (e.g.
 
 OpenClaw's security model is built on five trust boundaries. Understanding these boundaries helps you identify which layer a risk originates from.
 
-![OpenClaw Trust Boundary Architecture](./images/openclaw-trust-boundaries.png)
+![OpenClaw Trust Boundary Architecture](../../../static/adopt/chapter10/images/openclaw-trust-boundaries.png)
 
 ```mermaid
 ---

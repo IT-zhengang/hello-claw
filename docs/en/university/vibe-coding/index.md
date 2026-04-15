@@ -31,7 +31,7 @@ Once running, you should be able to reliably accomplish the following:
 
 ### Core Architecture
 
-![Vibe Coding Workflow Architecture](./images/lark-vibe-coding-workflow.png)
+![Vibe Coding Workflow Architecture](../../../static/university/vibe-coding/images/lark-vibe-coding-workflow.png)
 
 ```mermaid
 flowchart TB
@@ -184,7 +184,7 @@ Follow these steps in order, from top to bottom:
 
    > **Getting an API Key**: Go to [Anthropic Console](https://console.anthropic.com/) → API Keys → API Keys → Create Key. It's recommended to create a dedicated key specifically for Vibe Coding to make it easy to track usage.
    >
-   > ![Anthropic API Key creation page](./images/anthropic-token.png)
+   > ![Anthropic API Key creation page](../../../static/university/vibe-coding/images/anthropic-token.png)
    >
    > ⚠️ The API Key is only shown once — be sure to save it to a secure location immediately. If lost, you'll need to delete it and create a new one.
 
@@ -207,7 +207,7 @@ Follow these steps in order, from top to bottom:
      - Metadata → **Read-only** (read-only metadata, checked by default)
    - Leave all other permissions at their defaults (No access). Once configured, scroll to the bottom of the page and click **Generate token**. Copy the generated token (**it's only shown once — save it immediately**).
 
-   ![GitHub Token creation page](./images/github-token.png)
+   ![GitHub Token creation page](../../../static/university/vibe-coding/images/github-token.png)
 
    ```bash
    export GITHUB_TOKEN="github_pat_xxxxx"
@@ -321,19 +321,19 @@ The actual Lark conversation flow — the complete loop takes just four steps:
 
 **① Submit the request**: Describe the task in natural language in Lark. The bot automatically checks the history state and begins execution.
 
-![User sends a code request in Lark](./images/lark-vibe-coding-requirement-1.png)
+![User sends a code request in Lark](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-1.png)
 
 **② Receive the PR summary**: After the bot finishes, it sends back the PR number, status, modified files, and addition details. The PR link in Lark can be clicked to jump directly to GitHub.
 
-![Bot sends back PR summary and link](./images/lark-vibe-coding-requirement-2.png)
+![Bot sends back PR summary and link](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-2.png)
 
 **③ Review the diff**: Click the PR link to view the code changes in your mobile browser and confirm whether the modifications match expectations.
 
-![File diff view on the GitHub PR page](./images/lark-vibe-coding-requirement-3.png)
+![File diff view on the GitHub PR page](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-3.png)
 
 **④ Confirm the merge**: Go back to Lark and say "Merge and clean up the branch." The bot executes the merge + branch deletion, and the entire process is complete.
 
-![User confirms merge, bot executes and reports results](./images/lark-vibe-coding-requirement-4.png)
+![User confirms merge, bot executes and reports results](../../../static/university/vibe-coding/images/lark-vibe-coding-requirement-4.png)
 
 At this point, the branch prefix, Copilot review, and result reporting format should all be automatically handled by `IDENTITY.md`. The following examples use this same ruleset by default, unless I explicitly write "override the default behavior this time."
 

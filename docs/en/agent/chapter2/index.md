@@ -3,7 +3,7 @@
 <p class="tool-subtitle"><strong>From “what the model wants to do” to “what the system allows it to do”: how three mainstream Agent frameworks design tools, permissions, and safety boundaries</strong></p>
 
 <div class="tool-cover tool-figure">
-  <img src="./images/cover.png" alt="Tool-system design cover" />
+  <img src="../../../static/agent/chapter2/images/cover.png" alt="Tool-system design cover" />
 </div>
 
 <div class="tool-meta-card">
@@ -26,7 +26,7 @@ If you tell it, “delete the temporary files in this directory,” it can under
 **The tool system is the bridge between model intent and real-world action.** Every time the model decides to take an action, the tool system intercepts that decision, checks whether it is allowed, executes it, and returns the result back to the model.
 
 <div class="tool-figure">
-  <img src="./images/tool-bridge.jpg" alt="Tool-system bridge" />
+  <img src="../../../static/agent/chapter2/images/tool-bridge.jpg" alt="Tool-system bridge" />
   <p><sub>Figure 1: the tool system connects “model intent” with “real operations”</sub></p>
 </div>
 
@@ -44,7 +44,7 @@ The three frameworks give three fundamentally different answers to those questio
 Before comparing the three frameworks, let us make the shared underlying mechanism explicit.
 
 <div class="tool-figure">
-  <img src="./images/tool-flow.jpg" alt="Basic tool-call flow" />
+  <img src="../../../static/agent/chapter2/images/tool-flow.jpg" alt="Basic tool-call flow" />
   <p><sub>Figure 2: the core tool-call pipeline shared across Agent frameworks</sub></p>
 </div>
 
@@ -67,7 +67,7 @@ Model continues reasoning
 The key architectural decision point here is: **where does permission checking happen, and who performs it?**
 
 <div class="tool-figure">
-  <img src="./images/permission-layers.jpg" alt="Permission-check layers" />
+  <img src="../../../static/agent/chapter2/images/permission-layers.jpg" alt="Permission-check layers" />
   <p><sub>Figure 3: permission checks can happen at the prompt layer, framework layer, or infrastructure layer</sub></p>
 </div>
 
@@ -80,7 +80,7 @@ Does it happen at the model layer through prompt constraints? At the framework l
 ## OpenClaw: capability first, security by configuration
 
 <div class="tool-figure">
-  <img src="./images/openclaw-architecture.png" alt="OpenClaw architecture" />
+  <img src="../../../static/agent/chapter2/images/openclaw-architecture.png" alt="OpenClaw architecture" />
   <p><sub>Figure 4: OpenClaw revolves around a high-capability tool surface and layered policies</sub></p>
 </div>
 
@@ -154,7 +154,7 @@ The limitation is that this mechanism is optional rather than active by default.
 ## Claude Code: tools as contracts, permissions in three levels
 
 <div class="tool-figure">
-  <img src="./images/claude-code-architecture.png" alt="Claude Code architecture" />
+  <img src="../../../static/agent/chapter2/images/claude-code-architecture.png" alt="Claude Code architecture" />
   <p><sub>Figure 5: Claude Code keeps schema, risk profile, and execution strategy tightly coupled to each tool</sub></p>
 </div>
 
@@ -215,7 +215,7 @@ The recommended upper bound is around 5–6 active MCP services, because every s
 ## Hermes Agent: merging the tool system with the learning loop
 
 <div class="tool-figure">
-  <img src="./images/hermes-agent-architecture.png" alt="Hermes Agent architecture" />
+  <img src="../../../static/agent/chapter2/images/hermes-agent-architecture.png" alt="Hermes Agent architecture" />
   <p><sub>Figure 6: Hermes Agent deeply couples the tool system with a learning loop</sub></p>
 </div>
 
@@ -286,7 +286,7 @@ These additions show that Hermes Agent follows a “discover problems, then iter
 ## The essential differences in architectural philosophy
 
 <div class="tool-figure">
-  <img src="./images/philosophy-compare.jpg" alt="Comparison of the three philosophies" />
+  <img src="../../../static/agent/chapter2/images/philosophy-compare.jpg" alt="Comparison of the three philosophies" />
   <p><sub>Figure 7: the three frameworks ultimately express three distinct philosophies of capability and security</sub></p>
 </div>
 
@@ -309,7 +309,7 @@ Isolation is delegated to execution backends, tool execution is tightly coupled 
 ## The core tradeoffs in tool-system design
 
 <div class="tool-figure">
-  <img src="./images/core-tradeoffs.png" alt="Core tradeoffs" />
+  <img src="../../../static/agent/chapter2/images/core-tradeoffs.png" alt="Core tradeoffs" />
   <p><sub>Figure 8: tool-system design is ultimately a tradeoff among capability, safety, flexibility, and learning ability</sub></p>
 </div>
 

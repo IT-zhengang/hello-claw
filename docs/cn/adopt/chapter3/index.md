@@ -17,7 +17,7 @@ next:
 
 **Onboarding（配置向导）** 帮你告诉龙虾三件事：用哪个模型、通过哪个渠道联系你、在哪里工作。OpenClaw 提供两条路径：
 
-![OpenClaw Onboarding](./images/OpenClaw-Onboarding.png)
+![OpenClaw Onboarding](../../../static/adopt/chapter3/images/OpenClaw-Onboarding.png)
 
 ```mermaid
 flowchart TB

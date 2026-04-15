@@ -209,7 +209,7 @@ Constraint: Prioritize engineering usability and extensibility.
 Avoid staying at conceptual design only.
 ```
 
-![Sending agency-agents skill restructuring prompt to Lobster](./images/opc-skills.jpg)
+![Sending agency-agents skill restructuring prompt to Lobster](../../../static/university/one-person-company/images/opc-skills.jpg)
 
 The Lobster reads the entire repository and outputs a complete skill registration structure:
 
@@ -288,7 +288,7 @@ Constraint: Prioritize simplicity and runnability.
 All modules must connect to form a closed loop.
 ```
 
-![Sending MVP build goal to Lobster](./images/opc-mvp.jpg)
+![Sending MVP build goal to Lobster](../../../static/university/one-person-company/images/opc-mvp.jpg)
 
 ### 4.2 Lobster Auto-Dispatches Skills
 
@@ -329,7 +329,7 @@ Code is generated, but you want to see it in the browser. Just tell the Lobster:
 Please run it and find a way to let me browse the demo
 ```
 
-![Lobster exposes Demo to the internet via Cloudflare Tunnel](./images/opc-port.jpg)
+![Lobster exposes Demo to the internet via Cloudflare Tunnel](../../../static/university/one-person-company/images/opc-port.jpg)
 
 The Lobster will:
 1. Start the backend service (Flask API on port 8080)
@@ -359,7 +359,7 @@ Backend status:
 
 Open your browser and visit the link to see a complete training website demo:
 
-![Harness Engineering Training Website Demo Page](./images/opc-demo.png)
+![Harness Engineering Training Website Demo Page](../../../static/university/one-person-company/images/opc-demo.png)
 
 The full end-to-end loop is working:
 - **Learn** → Browse course content, understand core concepts

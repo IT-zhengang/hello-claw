@@ -3,7 +3,7 @@
 > Every day, hundreds of new papers appear on arXiv. Most of the time, we skim a few titles and close the tab, or collect a pile of PDFs that we never actually read. This article uses **OpenClaw** to build an automated research assistant that turns paper tracking into a fully automated pipeline: **fetch papers → smart filtering → auto deep-read → push notifications**.
 > Once it's running, you'll have a **24/7 digital research assistant** at your disposal.
 
-![](images/image1.png)
+![](../../../static/university/paper-assistant/images/image1.png)
 
 # 1 What This Research Assistant Can Do
 
@@ -12,7 +12,7 @@ While you're taking it easy during the day, this assistant automatically filters
 
 This article uses **Agent research papers** as the demonstration example, but you can apply it to any research direction simply by changing the keywords.
 
-![](images/image2.png)
+![](../../../static/university/paper-assistant/images/image2.png)
 
 At its core, this research assistant is an **automated research intelligence pipeline** consisting of three capability modules:
 
@@ -40,7 +40,7 @@ clawhub install so-send-message  # Feishu push plugin (closes the loop)
 
 Once installed, a minimal working **automated paper pipeline** is ready:
 
-![](images/image3.png)
+![](../../../static/university/paper-assistant/images/image3.png)
 
 *Note: Without deduplication, the system may push duplicate papers every day.*
 
@@ -69,7 +69,7 @@ Please download this skill from ClawHub <arxiv-paper-assistant> and install it t
 
 If the installation succeeds, you should see a file named `paper-assistant` in the `skills` directory.
 
-![](images/image4.png)
+![](../../../static/university/paper-assistant/images/image4.png)
 
 3. Start a new OpenClaw session to load the new Skills.
 
@@ -501,7 +501,7 @@ OpenClaw will automatically:
 * Check whether dependencies are installed
 * Generate the Skill publishing form
 
-![](images/image5.png)
+![](../../../static/university/paper-assistant/images/image5.png)
 
 3. Fields you need to confirm include:
 
@@ -516,7 +516,7 @@ OpenClaw will automatically:
 ~/.openclaw/skills/paper-assistant
 ```
 
-![](images/image6.png)
+![](../../../static/university/paper-assistant/images/image6.png)
 
 # 4 Integrating Deep-Read and Push (Installing ljg-paper)
 
@@ -557,7 +557,7 @@ You are a paper recommendation engine. Your job is to find one high-quality pape
 
 Observe whether the output matches expectations, similar to:
 
-![](images/image7.png)
+![](../../../static/university/paper-assistant/images/image7.png)
 
 ## 5.2 Run the First Paper Push
 
@@ -565,7 +565,7 @@ Observe whether the output matches expectations, similar to:
 Now execute the above workflow once. Help me find the latest Agent paper from arXiv, deep-read it, and push it to Feishu.
 ```
 
-![](images/image8.png)
+![](../../../static/university/paper-assistant/images/image8.png)
 
 ## 5.3 Set Up a Scheduled Task
 
@@ -575,7 +575,7 @@ openclaw gateway cron add "30 9 * * *" --message "Push daily paper digest"
 
 Observe whether the output matches expectations, similar to:
 
-![](images/image9.png)
+![](../../../static/university/paper-assistant/images/image9.png)
 
 # 6 Potential Issues and How to Handle Them
 

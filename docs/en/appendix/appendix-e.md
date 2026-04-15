@@ -755,7 +755,7 @@ Choosing a model provider requires balancing four dimensions:
 
 The following image, widely circulated in the community as the "LLM Throne" chart, visually shows the standings of today's mainstream models:
 
-![LLM Rankings — Community-recognized model capability tier chart](./images/model-ranking.jpg)
+![LLM Rankings — Community-recognized model capability tier chart](../../static/appendix/images/model-ranking.jpg)
 
 > Image source: Community creation, for reference only. Actual rankings vary by benchmark and use case.
 

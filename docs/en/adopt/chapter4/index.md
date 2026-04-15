@@ -59,7 +59,7 @@ This chapter uses **Feishu** as the example — it's the preferred platform for 
 
 Visit the [Feishu Open Platform](https://open.feishu.cn/app) and log in with your Feishu account.
 
-![Feishu Open Platform homepage](./images/lark.png)
+![Feishu Open Platform homepage](../../../static/adopt/chapter4/images/lark.png)
 
 <details>
 <summary>Using the international Lark version?</summary>
@@ -76,13 +76,13 @@ Click "Create Enterprise Custom App", fill in the name (e.g., "OpenClaw Assistan
 
 Go to "Credentials & Basic Info", copy the **App ID** (format: `cli_xxx`) and **App Secret**, and save them securely.
 
-![Feishu app credentials page](./images/lark-credential.png)
+![Feishu app credentials page](../../../static/adopt/chapter4/images/lark-credential.png)
 
 ### Step 4: Enable Bot Capability
 
 Go to "Add App Capabilities" → "Bot" and click "Add".
 
-![Add app capabilities page](./images/lark-app.png)
+![Add app capabilities page](../../../static/adopt/chapter4/images/lark-app.png)
 
 > **This step must be done first**: Otherwise, when importing permissions in the next step, messaging-related permissions cannot be enabled.
 
@@ -90,7 +90,7 @@ Go to "Add App Capabilities" → "Bot" and click "Add".
 
 Go to "Permission Management", click "Batch Import", and paste the following JSON:
 
-![Feishu permission management page](./images/lark-authentication.png)
+![Feishu permission management page](../../../static/adopt/chapter4/images/lark-authentication.png)
 
 ```json
 {
@@ -244,7 +244,7 @@ Go to "Availability" in the left menu (or "App Release" → "Availability"), cli
 
 Go to "Version Management & Publishing", click "Create Version", fill in the version number, and submit the publishing request. The app takes effect once approved by the admin (you can approve it yourself if you are the admin).
 
-![Version management and publishing page](./images/lark-version.png)
+![Version management and publishing page](../../../static/adopt/chapter4/images/lark-version.png)
 
 ## 3. Add the Feishu Channel in OpenClaw
 
@@ -283,7 +283,7 @@ openclaw gateway restart
 
 Return to the Feishu Open Platform and go to "Events & Callbacks" → "Event Configuration":
 
-![Events and callbacks page](./images/lark-event.png)
+![Events and callbacks page](../../../static/adopt/chapter4/images/lark-event.png)
 
 1. Select "**Use persistent connection to receive events**"
 2. Add event: `im.message.receive_v1`
@@ -299,7 +299,7 @@ Webhooks require a public IP address. A persistent connection (WebSocket) has Op
 
 Find your bot in Feishu and send "Hello". The bot will reply with an **8-character pairing code**:
 
-![Feishu pairing code prompt interface](./images/lark-pairing.jpg)
+![Feishu pairing code prompt interface](../../../static/adopt/chapter4/images/lark-pairing.jpg)
 
 <details>
 <summary>Why is pairing required?</summary>
@@ -383,7 +383,7 @@ Troubleshoot in order:
 
 If you are the admin, go to the Feishu Admin Console → "Workplace" → "App Review", find the app, and click "Approve".
 
-![App review page](./images/lark-review.png)
+![App review page](../../../static/adopt/chapter4/images/lark-review.png)
 
 **Configuration changes not taking effect?**
 

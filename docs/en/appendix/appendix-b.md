@@ -182,7 +182,7 @@ OpenClaw's core positioning is indeed as a **personal AI assistant**, but the bo
 
 An interesting social phenomenon illustrates the real temperature of this wave: on Xianyu (China's secondhand marketplace), just a few days ago there were services charging hundreds of yuan to "install OpenClaw," and now a flood of services have appeared charging 299 yuan to "uninstall and wipe OpenClaw." Going from paid installation to paid uninstallation reveals the multiple anxieties ordinary users have after trying it — security risks, operational complexity, and Token consumption costs. Meanwhile, local governments in several regions have introduced policies supporting OpenClaw-related application scenarios, encouraging the new OPC (One Person Company) organizational model. Cities like Shenzhen have even offered special subsidies for enterprises using OpenClaw, indicating that this wave has overflowed from the tech world into industrial policy and fiscal support.
 
-![Lobster Craze vs. Qigong Craze](./images/openclaw-fad.png)
+![Lobster Craze vs. Qigong Craze](../../static/appendix/images/openclaw-fad.png)
 
 > Top: The "People's Park" lobster hat scene in 2026; Bottom: Qigong rallies from the 1980s–90s. Two eras, the same kind of mass technology fever. History doesn't repeat itself, but it rhymes.
 

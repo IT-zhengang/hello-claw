@@ -493,7 +493,7 @@ openclaw --profile pm gateway restart
 4. 在搜索框中搜索你创建的应用名称（如"龙虾-架构师"），点击添加
 5. 重复步骤 3-4，把三个机器人（架构师、SRE、产品经理）都添加进群
 
-![在群设置中添加机器人](./images/lark-group-add-bot.png)
+![在群设置中添加机器人](../../../static/university/group-debate/images/lark-group-add-bot.png)
 
 ### 第二步：启动三个 OpenClaw 实例
 
@@ -522,7 +522,7 @@ openclaw --profile pm gateway start
 团队有 8 名后端开发。请从你的专业角度分析：我们是否应该将订单服务拆成独立微服务？
 ```
 
-![在群聊中 @机器人发起讨论](./images/lark-group-chat.jpg)
+![在群聊中 @机器人发起讨论](../../../static/university/group-debate/images/lark-group-chat.jpg)
 
 ### 第四步：观察自主讨论
 

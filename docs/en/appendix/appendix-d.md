@@ -393,7 +393,7 @@ Visit [clawhub.ai](https://clawhub.ai) and log in with your GitHub account.
 
 Click the **"Publish"** button at the top of the page to enter the skill publishing interface:
 
-![ClawHub skill publishing interface](./images/clawhub-publish-skill.png)
+![ClawHub skill publishing interface](../../static/appendix/images/clawhub-publish-skill.png)
 
 **3. Fill in the publishing details**
 
