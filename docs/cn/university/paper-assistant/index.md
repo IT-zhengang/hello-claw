@@ -84,25 +84,26 @@ clawhub install so-send-message  # 飞书推送插件（闭环）
 ```Bash
 openclaw/ (这里是你的项目主文件夹)
 ├── openclaw.json        # 核心配置文件
-└── skills/              # <--- Skill 定义目录
-    ├── paper-assistant/
-    │   │── scripts/             # <--- 你创建的脚本目录
-    │   │   ├── paper_feed.py    # 抓取逻辑
-    │   │   └── mark_pushed.py   # 去重逻辑
-    │   ├── data/                # <--- 你创建的数据目录
-    │   │   └── pushed.json      # 论文推送历史（数据库）
-    │   └── skill.yaml
+└── .codex/
+    └── skills/          # <--- Skill 定义目录
+        └── paper-assistant/
+            ├── SKILL.md             # <--- Skill 入口文件
+            ├── scripts/             # <--- 你创建的脚本目录
+            │   ├── paper_feed.py    # 抓取逻辑
+            │   └── mark_pushed.py   # 去重逻辑
+            ├── data/                # <--- 你创建的数据目录
+            │   └── pushed.json      # 论文推送历史（数据库）
 ```
 
 如果某些文件夹不存在，请手动创建。
 
 ### 3.2.2 环境初始化
 
-1. 在 `skills` 目录下创建paper-assistant这个skill的目录，并初始化论文推送记录文件：
+1. 在 `.codex/skills` 目录下创建 `paper-assistant` 这个 skill 的目录，并初始化论文推送记录文件：
 
 ```Plain
 创建一个名为 paper-assistant 的 Skill：
-1. 在 skills 目录下生成 paper-assistant 文件夹
+1. 在 .codex/skills 目录下生成 paper-assistant 文件夹
 2. 在 paper-assistant/data 下创建 pushed.json，写入 {"pushed":[]}
 ```
 
@@ -118,7 +119,7 @@ openclaw/ (这里是你的项目主文件夹)
 
 ### 3.2.3 部署本地脚本
 
-在 `skills/paper-assistant/scripts/` 下创建两个脚本文件：
+在 `.codex/skills/paper-assistant/scripts/` 下创建两个脚本文件：
 
 1. `fetch_papers.py`: 负责从 arXiv 和 OpenReview 抓取论文，并生成候选论文池。
 
@@ -363,7 +364,7 @@ if __name__ == "__main__":
 
 ### 3.2.4 编写 Skill 逻辑定义
 
-接下来编写 Skill 的核心逻辑，配置文件路径 `skills/paper-assistant/skill.`md
+接下来编写 Skill 的核心逻辑，配置文件路径 `.codex/skills/paper-assistant/SKILL.md`
 
 这个文件决定  **OpenClaw 如何完成整个论文推送流程** ：
 
@@ -473,7 +474,7 @@ Skill 返回格式：
 
 ## Directory Structure（目录结构）
 paper-assistant
-├─ skill.md
+├─ SKILL.md
 ├─ scripts
 │  ├─ mark_pushed.py
 │  └─ fetch_papers.py
@@ -490,7 +491,7 @@ paper-assistant
 
 ```Markdown
 请你 paper-assistant 注册为 ClawHub 可用 Skill
-- 检查目录结构：skill.md, scripts/, data/
+- 检查目录结构：SKILL.md, scripts/, data/
 - 检查依赖是否安装
 - 提示用户可以直接调用 fetch 和筛选流程
 ```

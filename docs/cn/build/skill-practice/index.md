@@ -53,19 +53,20 @@
 
 ```text
 <workspace>/
-└── skills/
-    └── weekly-report/
-        ├── SKILL.md
-        ├── impl/
-        │   ├── collect.mjs
-        │   └── render.mjs
-        ├── references/
-        │   └── report-style.md
-        └── assets/
-            └── report-template.md
+└── .codex/
+    └── skills/
+        └── weekly-report/
+            ├── SKILL.md
+            ├── impl/
+            │   ├── collect.mjs
+            │   └── render.mjs
+            ├── references/
+            │   └── report-style.md
+            └── assets/
+                └── report-template.md
 ```
 
-在默认本地安装里，`<workspace>` 往往会落到 `~/.openclaw/workspace`，所以你在官方示例里也会经常看到这个更长的绝对路径写法。
+如果你是在像本仓库这样的 Codex 风格项目里维护项目级 Skill，推荐直接放在 `<workspace>/.codex/skills/`。OpenClaw 公开文档里更常见的是 `~/.openclaw/workspace/skills` 或其他兼容目录；两者并不冲突，只是仓库约定不同。
 
 这几个部分的职责建议分清：
 
@@ -76,22 +77,25 @@
 
 这里有一个容易忽略的点：**不要把所有实现细节都堆进 `SKILL.md`**。如果一段流程已经细到接近脚本了，就应该抽到 `impl/`；如果一段说明主要是示例和背景资料，就应该挪到 `references/`。否则 Skill 会越来越长，模型每次都要读取大量无关信息，既浪费上下文，也更容易走偏。
 
-在 OpenClaw 里，当前公开文档给出的完整扫描链路是：
+在 OpenClaw 里，当前公开文档给出的完整扫描链路与本仓库的项目约定可以一起记：
 
-- 当前工作区 Skills：`<workspace>/skills`
+- 当前项目推荐目录：`<workspace>/.codex/skills`（本仓库采用）
+- 当前工作区兼容目录：`<workspace>/skills`
 - 当前工作区兼容目录：`<workspace>/.agents/skills`
 - 个人兼容目录：`~/.agents/skills`
 - 共享 Skills：`~/.openclaw/skills`
 - 内置 Skills：随 OpenClaw 安装包一起分发
 - 额外目录：`skills.load.extraDirs`（最低优先级，显式配置才会参与）
 
-如果同名 Skill 同时存在，覆盖顺序可以记成：
+如果同名 Skill 同时存在，**OpenClaw 当前公开文档里的兼容扫描链路**可以记成：
 
 ```text
 extraDirs < bundled < ~/.openclaw/skills < ~/.agents/skills < <workspace>/.agents/skills < <workspace>/skills
 ```
 
-如果你只是自己写一个项目内 Skill，新手最常用的仍然是最后两层：`<workspace>/skills` 最容易覆盖当前项目，`~/.openclaw/skills` 更适合跨项目复用。
+`.codex/skills` 更像本仓库和 Codex 风格项目的默认放置方式；如果你希望 OpenClaw 严格按公开扫描链路自动发现它，可以把这个目录加入 `skills.load.extraDirs`，或者同步到兼容目录。
+
+如果你只是自己写一个项目内 Skill，新手最常用的仍然是最后两层兼容目录：`<workspace>/skills` 最容易覆盖当前项目，`~/.openclaw/skills` 更适合跨项目复用。
 
 这套优先级非常适合做“本地覆盖”。比如你想修一个官方 Skill 的提示词，不用直接改上游仓库，只要在自己的工作区里放一个同名 Skill，当前项目就会优先使用本地版本。
 
@@ -204,16 +208,16 @@ metadata: { "openclaw": { "emoji": "📝", "requires": { "bins": ["node", "git"]
 先在当前工作区下创建一个 Skill 目录：
 
 ```bash
-mkdir -p skills/current-time
+mkdir -p .codex/skills/current-time
 ```
 
 如果你当前 shell 不在工作区根目录，也可以显式写成：
 
 ```text
-<workspace>/skills/current-time
+<workspace>/.codex/skills/current-time
 ```
 
-只要最终目录里存在 `SKILL.md`，并且路径位于 OpenClaw 可扫描的位置即可。
+只要最终目录里存在 `SKILL.md`，并且该目录已经被纳入 OpenClaw 可扫描的位置（例如通过 `skills.load.extraDirs`），即可正常工作。
 
 ### 4.2 第二步：编写最小版 `SKILL.md`
 

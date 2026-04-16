@@ -84,25 +84,26 @@ The skill project directory we'll build looks like this:
 ```Bash
 openclaw/ (this is your main project folder)
 ├── openclaw.json        # Core configuration file
-└── skills/              # <--- Skill definition directory
-    ├── paper-assistant/
-    │   │── scripts/             # <--- Script directory you create
-    │   │   ├── paper_feed.py    # Fetching logic
-    │   │   └── mark_pushed.py   # Deduplication logic
-    │   ├── data/                # <--- Data directory you create
-    │   │   └── pushed.json      # Paper push history (database)
-    │   └── skill.yaml
+└── .codex/
+    └── skills/          # <--- Skill definition directory
+        └── paper-assistant/
+            ├── SKILL.md             # <--- Skill entry file
+            ├── scripts/             # <--- Script directory you create
+            │   ├── paper_feed.py    # Fetching logic
+            │   └── mark_pushed.py   # Deduplication logic
+            ├── data/                # <--- Data directory you create
+            │   └── pushed.json      # Paper push history (database)
 ```
 
 If any folders are missing, create them manually.
 
 ### 3.2.2 Environment Initialization
 
-1. Create the paper-assistant skill directory under `skills`, and initialize the paper push record file:
+1. Create the `paper-assistant` skill directory under `.codex/skills`, and initialize the paper push record file:
 
 ```Plain
 Create a Skill named paper-assistant:
-1. Generate a paper-assistant folder under the skills directory
+1. Generate a paper-assistant folder under the .codex/skills directory
 2. Create pushed.json under paper-assistant/data, with content {"pushed":[]}
 ```
 
@@ -118,7 +119,7 @@ These two libraries are used for **subsequent paper parsing and structured proce
 
 ### 3.2.3 Deploy Local Scripts
 
-Create two script files under `skills/paper-assistant/scripts/`:
+Create two script files under `.codex/skills/paper-assistant/scripts/`:
 
 1. `fetch_papers.py`: Responsible for fetching papers from arXiv and OpenReview, and generating the candidate paper pool.
 
@@ -363,7 +364,7 @@ if __name__ == "__main__":
 
 ### 3.2.4 Writing the Skill Logic Definition
 
-Next, write the core logic for the Skill. The configuration file path is `skills/paper-assistant/skill.md`.
+Next, write the core logic for the Skill. The configuration file path is `.codex/skills/paper-assistant/SKILL.md`.
 
 This file determines **how OpenClaw completes the entire paper push pipeline**:
 
@@ -473,7 +474,7 @@ This skill's output is the first link in the entire paper push pipeline:
 
 ## Directory Structure
 paper-assistant
-├─ skill.md
+├─ SKILL.md
 ├─ scripts
 │  ├─ mark_pushed.py
 │  └─ fetch_papers.py
@@ -490,7 +491,7 @@ If you want to share this Skill with others, you can publish it to **ClawHub**.
 
 ```Markdown
 Please register paper-assistant as a ClawHub-available Skill
-- Check directory structure: skill.md, scripts/, data/
+- Check directory structure: SKILL.md, scripts/, data/
 - Check whether dependencies are installed
 - Prompt the user that they can directly invoke the fetch and filtering pipeline
 ```

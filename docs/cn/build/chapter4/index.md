@@ -259,7 +259,7 @@ exec     启动开发服务器
 
 1. 技能不是全文常驻，系统通常只先注入一个紧凑索引；
 2. 真正需要时，模型再用 `read` 去读对应的 `SKILL.md`；
-3. 技能来源可以有多种：bundled、`~/.openclaw/skills`、`~/.agents/skills`、workspace 下的 `.agents/skills` 与 `skills/`，plugin 也可以携带 skills，而工作区里更靠后的路径通常优先级更高。
+3. 技能来源可以有多种：bundled、`~/.openclaw/skills`、`~/.agents/skills`、workspace 下的 `.agents/skills`、`.codex/skills`，以及旧项目里还可能残留的根目录 `skills/`；plugin 也可以携带 skills，而工作区里更靠后的路径通常优先级更高。
 
 这说明一件事：**Skill 的真正触发动作，仍然是工具调用。**
 

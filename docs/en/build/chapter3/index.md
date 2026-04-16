@@ -166,23 +166,23 @@ When files have not changed, overhead is virtually zero; when a file changes, it
 
 ### Token Budget and Lazy Skill Loading
 
-Skill files (`skills/*.md`) are not injected in full — only a one-line index entry is injected:
+Project-local Skill files under `.codex/skills/` are not injected in full — only a one-line index entry is injected:
 
 ```
-.agents/
-├── skills/
-│   ├── deploy-app/
-│   │   └── SKILL.md
-│   ├── run-tests/
-│   │   └── SKILL.md
-│   └── code-review/
-│       └── SKILL.md
+.codex/
+└── skills/
+    ├── deploy-app/
+    │   └── SKILL.md
+    ├── run-tests/
+    │   └── SKILL.md
+    └── code-review/
+        └── SKILL.md
 ```
 
 ```
 System prompt (index section):
-  deploy-app: Deploy the application to the target environment  [path: skills/deploy-app.md]
-  run-tests:  Run tests and generate a report                   [path: skills/run-tests.md]
+  deploy-app: Deploy the application to the target environment  [path: .codex/skills/deploy-app/SKILL.md]
+  run-tests:  Run tests and generate a report                   [path: .codex/skills/run-tests/SKILL.md]
         │ When the Agent determines it needs a particular skill
         ↓
   Proactively uses the read tool to fetch the full skill text (on demand)
@@ -252,7 +252,7 @@ Use this quick-reference table:
 | What should be completed the very first time a workspace is entered | `BOOTSTRAP.md` |
 | What to check at Gateway startup | `BOOT.md` |
 | What to monitor during scheduled check-ins | `HEARTBEAT.md` |
-| A low-frequency but specialized process | `skills/<skill-name>/SKILL.md` |
+| A low-frequency but specialized process | `.codex/skills/<skill-name>/SKILL.md` |
 
 One distinction worth calling out explicitly: **`TOOLS.md` is not a permissions file.** It is the right place for "where I work and how to use these tools reliably," but it does not control which tools are enabled, what requires approval, or where safety boundaries are drawn.
 

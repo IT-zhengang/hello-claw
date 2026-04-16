@@ -2,7 +2,7 @@
 
 ## 项目结构与模块组织
 
-本仓库是一个基于 VitePress 的文档站点。主要内容位于 `docs/`，并按语言拆分为 `docs/cn/` 与 `docs/en/` 两套镜像目录。每个语言目录下按 `adopt/`、`build/`、`university/`、`appendix/` 分组，大多数页面使用 `index.md` 作为入口。站点配置集中在 `docs/.vitepress/`：`config.mts` 负责多语言、导航和构建配置，`docs/.vitepress/theme/` 存放自定义 Vue 布局与样式。共享静态资源放在 `docs/public/`；页面专属图片应优先放在相邻的 `images/` 目录或对应语言资源目录中。仓库根目录下的 `README*.md`、`asset/` 与 `scripts/` 主要用于仓库首页展示与阅读增强。
+本仓库是一个基于 VitePress 的文档站点。主要内容位于 `docs/`，并按语言拆分为 `docs/cn/` 与 `docs/en/` 两套镜像目录。每个语言目录下按 `adopt/`、`build/`、`university/`、`appendix/` 分组，大多数页面使用 `index.md` 作为入口。站点配置集中在 `docs/.vitepress/`：`config.mts` 负责多语言、导航和构建配置，`docs/.vitepress/theme/` 存放自定义 Vue 布局与样式。共享静态资源放在 `docs/public/`；页面专属图片应优先放在相邻的 `images/` 目录或对应语言资源目录中。项目级 Codex skills 统一放在 `.codex/skills/`；仓库根目录下旧的 `skills/` 已废弃。`README*.md`、`asset/` 与 `scripts/` 主要用于仓库首页展示与阅读增强。
 
 ## 构建、测试与开发命令
 

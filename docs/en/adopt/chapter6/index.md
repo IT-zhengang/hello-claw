@@ -123,7 +123,7 @@ If `OPENCLAW_PROFILE` is set (to something other than `default`), the default lo
 | `BOOTSTRAP.md` | First-run onboarding ritual (deleted after completion) | First run only |
 | `MEMORY.md` | Long-term memory (optional) | Main session only |
 | `memory/YYYY-MM-DD.md` | Daily memory log | Today + yesterday: at session start; others: on demand |
-| `skills/` | Workspace-level skills (optional) | Loaded on demand |
+| `.codex/skills/` | Project-level skills directory (recommended; legacy `skills/` is an older layout) | Loaded on demand |
 
 > **Important**: These files are injected into the AI model's context window at the start of each conversation and **consume Tokens**. Keep files concise, especially `MEMORY.md` — it grows over time, increasing context usage and triggering more frequent compaction.
 

@@ -40,18 +40,21 @@ Per the Agent Skills convention, a Skill is essentially a directory that must co
 A practical directory structure typically looks like this:
 
 ```text
-~/.openclaw/workspace/
-└── skills/
-    └── weekly-report/
-        ├── SKILL.md
-        ├── impl/
-        │   ├── collect.mjs
-        │   └── render.mjs
-        ├── references/
-        │   └── report-style.md
-        └── assets/
-            └── report-template.md
+<workspace>/
+└── .codex/
+    └── skills/
+        └── weekly-report/
+            ├── SKILL.md
+            ├── impl/
+            │   ├── collect.mjs
+            │   └── render.mjs
+            ├── references/
+            │   └── report-style.md
+            └── assets/
+                └── report-template.md
 ```
+
+For project-local Skills in a Codex-managed repository like this one, the recommended location is `<workspace>/.codex/skills/`. In OpenClaw's public docs you'll still often see `~/.openclaw/workspace/skills` or other compatibility directories; that's a runtime convention rather than a conflict.
 
 It's worth keeping the roles of these parts distinct:
 
@@ -62,19 +65,22 @@ It's worth keeping the roles of these parts distinct:
 
 One point that's easy to overlook: **don't pile all implementation details into `SKILL.md`**. If a procedure is already detailed enough to resemble a script, extract it to `impl/`. If a section is primarily examples and background material, move it to `references/`. Otherwise the Skill keeps growing, and the model has to read large amounts of irrelevant information every time — wasting context and increasing the chance of going off track.
 
-In OpenClaw, Skills are discovered from multiple locations:
+In OpenClaw, the public discovery chain and this repository's convention are easiest to remember together:
 
+- Recommended project-local directory for this repo: `<workspace>/.codex/skills`
 - Built-in Skills: distributed with the OpenClaw installation package
 - Shared Skills: `~/.openclaw/skills`
-- Current workspace Skills: `<workspace>/skills`
+- Current workspace compatibility directory: `<workspace>/skills`
 - Extra directories: `skills.load.extraDirs`
 - Compatible `.agents/skills`: both personal and project-level directories are also scanned
 
-If a Skill with the same name exists in multiple locations, OpenClaw resolves conflicts by priority:
+If a Skill with the same name exists in multiple locations, **OpenClaw's currently documented compatibility chain** resolves conflicts by priority:
 
 ```text
 extraDirs < bundled < ~/.openclaw/skills < ~/.agents/skills < <project>/.agents/skills < <workspace>/skills
 ```
+
+`.codex/skills` is the project convention used in this repo. If you want OpenClaw to auto-discover that directory through the documented chain, add it to `skills.load.extraDirs` or mirror it into one of the compatibility directories.
 
 This priority system is ideal for "local overrides." For example, if you want to fix the prompt in an official Skill, you don't need to modify the upstream repository directly — just place a Skill with the same name in your own workspace, and the current project will use the local version first.
 
@@ -187,16 +193,16 @@ To avoid confusion caused by differences in commands across platforms, this mini
 Create a Skill directory under the current workspace:
 
 ```bash
-mkdir -p ~/.openclaw/workspace/skills/current-time
+mkdir -p .codex/skills/current-time
 ```
 
 If your current project already has a dedicated workspace, you can also place it at:
 
 ```text
-<workspace>/skills/current-time
+<workspace>/.codex/skills/current-time
 ```
 
-As long as the directory contains a `SKILL.md` and the path is within a location OpenClaw can scan, it will work.
+As long as the directory contains a `SKILL.md` and that directory is included in a location OpenClaw can scan (for example via `skills.load.extraDirs`), it will work.
 
 ### 4.2 Step 2: Write the Minimal `SKILL.md`
 
