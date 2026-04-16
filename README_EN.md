@@ -182,6 +182,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Chapter 1: Memory System Design | Compare OpenClaw, Droid, and Hermes memory architectures and their tradeoffs | ✅ |
 | Chapter 2: Tool-System Design | Compare how OpenClaw, Claude Code, and Hermes Agent design tool systems, permissions, and safety boundaries | ✅ |
 | Chapter 3: Task Planning and Execution Loops | Compare how OpenClaw, Claude Code, and Hermes Agent design planning, scheduling, recovery, and stopping behavior | ✅ |
+| Chapter 4: Multi-Agent Collaboration | Compare how OpenClaw, Claude Code, and Hermes Agent design multi-Agent division of labor, isolation, and coordination | ✅ |
 
 ### Part 4: LLM Architecture Analysis
 

@@ -16,3 +16,4 @@ Available now:
 - [Chapter 1: Memory System Design](./chapter1/index.md)
 - [Chapter 2: Tool-System Design](./chapter2/index.md)
 - [Chapter 3: Task Planning and Execution Loops](./chapter3/index.md)
+- [Chapter 4: Multi-Agent Collaboration](./chapter4/index.md)

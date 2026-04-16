@@ -134,6 +134,7 @@ features:
 | 第1章：记忆系统设计 | OpenClaw、Droid、Hermes 三种记忆架构对比与设计取舍 | ✅ |
 | 第2章：工具系统设计 | OpenClaw、Claude Code、Hermes Agent 三种工具系统设计对比 | ✅ |
 | 第3章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
+| 第4章：多 Agent 协作 | OpenClaw、Claude Code、Hermes Agent 三种多智能体分工、隔离与协调设计对比 | ✅ |
 
 ### 第四部分：AI大模型架构解析
 
