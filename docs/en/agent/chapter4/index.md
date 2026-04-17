@@ -17,12 +17,8 @@ title: "AI Agent Architecture Design (IV): Multi-Agent Collaboration"
     <li><strong>Goal</strong>: understand how three frameworks design multi-Agent collaboration, and the engineering tradeoffs behind role separation, context isolation, and coordination</li>
     <li><strong>Best for</strong>: readers who care about Agent internals and want to understand why these systems are designed the way they are</li>
     <li><strong>Estimated reading time</strong>: 15 minutes</li>
-    <li><strong>Original source</strong>: WeChat public account “架构师带你玩转AI” / by AllenTang / April 15, 2026 22:29</li>
   </ul>
 </div>
-
-> This page is adapted from the original WeChat article, with its core structure preserved and its figures reordered to match the original flow more closely.  
-> Original link: <https://mp.weixin.qq.com/s/YFU_ZLN8dvvI3cO9vHM53w>
 
 ---
 

@@ -17,12 +17,9 @@ title: AI Agent 架构设计（四）：多 Agent 协作
     <li><strong>目标</strong>：从架构层面理解三个框架如何设计多 Agent 协作，以及角色分离、上下文隔离、通信协调背后的工程取舍</li>
     <li><strong>适合</strong>：对 Agent 底层设计感兴趣，想真正理解“为什么这样设计”的读者</li>
     <li><strong>预计阅读</strong>：15 分钟</li>
-    <li><strong>原文来源</strong>：公众号「架构师带你玩转AI」 / 作者 AllenTang / 2026-04-15 22:29</li>
   </ul>
 </div>
 
-> 本文基于公众号原文整理发布，保留核心观点与章节结构，并按原文图示顺序重新对齐配图，尽量保持图文对应关系。  
-> 原文链接：<https://mp.weixin.qq.com/s/YFU_ZLN8dvvI3cO9vHM53w>
 
 ---
 

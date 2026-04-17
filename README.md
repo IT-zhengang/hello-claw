@@ -62,6 +62,7 @@ http://claw.newcode.top
 
 ## 🔥 最新动态
 
+- **[2026-04-17]** ✅ 新增 AI Agent智能体第5章：安全与可控性设计，对比 OpenClaw、Claude Code、Hermes Agent 在提示注入、审批机制与沙箱边界上的设计取舍
 - **[2026-04-15]** ✅ 新增“AI 开源精选集”第一篇：OpenSandbox，聚焦沙箱架构、执行安全与 Agent 运行边界
 - **[2026-04-14]** ✅ 新增构建篇第11章：记忆系统设计，系统对比 OpenClaw、Droid 与 Hermes Agent 的记忆架构
 - **[2026-03-25]** ✅ 龙虾大学完成一轮场景扩充与新手化重写，新增个人效率、编程开发、内容创作、商务销售、多智能体协作和更多场景共 11 篇可直接上手的实战案例，并同步按 README 分类整理
@@ -184,6 +185,7 @@ http://claw.newcode.top
 | 第2章：工具系统设计 | OpenClaw、Claude Code、Hermes Agent 三种工具系统设计对比 | ✅ |
 | 第3章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
 | 第4章：多 Agent 协作 | OpenClaw、Claude Code、Hermes Agent 三种多智能体分工、隔离与协调设计对比 | ✅ |
+| 第5章：安全与可控性设计 | OpenClaw、Claude Code、Hermes Agent 三种安全边界、审批机制与沙箱设计对比 | ✅ |
 
 ### 第四部分：AI大模型架构解析
 

@@ -249,6 +249,7 @@ export default defineConfig({
                 { text: '第二章 工具系统设计', link: '/cn/agent/chapter2/' },
                 { text: '第三章 任务规划与执行循环', link: '/cn/agent/chapter3/' },
                 { text: '第四章 多 Agent 协作', link: '/cn/agent/chapter4/' },
+                { text: '第五章 安全与可控性设计', link: '/cn/agent/chapter5/' },
               ]
             }
           ],
@@ -521,6 +522,7 @@ export default defineConfig({
                 { text: 'Chapter 2: Tool-System Design', link: '/en/agent/chapter2/' },
                 { text: 'Chapter 3: Task Planning and Execution Loops', link: '/en/agent/chapter3/' },
                 { text: 'Chapter 4: Multi-Agent Collaboration', link: '/en/agent/chapter4/' },
+                { text: 'Chapter 5: Security and Controllability', link: '/en/agent/chapter5/' },
               ]
             }
           ],

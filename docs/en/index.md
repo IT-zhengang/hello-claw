@@ -129,6 +129,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 2: Tool-System Design | Compare how OpenClaw, Claude Code, and Hermes Agent design tool systems, permissions, and safety boundaries | ✅ |
 | Chapter 3: Task Planning and Execution Loops | Compare how OpenClaw, Claude Code, and Hermes Agent design planning, scheduling, recovery, and stopping behavior | ✅ |
 | Chapter 4: Multi-Agent Collaboration | Compare how OpenClaw, Claude Code, and Hermes Agent design multi-Agent division of labor, isolation, and coordination | ✅ |
+| Chapter 5: Security and Controllability | Compare how OpenClaw, Claude Code, and Hermes Agent design safety boundaries, approval mechanisms, and sandbox isolation | ✅ |
 
 ### Part 4: LLM Architecture Analysis
 
@@ -194,6 +195,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 
 ## 🔥 Latest Updates
 
+- **[2026-04-17]** ✅ Added AI Agent Systems Chapter 5 in both Chinese and English: Security and Controllability, comparing OpenClaw, Claude Code, and Hermes Agent on prompt injection, approvals, and sandbox boundaries
 - **[2026-04-15]** ✅ Added AI Open Source Picks Issue 01 in both Chinese and English: OpenSandbox, focused on sandbox architecture, runtime isolation, and agent safety boundaries
 - **[2026-04-14]** ✅ Added Build Chapter 11: Memory System Design, comparing OpenClaw, Droid, and Hermes Agent memory architectures
 

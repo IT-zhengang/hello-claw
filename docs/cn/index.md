@@ -120,6 +120,8 @@ features:
 | 第11章：记忆系统设计 | OpenClaw、Droid、Hermes 三种记忆架构对比与设计取舍 | ✅ |
 | 第12章：工具系统设计 | OpenClaw、Claude Code、Hermes Agent 三种工具系统设计对比 | ✅ |
 | 第13章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
+| 第14章：多 Agent 协作 | OpenClaw、Claude Code、Hermes Agent 三种多智能体分工、隔离与协调设计对比 | ✅ |
+| 第15章：安全与可控性设计 | OpenClaw、Claude Code、Hermes Agent 三种安全边界、审批机制与沙箱设计对比 | ✅ |
 | **🧠 第四层：AI大模型架构解析** | | |
 | *敬请期待* | 将承接模型能力边界、推理链路、上下文机制等内容 | 规划中 |
 | **🟡 第五层：从原理到实战** | | |
@@ -135,6 +137,7 @@ features:
 | 第2章：工具系统设计 | OpenClaw、Claude Code、Hermes Agent 三种工具系统设计对比 | ✅ |
 | 第3章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
 | 第4章：多 Agent 协作 | OpenClaw、Claude Code、Hermes Agent 三种多智能体分工、隔离与协调设计对比 | ✅ |
+| 第5章：安全与可控性设计 | OpenClaw、Claude Code、Hermes Agent 三种安全边界、审批机制与沙箱设计对比 | ✅ |
 
 ### 第四部分：AI大模型架构解析
 
@@ -200,9 +203,9 @@ features:
 
 ## 🔥 最新更新
 
+- **[2026-04-17]** ✅ 新增 AI Agent智能体第5章：安全与可控性设计，对比 OpenClaw、Claude Code、Hermes Agent 在提示注入、审批机制与沙箱边界上的设计取舍
 - **[2026-04-15]** ✅ AI 开源精选集上线第一篇，并补齐英文镜像：OpenSandbox，聚焦沙箱架构、执行安全与 Agent 运行边界
 - **[2026-04-14]** ✅ 新增构建篇第11章：记忆系统设计，系统对比 OpenClaw、Droid 与 Hermes Agent 的记忆架构
-
 - **[2026-03-10]** ✅ 新增龙虾大学：菜单式技能选修指南，给龙虾装备"战斗力加成"
 - **[2026-03-10]** ✅ 更新构建篇第7-9章：轻量化、安全加固、硬件方案
 - **[2026-03-08]** ✅ 完成第1-11章：领养 Claw 使用篇全部完成

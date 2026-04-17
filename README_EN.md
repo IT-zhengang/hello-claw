@@ -62,6 +62,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 
 ## 🔥 News
 
+- **[2026-04-17]** ✅ Added AI Agent Systems Chapter 5: Security and Controllability, comparing OpenClaw, Claude Code, and Hermes Agent on prompt injection, approvals, and sandbox boundaries
 - **[2026-04-15]** ✅ Added AI Open Source Picks Issue 01: OpenSandbox, focused on sandbox architecture, execution safety, and agent runtime boundaries
 - **[2026-03-25]** ✅ Lobster University completed a round of scenario expansion and beginner-friendly rewrite, adding 11 ready-to-use case studies across personal productivity, programming, content creation, business sales, multi-agent collaboration, and more, organized by README category
 - **[2026-03-25]** 🔥 OpenClaw v2026.3.24: Gateway OpenAI-compatible endpoints (`/v1/models`, `/v1/embeddings`), Microsoft Teams official SDK integration (streaming replies / welcome cards / message edit and delete), one-click Skills installation recipes and Control UI status filtering, Slack rich reply restoration, CLI `--container` for in-container execution, Discord LLM auto thread naming, `before_dispatch` plugin hook, sandbox media security fix — all tutorial chapters synced
@@ -183,6 +184,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Chapter 2: Tool-System Design | Compare how OpenClaw, Claude Code, and Hermes Agent design tool systems, permissions, and safety boundaries | ✅ |
 | Chapter 3: Task Planning and Execution Loops | Compare how OpenClaw, Claude Code, and Hermes Agent design planning, scheduling, recovery, and stopping behavior | ✅ |
 | Chapter 4: Multi-Agent Collaboration | Compare how OpenClaw, Claude Code, and Hermes Agent design multi-Agent division of labor, isolation, and coordination | ✅ |
+| Chapter 5: Security and Controllability | Compare how OpenClaw, Claude Code, and Hermes Agent design safety boundaries, approval mechanisms, and sandbox isolation | ✅ |
 
 ### Part 4: LLM Architecture Analysis
 
