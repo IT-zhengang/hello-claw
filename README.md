@@ -41,8 +41,8 @@ http://claw.newcode.top
 
 1. **领养 Claw（使用篇）**：11 章 + 7 附录，覆盖安装（1-3 章）+ 核心配置（4-6 章）+ 扩展运维（7-9 章）+ 安全与客户端（10-11 章），按需阅读
 2. **构建 Claw（开发篇）**：10 章 + 1 实战章，聚焦 Runtime、工具、网关、安全与定制路线
-3. **AI Agent智能体**：围绕记忆、协作、自治等智能体核心能力持续展开
-4. **LangChain深度技术指南**：围绕 Runnable、LCEL、Tool Calling、RAG 与 LangGraph 展开框架级工程剖析
+3. **AI Agent智能体**：围绕记忆、协作、自治、CLI / MCP 分工与 Skills 经验沉淀等智能体核心能力持续展开
+4. **LangChain深度技术指南**：围绕 Runnable、LCEL、Tool Calling、RAG、Agent 与 LangGraph 展开框架级工程剖析
 5. **AI大模型架构解析**：聚焦模型能力边界、推理链路、上下文机制等底层主题
 6. **AI 开源精选集**：聚焦值得研究的外围基础设施项目，强调 Agent 运行时、安全边界与工程落地价值
 
@@ -58,21 +58,22 @@ http://claw.newcode.top
 - 零基础用户：从第一部分“领养 Claw”开始，先把安装与基础自动化跑通
 - 想做场景闭环：直接进入“龙虾大学”，按场景挑 5~10 个 Skills 快速落地
 - 开发者：进入“构建 Claw”，拆解底层实现原理并定制自己的 Claw
-- 想理解智能体能力：继续阅读“AI Agent智能体”“LangChain深度技术指南”和“AI大模型架构解析”三条主线
+- 想理解智能体能力：继续阅读“AI Agent智能体”“LangChain深度技术指南”和“AI大模型架构解析”三条主线；其中 AI Agent 已更新到第7章，LangChain 已更新到第八篇
 - 想看外围生态：继续阅读“AI 开源精选集”，跟进值得借鉴的安全执行与基础设施项目
 
 ## 🔥 最新动态
 
-- **[2026-04-20]** ✅ 新增 AI Agent智能体第7章：Skills 系统设计，整理微信公众号原文并接入站点，对比 OpenClaw、Claude Code、Hermes Agent 三种 Skills 经验沉淀路线
-- **[2026-04-19]** ✅ 新增 AI Agent智能体第6章：MCP vs CLI，整理微信公众号原文并接入站点，对比 OpenClaw、Claude Code、Hermes Agent 在 CLI 与 MCP 分工上的设计取舍
-- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第八篇：LangChain 实战教程（八），整理微信原文并接入站点，补上 LangSmith、LangGraph、框架对比与进阶路线
-- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第七篇：LangChain 实战教程（七），整理微信原文并接入站点，组合前六篇能力完成 AI 知识库助手实战项目
-- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第六篇：LangChain 实战教程（六），整理微信原文并接入站点，进入 Tool、ReAct 与 `create_agent` 的 Agent 自主决策层
-- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第五篇：LangChain 实战教程（五），整理微信原文并接入站点，系统讲解 RAG、Embedding、Retriever 与向量检索链路
-- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第四篇：LangChain 实战教程（四），整理微信原文并接入站点，系统讲解 Memory、会话历史管理与摘要记忆
+- **[2026-04-20]** ✅ 当前内容进度：AI Agent智能体已更新到第7章，LangChain深度技术指南已更新到第八篇，README 主线结构已同步到最新版本
+- **[2026-04-20]** ✅ 新增 AI Agent智能体第7章：Skills 系统设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种 Skills 经验沉淀路线
+- **[2026-04-19]** ✅ 新增 AI Agent智能体第6章：MCP vs CLI，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 在 CLI 与 MCP 分工上的设计取舍
+- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第八篇：LangChain 实战教程（八），整理微信原文并发布到站点，补上 LangSmith、LangGraph、框架对比与进阶路线
+- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第七篇：LangChain 实战教程（七），整理微信原文并发布到站点，组合前六篇能力完成 AI 知识库助手实战项目
+- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第六篇：LangChain 实战教程（六），整理微信原文并发布到站点，进入 Tool、ReAct 与 `create_agent` 的 Agent 自主决策层
+- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第五篇：LangChain 实战教程（五），整理微信原文并发布到站点，系统讲解 RAG、Embedding、Retriever 与向量检索链路
+- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第四篇：LangChain 实战教程（四），整理微信原文并发布到站点，系统讲解 Memory、会话历史管理与摘要记忆
 - **[2026-04-18]** ✅ 新增 LangChain深度技术指南第三篇：LangChain 实战教程（三），继续整理微信原文，补上 Chain / LCEL / RunnableParallel / 流式输出这一层
 - **[2026-04-18]** ✅ 新增 LangChain深度技术指南第二篇：LangChain 实战教程（二），继续整理微信原文，补充 Model I/O、PromptTemplate、OutputParser 与结构化输出这一层
-- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第一篇：LangChain 实战教程（一），整理微信原文并接入站点，作为模块第一篇总览文章
+- **[2026-04-18]** ✅ 新增 LangChain深度技术指南第一篇：LangChain 实战教程（一），整理微信原文并发布到站点，作为模块第一篇总览文章
 - **[2026-04-18]** ✅ 新增“LangChain深度技术指南”模块，作为 AI Agent 之后的新阅读主线，后续将系统补充 Runnable、LCEL、RAG 与 LangGraph 等框架工程内容
 - **[2026-04-17]** ✅ 新增 AI Agent智能体第5章：安全与可控性设计，对比 OpenClaw、Claude Code、Hermes Agent 在提示注入、审批机制与沙箱边界上的设计取舍
 - **[2026-04-15]** ✅ 新增“AI 开源精选集”第一篇：OpenSandbox，聚焦沙箱架构、执行安全与 Agent 运行边界
@@ -241,19 +242,6 @@ http://claw.newcode.top
 > - 加入社区讨论，与其他开发者交流
 >
 > 每一份贡献都能帮助更多人发现 OpenClaw 的可能性！
-
-## 贡献者名单
-
-| 姓名                                    | 职责       |
-| :-------------------------------------- | :--------- |
-| [桂子轩](https://github.com/zixuangui-rgb) | 核心贡献者 |
-| [赵志民](https://github.com/zhimin-z)      | 核心贡献者 |
-| [李秀奇](https://github.com/li-xiu-qi)     | 核心贡献者 |
-| [刘丽欣](https://github.com/liulx25xx)     | 核心贡献者 |
-| [刘思怡](https://github.com/liusiyi77m)    | 核心贡献者 |
-| [散步](https://github.com/sanbuphy)        | 核心贡献者 |
-
-*欢迎更多贡献者加入*
 
 ## 🤝 参与贡献
 
