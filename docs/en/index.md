@@ -53,13 +53,14 @@ features:
 
 This project is a comprehensive learning tutorial for OpenClaw, helping you master this powerful command-line AI assistant system from scratch. Whether you want to quickly get started using OpenClaw to boost productivity, or deep dive into its internals and build your own version, this tutorial provides a clear learning path.
 
-**This project includes five core modules:**
+**This project includes six core modules:**
 
 1. **Adopt Claw (User Guide)**: 11 chapters + 7 appendices, covering Installation (Ch1-3) + Core Configuration (Ch4-6) + Operations & Extensions (Ch7-9) + Security & Clients (Ch10-11), read as needed
 2. **Build Claw (Developer Guide)**: source walkthroughs, architecture, and customization paths for building your own Claw
 3. **Lobster University**: scenario-driven playbooks built around Skills selection and reusable workflow patterns
 4. **AI Agent Systems**: deeper discussions of memory, tool design, coordination, and execution loops
-5. **AI Open Source Picks**: ecosystem infrastructure worth studying for agent runtimes, sandboxing, browser automation, and safe execution
+5. **LangChain Deep Guide**: framework-level engineering walkthroughs covering Runnables, LCEL, tool calling, RAG, and LangGraph
+6. **AI Open Source Picks**: ecosystem infrastructure worth studying for agent runtimes, sandboxing, browser automation, and safe execution
 
 **Who should learn this:**
 
@@ -130,8 +131,24 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 3: Task Planning and Execution Loops | Compare how OpenClaw, Claude Code, and Hermes Agent design planning, scheduling, recovery, and stopping behavior | ✅ |
 | Chapter 4: Multi-Agent Collaboration | Compare how OpenClaw, Claude Code, and Hermes Agent design multi-Agent division of labor, isolation, and coordination | ✅ |
 | Chapter 5: Security and Controllability | Compare how OpenClaw, Claude Code, and Hermes Agent design safety boundaries, approval mechanisms, and sandbox isolation | ✅ |
+| Chapter 6: MCP vs CLI | Compare how OpenClaw, Claude Code, and Hermes Agent split responsibilities between direct CLI execution and MCP integration | ✅ |
+| Chapter 7: Skills System Design | Compare how OpenClaw, Claude Code, and Hermes Agent acquire, preserve, and reuse professional Agent experience | ✅ |
 
-### Part 4: LLM Architecture Analysis
+### Part 4: LangChain Deep Guide
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Introduction** | **Why LangChain deserves its own framework-engineering track** | ✅ |
+| Article 1: LangChain in Practice (I) | What LangChain is, why it matters, and how Model I/O, LCEL, RAG, and Agents fit on one learning map | ✅ |
+| Article 2: LangChain in Practice (II) | A faithful walkthrough of Model I/O, PromptTemplate, OutputParser, and `with_structured_output` as LangChain's first interface layer | ✅ |
+| Article 3: LangChain in Practice (III) | Moves from the interface layer into orchestration with Chain, LCEL, `RunnableParallel`, and streaming workflows | ✅ |
+| Article 4: LangChain in Practice (IV) | Focuses on Memory, session-scoped history, and summary-based memory to complete multi-turn state handling | ✅ |
+| Article 5: LangChain in Practice (V) | Moves into the knowledge layer with RAG, document loading, chunking, embeddings, vector stores, and retrievers | ✅ |
+| Article 6: LangChain in Practice (VI) | Explains how Agents, Tools, ReAct, `create_agent`, and middleware work together for autonomous execution | ✅ |
+| Article 7: LangChain in Practice (VII) | Combines FastAPI, RAG, memory, and streaming into a complete knowledge-base assistant project | ✅ |
+| Article 8: LangChain in Practice (VIII) | Closes with LangSmith, LangGraph, ecosystem comparisons, and a practical next-step roadmap | ✅ |
+
+### Part 5: LLM Architecture Analysis
 
 | Chapter | Description | Status |
 | ---- | ---- | ---- |
@@ -139,7 +156,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
 | Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
 
-### Part 5: AI Open Source Picks
+### Part 6: AI Open Source Picks
 
 | Chapter | Description | Status |
 | ---- | ---- | ---- |
@@ -195,6 +212,8 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 
 ## 🔥 Latest Updates
 
+- **[2026-04-20]** ✅ Added AI Agent Systems Chapter 7 in both Chinese and English: Skills System Design, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent accumulate reusable experience
+- **[2026-04-19]** ✅ Added AI Agent Systems Chapter 6 in both Chinese and English: MCP vs CLI, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent split work across CLI and MCP
 - **[2026-04-17]** ✅ Added AI Agent Systems Chapter 5 in both Chinese and English: Security and Controllability, comparing OpenClaw, Claude Code, and Hermes Agent on prompt injection, approvals, and sandbox boundaries
 - **[2026-04-15]** ✅ Added AI Open Source Picks Issue 01 in both Chinese and English: OpenSandbox, focused on sandbox architecture, runtime isolation, and agent safety boundaries
 - **[2026-04-14]** ✅ Added Build Chapter 11: Memory System Design, comparing OpenClaw, Droid, and Hermes Agent memory architectures

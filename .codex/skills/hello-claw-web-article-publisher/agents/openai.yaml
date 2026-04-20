@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hello Claw Web Article Publisher"
+  short_description: "Fetch a webpage and publish it end-to-end into hello-claw"
+  default_prompt: "Use $hello-claw-web-article-publisher to export a stable webpage payload, convert it into Markdown, delete the temporary payload, localize images, publish it into the hello-claw docs structure, sync navigation and readmes, and run docs build validation."

@@ -37,13 +37,14 @@ http://claw.newcode.top
 
 This project is a complete learning guide for OpenClaw, designed to help you master this powerful command-line AI assistant system from zero. Whether you want to use OpenClaw quickly to boost your productivity or deeply understand how it works and build your own version, this tutorial gives you a clear path forward.
 
-**This project includes five core modules:**
+**This project includes six core modules:**
 
 1. **Adopt Claw (User Guide)**: 11 chapters + 7 appendices, covering Installation (Ch1-3) + Core Configuration (Ch4-6) + Operations & Extensions (Ch7-9) + Security & Clients (Ch10-11), read as needed
 2. **Build Claw (Developer Guide)**: source walkthroughs, architecture, and customization paths for building your own Claw
 3. **Lobster University**: scenario-driven playbooks built around Skills selection and reusable workflow patterns
 4. **AI Agent Systems**: deeper discussions of memory, tool design, coordination, and execution loops
-5. **AI Open Source Picks**: ecosystem infrastructure worth studying for agent runtimes, sandboxing, browser automation, and safe execution
+5. **LangChain Deep Guide**: framework-level engineering walkthroughs covering Runnables, LCEL, tool calling, RAG, and LangGraph
+6. **AI Open Source Picks**: ecosystem infrastructure worth studying for agent runtimes, sandboxing, browser automation, and safe execution
 
 **Who is this for:**
 
@@ -57,11 +58,22 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 - Beginners: start with Part 1 "Adopt Claw" and get installation plus basic automation working first
 - If you want scenario-driven outcomes fast: jump into "Lobster University" and pick 5-10 Skills by use case
 - Developers: go to "Build Claw" to study the underlying implementation and customize your own Claw
-- If you want the capability layer: continue with "AI Agent Systems" and "LLM Architecture Analysis"
+- If you want the capability layer: continue with "AI Agent Systems," "LangChain Deep Guide," and "LLM Architecture Analysis"
 - If you care about the surrounding ecosystem: continue with "AI Open Source Picks" for reusable infrastructure patterns around safe execution and agent runtimes
 
 ## 🔥 News
 
+- **[2026-04-20]** ✅ Added AI Agent Systems Chapter 7: “Skills System Design,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent accumulate reusable experience
+- **[2026-04-19]** ✅ Added AI Agent Systems Chapter 6: “MCP vs CLI,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent split work across CLI and MCP
+- **[2026-04-18]** ✅ Added the eighth LangChain Deep Guide article: “LangChain in Practice (VIII),” translated from the original WeChat post and focused on LangSmith, LangGraph, framework comparison, and next-step learning paths
+- **[2026-04-18]** ✅ Added the seventh LangChain Deep Guide article: “LangChain in Practice (VII),” translated from the original WeChat post and turned into an end-to-end FastAPI + RAG + memory knowledge-base assistant walkthrough
+- **[2026-04-18]** ✅ Added the sixth LangChain Deep Guide article: “LangChain in Practice (VI),” translated from the original WeChat post and focused on Agents, Tools, ReAct loops, `create_agent`, and middleware
+- **[2026-04-18]** ✅ Added the fifth LangChain Deep Guide article: “LangChain in Practice (V),” translated from the original WeChat post and focused on RAG, document loading, embeddings, vector stores, and retrievers
+- **[2026-04-18]** ✅ Added the fourth LangChain Deep Guide article: “LangChain in Practice (IV),” translated from the original WeChat post and focused on Memory, session-scoped chat history, and summary-based memory
+- **[2026-04-18]** ✅ Added the third LangChain Deep Guide article: “LangChain in Practice (III),” translated from the original WeChat post and focused on Chain, LCEL, `RunnableParallel`, and streaming workflows
+- **[2026-04-18]** ✅ Added the second LangChain Deep Guide article: “LangChain in Practice (II),” translated from the original WeChat post and focused on Model I/O, PromptTemplate, OutputParser, and structured output
+- **[2026-04-18]** ✅ Added the first LangChain Deep Guide article: “LangChain in Practice (I),” translated from the original WeChat post and published as the opening overview for this module
+- **[2026-04-18]** ✅ Added the LangChain Deep Guide module after AI Agent Systems, creating a new track for Runnable, LCEL, RAG, and LangGraph engineering topics
 - **[2026-04-17]** ✅ Added AI Agent Systems Chapter 5: Security and Controllability, comparing OpenClaw, Claude Code, and Hermes Agent on prompt injection, approvals, and sandbox boundaries
 - **[2026-04-15]** ✅ Added AI Open Source Picks Issue 01: OpenSandbox, focused on sandbox architecture, execution safety, and agent runtime boundaries
 - **[2026-03-25]** ✅ Lobster University completed a round of scenario expansion and beginner-friendly rewrite, adding 11 ready-to-use case studies across personal productivity, programming, content creation, business sales, multi-agent collaboration, and more, organized by README category
@@ -185,8 +197,24 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Chapter 3: Task Planning and Execution Loops | Compare how OpenClaw, Claude Code, and Hermes Agent design planning, scheduling, recovery, and stopping behavior | ✅ |
 | Chapter 4: Multi-Agent Collaboration | Compare how OpenClaw, Claude Code, and Hermes Agent design multi-Agent division of labor, isolation, and coordination | ✅ |
 | Chapter 5: Security and Controllability | Compare how OpenClaw, Claude Code, and Hermes Agent design safety boundaries, approval mechanisms, and sandbox isolation | ✅ |
+| Chapter 6: MCP vs CLI | Compare how OpenClaw, Claude Code, and Hermes Agent split responsibilities between direct CLI execution and MCP integration | ✅ |
+| Chapter 7: Skills System Design | Compare how OpenClaw, Claude Code, and Hermes Agent acquire, preserve, and reuse professional Agent experience | ✅ |
 
-### Part 4: LLM Architecture Analysis
+### Part 4: LangChain Deep Guide
+
+| Chapter | Description | Status |
+| ---- | ---- | ---- |
+| **Introduction** | **Why LangChain deserves its own framework-engineering track** | ✅ |
+| Article 1: LangChain in Practice (I) | What LangChain is, why you need it, and how Model I/O, LCEL, RAG, and Agents fit into one learning map | ✅ |
+| Article 2: LangChain in Practice (II) | A faithful walkthrough of Model I/O, PromptTemplate, OutputParser, and `with_structured_output` as LangChain's first interface layer | ✅ |
+| Article 3: LangChain in Practice (III) | Moves from the interface layer into orchestration with Chain, LCEL, `RunnableParallel`, and streaming workflows | ✅ |
+| Article 4: LangChain in Practice (IV) | Focuses on Memory, session-scoped history, and summary-based memory to complete multi-turn state handling | ✅ |
+| Article 5: LangChain in Practice (V) | Moves into the knowledge layer with RAG, document loading, chunking, embeddings, vector stores, and retrievers | ✅ |
+| Article 6: LangChain in Practice (VI) | Explains how Agents, Tools, ReAct, `create_agent`, and middleware work together for autonomous execution | ✅ |
+| Article 7: LangChain in Practice (VII) | Combines FastAPI, RAG, memory, and streaming into a complete knowledge-base assistant project | ✅ |
+| Article 8: LangChain in Practice (VIII) | Closes with LangSmith, LangGraph, ecosystem comparisons, and a practical next-step roadmap | ✅ |
+
+### Part 5: LLM Architecture Analysis
 
 | Chapter | Description | Status |
 | ---- | ---- | ---- |
@@ -194,7 +222,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
 | Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
 
-### Part 5: AI Open Source Picks
+### Part 6: AI Open Source Picks
 
 | Chapter | Description | Status |
 | ---- | ---- | ---- |

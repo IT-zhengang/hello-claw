@@ -75,9 +75,10 @@ export default defineConfig({
           { text: '领养龙虾', link: '/cn/adopt/intro' },
           { text: '龙虾大学', link: '/cn/university/intro.html', activeMatch: '^/cn/university/' },
           { text: '构建龙虾', link: '/cn/build/' },
-          { text: 'AI 开源精选集', link: '/cn/ai-open-source-picks/', activeMatch: '^/cn/ai-open-source-picks/' },
           { text: 'AI Agent智能体', link: '/cn/agent/' },
+          { text: 'LangChain深度技术指南', link: '/cn/langchain/', activeMatch: '^/cn/langchain/' },
           { text: 'AI大模型架构解析', link: '/cn/llm/' },
+          { text: 'AI 开源精选集', link: '/cn/ai-open-source-picks/', activeMatch: '^/cn/ai-open-source-picks/' },
           { text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw' },
         ],
         search: {
@@ -250,6 +251,24 @@ export default defineConfig({
                 { text: '第三章 任务规划与执行循环', link: '/cn/agent/chapter3/' },
                 { text: '第四章 多 Agent 协作', link: '/cn/agent/chapter4/' },
                 { text: '第五章 安全与可控性设计', link: '/cn/agent/chapter5/' },
+                { text: '第六章 MCP vs CLI', link: '/cn/agent/chapter6/' },
+                { text: '第七章 Skills 系统设计', link: '/cn/agent/chapter7/' },
+              ]
+            }
+          ],
+          '/cn/langchain/': [
+            {
+              text: 'LangChain深度技术指南',
+              items: [
+                { text: '写在开头', link: '/cn/langchain/' },
+                { text: '第一篇：LangChain 实战教程（一）', link: '/cn/langchain/chapter1/' },
+                { text: '第二篇：LangChain 实战教程（二）', link: '/cn/langchain/chapter2/' },
+                { text: '第三篇：LangChain 实战教程（三）', link: '/cn/langchain/chapter3/' },
+                { text: '第四篇：LangChain 实战教程（四）', link: '/cn/langchain/chapter4/' },
+                { text: '第五篇：LangChain 实战教程（五）', link: '/cn/langchain/chapter5/' },
+                { text: '第六篇：LangChain 实战教程（六）', link: '/cn/langchain/chapter6/' },
+                { text: '第七篇：LangChain 实战教程（七）', link: '/cn/langchain/chapter7/' },
+                { text: '第八篇：LangChain 实战教程（八）', link: '/cn/langchain/chapter8/' },
               ]
             }
           ],
@@ -358,9 +377,10 @@ export default defineConfig({
           { text: 'Adopt', link: '/en/adopt/intro' },
           { text: 'Lobster University', link: '/en/university/intro', activeMatch: '^/en/university/' },
           { text: 'Build', link: '/en/build/' },
-          { text: 'AI Open Source Picks', link: '/en/ai-open-source-picks/', activeMatch: '^/en/ai-open-source-picks/' },
           { text: 'AI Agent Systems', link: '/en/agent/' },
+          { text: 'LangChain Deep Guide', link: '/en/langchain/', activeMatch: '^/en/langchain/' },
           { text: 'LLM Architecture', link: '/en/llm/' },
+          { text: 'AI Open Source Picks', link: '/en/ai-open-source-picks/', activeMatch: '^/en/ai-open-source-picks/' },
           { text: 'GitHub', link: 'https://github.com/IT-zhengang/hello-claw' },
         ],
         sidebar: {
@@ -523,6 +543,24 @@ export default defineConfig({
                 { text: 'Chapter 3: Task Planning and Execution Loops', link: '/en/agent/chapter3/' },
                 { text: 'Chapter 4: Multi-Agent Collaboration', link: '/en/agent/chapter4/' },
                 { text: 'Chapter 5: Security and Controllability', link: '/en/agent/chapter5/' },
+                { text: 'Chapter 6: MCP vs CLI', link: '/en/agent/chapter6/' },
+                { text: 'Chapter 7: Skills System Design', link: '/en/agent/chapter7/' },
+              ]
+            }
+          ],
+          '/en/langchain/': [
+            {
+              text: 'LangChain Deep Guide',
+              items: [
+                { text: 'Introduction', link: '/en/langchain/' },
+                { text: 'Article 1: LangChain in Practice (I): What It Is and Why You Need It', link: '/en/langchain/chapter1/' },
+                { text: 'Article 2: LangChain in Practice (II): Model I/O and Structured Output', link: '/en/langchain/chapter2/' },
+                { text: 'Article 3: LangChain in Practice (III): Chain, LCEL, and Streaming Workflows', link: '/en/langchain/chapter3/' },
+                { text: 'Article 4: LangChain in Practice (IV): Memory and Conversation State', link: '/en/langchain/chapter4/' },
+                { text: 'Article 5: LangChain in Practice (V): RAG and Retrieval Pipelines', link: '/en/langchain/chapter5/' },
+                { text: 'Article 6: LangChain in Practice (VI): Agents, Tools, and Autonomous Execution', link: '/en/langchain/chapter6/' },
+                { text: 'Article 7: LangChain in Practice (VII): Building an End-to-End Knowledge-Base Assistant', link: '/en/langchain/chapter7/' },
+                { text: 'Article 8: LangChain in Practice (VIII): LangSmith, LangGraph, and the Ecosystem', link: '/en/langchain/chapter8/' },
               ]
             }
           ],

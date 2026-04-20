@@ -1,6 +1,6 @@
 ---
 name: hello-claw-article-publisher
-description: 将外部文章、Markdown 草稿或专题文档整理并发布到 hello-claw 文档站。适用于新增章节、迁移文章、保留原文与图片、本地化远程图片、同步中英文结构、更新 VitePress 导航与 README，并执行 docs build 校验。
+description: "将现有 Markdown 草稿、专题文档或已抓取文章整理并发布到 hello-claw 文档站。适用于新增章节、迁移文章、保留原文与图片、本地化远程图片、同步中英文结构、更新 VitePress 导航与 README，并执行 docs build 校验。If the source is still a remote webpage that must be crawled first, prefer `hello-claw-web-article-publisher`."
 ---
 
 # Hello Claw Article Publisher
@@ -18,6 +18,16 @@ description: 将外部文章、Markdown 草稿或专题文档整理并发布到 
 - 为章节补齐中英文结构、导航、README、首页入口
 - 对文章做视觉优化，使其更符合公众号长文的阅读感
 - 发布前执行 `npm run docs:build` 做完整校验
+
+更适合本 Skill 的输入是：
+
+- 本地 Markdown / 草稿
+- 已经抓取好的网页 Markdown
+- 已经下载好的图片和附件
+
+如果用户给的是一个远程网页链接，并且目标是“直接接入 hello-claw”，优先使用整合型 Skill：`hello-claw-web-article-publisher`。
+
+如果上游流程会生成临时 payload JSON，建议在转换为 Markdown 成功后立即删除，不把这类中间文件留在仓库或 `Downloads` 中。
 
 如果只是小范围错字修正或单一段落改写，不需要使用这个 Skill。
 
@@ -151,6 +161,36 @@ docs/static/agent/chapter3/images/cover.png
 - 只增强封面图、信息卡、图卡、引用块、表格、标题层级
 - 样式优先局部写在当前文章尾部 `<style>` 中，避免污染全站
 - 风格上偏“公众号长文”：暖色调、卡片感、留白清晰、图文节奏明显
+
+### 第六步补充：专题系列页的统一模式
+
+如果用户发布的是**连续专题**而不是单篇文章（例如 LangChain、Agent、LLM 等“第 1～N 篇”系列），优先把它当成一个系列来统一处理，而不是逐篇孤立接入。
+
+推荐做法：
+
+1. **导读页与章节页分开设计**
+   - 导读页（如 `docs/cn/langchain/index.md` / `docs/en/langchain/index.md`）保留完整系列导航
+   - 章节页保留统一 Hero，但系列导航默认折叠，避免首屏过高
+2. **导读页的卡片布局更紧凑**
+   - 当系列达到 6～8 篇时，导读页卡片优先使用更紧凑的 overview grid
+   - 桌面端优先 4 列，平板 2 列，移动端 1 列
+3. **章节页系列导航默认收起**
+   - 默认只展示“当前章节”卡片
+   - 提供“展开全部 / 收起”交互
+   - 展开后隐藏重复的当前章节卡片，避免当前项展示两次
+4. **系列导航卡片不重复放标题**
+   - 对已明确篇次的系列卡片，优先保留：
+     - kicker（如“第五篇 · 知识层” / “Article 5 · Knowledge Layer”）
+     - desc
+     - meta
+   - 默认去掉 `LangChain 实战教程（五）` / `LangChain in Practice (V)` 这类重复标题行，减少卡片高度
+5. **中英文文案语气保持镜像**
+   - Hero 的 headline / subtitle
+   - 系列导航卡片的 kicker / desc / meta
+   - 导读页的“当前已上线 / Available now”“建议阅读顺序 / Suggested reading order”
+   - 尽量保持结构与语义一一对应
+
+当用户要求“统一风格”“统一封面”“章节页导航更紧凑”“中英一起同步”时，应优先检查是否需要套用这套系列模式。
 
 ### 第七步：构建校验
 

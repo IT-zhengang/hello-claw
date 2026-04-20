@@ -53,13 +53,14 @@ features:
 
 本项目是 OpenClaw 的系统学习教程，帮助你从零开始掌握这款强大的命令行 AI 助理系统。无论你是想快速上手使用 OpenClaw 提升工作效率，还是想深入研究其原理并构建属于自己的版本，本教程都提供了清晰的学习路径。
 
-**本项目包含五大核心模块：**
+**本项目包含六大核心模块：**
 
 1. **领养 Claw（使用篇）**：11 章 + 7 附录，覆盖安装（1-3 章）+ 核心配置（4-6 章）+ 扩展运维（7-9 章）+ 安全与客户端（10-11 章），按需阅读
 2. **构建 Claw（开发篇）**：10 章 + 1 实战章，聚焦 Runtime、工具、网关、安全与定制路线
 3. **AI Agent智能体**：围绕记忆、协作、自治等智能体核心能力持续展开
-4. **AI大模型架构解析**：聚焦模型能力边界、推理链路、上下文机制等底层主题
-5. **AI 开源精选集**：聚焦值得研究的外围基础设施项目，强调 Agent 运行时、安全边界与工程落地价值
+4. **LangChain深度技术指南**：围绕 Runnable、LCEL、Tool Calling、RAG 与 LangGraph 展开框架级工程剖析
+5. **AI大模型架构解析**：聚焦模型能力边界、推理链路、上下文机制等底层主题
+6. **AI 开源精选集**：聚焦值得研究的外围基础设施项目，强调 Agent 运行时、安全边界与工程落地价值
 
 **适合哪些人学习：**
 
@@ -122,9 +123,20 @@ features:
 | 第13章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
 | 第14章：多 Agent 协作 | OpenClaw、Claude Code、Hermes Agent 三种多智能体分工、隔离与协调设计对比 | ✅ |
 | 第15章：安全与可控性设计 | OpenClaw、Claude Code、Hermes Agent 三种安全边界、审批机制与沙箱设计对比 | ✅ |
-| **🧠 第四层：AI大模型架构解析** | | |
+| 第16章：MCP vs CLI | OpenClaw、Claude Code、Hermes Agent 三种框架在 CLI 与 MCP 分工上的设计取舍与架构答案 | ✅ |
+| **🧩 第四层：LangChain深度技术指南** | | |
+| LangChain 模块导读 | 从 Runnable / LCEL / Tool Calling / RAG / LangGraph 串起框架层工程全景 | ✅ |
+| 第一篇：LangChain 实战教程（一） | 保持原文章节结构，介绍 LangChain 的定位、核心模块地图与入门安装方式 | ✅ |
+| 第二篇：LangChain 实战教程（二） | 保持原文章节结构，聚焦 Model I/O、PromptTemplate、OutputParser 与 `with_structured_output` 的配合方式 | ✅ |
+| 第三篇：LangChain 实战教程（三） | 从接口层进入编排层，聚焦 Chain、LCEL、`RunnableParallel` 与流式工作流 | ✅ |
+| 第四篇：LangChain 实战教程（四） | 聚焦 Memory、会话级历史管理与摘要记忆，补齐多轮对话状态管理 | ✅ |
+| 第五篇：LangChain 实战教程（五） | 进入知识层，系统讲解 Document Loaders、Text Splitter、Embedding、VectorStore 与 Retriever 的 RAG 链路 | ✅ |
+| 第六篇：LangChain 实战教程（六） | 进入自治层，聚焦 Tool、ReAct、Tool Calling 与 `create_agent` 的 Agent 运行机制 | ✅ |
+| 第七篇：LangChain 实战教程（七） | 把前面模块组合成 FastAPI + Chroma + 多轮记忆的 AI 知识库助手实战项目 | ✅ |
+| 第八篇：LangChain 实战教程（八） | 补上 LangSmith、LangGraph、框架对比与后续学习路线，完成生态与进阶视角 | ✅ |
+| **🧠 第五层：AI大模型架构解析** | | |
 | *敬请期待* | 将承接模型能力边界、推理链路、上下文机制等内容 | 规划中 |
-| **🟡 第五层：从原理到实战** | | |
+| **🟡 第六层：从原理到实战** | | |
 | 实战章：技能开发 | Skill 文件结构、Frontmatter 格式、异步处理与调试，并衔接“龙虾大学”的场景案例 | ✅ |
 
 
@@ -138,8 +150,24 @@ features:
 | 第3章：任务规划与执行循环 | OpenClaw、Claude Code、Hermes Agent 三种执行循环与任务调度设计对比 | ✅ |
 | 第4章：多 Agent 协作 | OpenClaw、Claude Code、Hermes Agent 三种多智能体分工、隔离与协调设计对比 | ✅ |
 | 第5章：安全与可控性设计 | OpenClaw、Claude Code、Hermes Agent 三种安全边界、审批机制与沙箱设计对比 | ✅ |
+| 第6章：MCP vs CLI | OpenClaw、Claude Code、Hermes Agent 三种框架在 CLI 与 MCP 分工上的设计取舍与架构答案 | ✅ |
+| 第7章：Skills 系统设计 | OpenClaw、Claude Code、Hermes Agent 三种框架如何让 Agent 获得、沉淀并复用专业经验 | ✅ |
 
-### 第四部分：AI大模型架构解析
+### 第四部分：LangChain深度技术指南
+
+| 章节 | 内容简介 | 状态 |
+| ---- | ---- | ---- |
+| **写在开头** | **为什么要把 LangChain 单独拆成一条“框架工程线”来讲** | ✅ |
+| 第一篇：LangChain 实战教程（一） | 保持原文章节结构，介绍 LangChain 是什么、为什么需要它，以及 Model I/O、LCEL、RAG、Agent 的整体学习地图 | ✅ |
+| 第二篇：LangChain 实战教程（二） | 保持原文章节结构，聚焦 Model I/O、PromptTemplate、OutputParser 与 `with_structured_output` 的接口层设计 | ✅ |
+| 第三篇：LangChain 实战教程（三） | 从接口层进入编排层，聚焦 Chain、LCEL、`RunnableParallel` 与流式工作流 | ✅ |
+| 第四篇：LangChain 实战教程（四） | 聚焦 Memory、会话级历史管理与摘要记忆，补齐多轮对话状态管理 | ✅ |
+| 第五篇：LangChain 实战教程（五） | 进入知识层，系统讲解 Document Loaders、Text Splitter、Embedding、VectorStore 与 Retriever 的 RAG 链路 | ✅ |
+| 第六篇：LangChain 实战教程（六） | 进入自治层，聚焦 Tool、ReAct、Tool Calling 与 `create_agent` 的 Agent 运行机制 | ✅ |
+| 第七篇：LangChain 实战教程（七） | 把前面模块组合成 FastAPI + Chroma + 多轮记忆的 AI 知识库助手实战项目 | ✅ |
+| 第八篇：LangChain 实战教程（八） | 补上 LangSmith、LangGraph、框架对比与后续学习路线，完成生态与进阶视角 | ✅ |
+
+### 第五部分：AI大模型架构解析
 
 | 章节 | 内容简介 | 状态 |
 | ---- | ---- | ---- |
@@ -147,7 +175,7 @@ features:
 | 第1章：Function Call / MCP / ReAct / Skills 技术栈 | 拆解 AI Agent 从工具调用、推理循环、协议标准到能力封装的完整分层 | ✅ |
 | 第2章：Hermes-Agent 自学习 Skill 机制 | 自学习 Skill 的架构设计、触发链路、补丁修复与实现原理 | ✅ |
 
-### 第五部分：AI 开源精选集
+### 第六部分：AI 开源精选集
 
 | 章节 | 内容简介 | 状态 |
 | ---- | ---- | ---- |
@@ -203,6 +231,8 @@ features:
 
 ## 🔥 最新更新
 
+- **[2026-04-20]** ✅ 新增 AI Agent智能体第7章：Skills 系统设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种 Skills 经验沉淀路线
+- **[2026-04-19]** ✅ 新增 AI Agent智能体第6章：MCP vs CLI，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 在 CLI 与 MCP 分工上的设计取舍
 - **[2026-04-17]** ✅ 新增 AI Agent智能体第5章：安全与可控性设计，对比 OpenClaw、Claude Code、Hermes Agent 在提示注入、审批机制与沙箱边界上的设计取舍
 - **[2026-04-15]** ✅ AI 开源精选集上线第一篇，并补齐英文镜像：OpenSandbox，聚焦沙箱架构、执行安全与 Agent 运行边界
 - **[2026-04-14]** ✅ 新增构建篇第11章：记忆系统设计，系统对比 OpenClaw、Droid 与 Hermes Agent 的记忆架构

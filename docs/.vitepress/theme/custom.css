@@ -58,6 +58,467 @@
 }
 
 /* ============================================================================
+   LangChain 专题文章样式
+   ============================================================================ */
+
+.langchain-page .langchain-hero {
+  --hero-accent: 53, 118, 255;
+  --hero-soft: 236, 244, 255;
+  position: relative;
+  margin: 12px 0 16px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--hero-accent), 0.18);
+  background: linear-gradient(135deg, rgba(var(--hero-soft), 0.98), rgba(255, 255, 255, 0.98));
+  box-shadow: 0 18px 40px rgba(31, 41, 55, 0.08);
+}
+
+.langchain-page .langchain-hero::after {
+  content: "";
+  position: absolute;
+  right: -36px;
+  bottom: -42px;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(var(--hero-accent), 0.18), transparent 68%);
+}
+
+.langchain-page .langchain-hero--overview {
+  --hero-accent: 44, 148, 116;
+  --hero-soft: 234, 248, 243;
+}
+
+.langchain-page .langchain-hero--modelio {
+  --hero-accent: 17, 132, 164;
+  --hero-soft: 234, 247, 250;
+}
+
+.langchain-page .langchain-hero--chain {
+  --hero-accent: 53, 118, 255;
+  --hero-soft: 236, 244, 255;
+}
+
+.langchain-page .langchain-hero--memory {
+  --hero-accent: 235, 116, 58;
+  --hero-soft: 255, 242, 235;
+}
+
+.langchain-page .langchain-hero--rag {
+  --hero-accent: 18, 140, 126;
+  --hero-soft: 235, 250, 247;
+}
+
+.langchain-page .langchain-hero--agent {
+  --hero-accent: 198, 88, 39;
+  --hero-soft: 255, 244, 237;
+}
+
+.langchain-page .langchain-hero--project {
+  --hero-accent: 84, 95, 214;
+  --hero-soft: 239, 241, 255;
+}
+
+.langchain-page .langchain-hero--ecosystem {
+  --hero-accent: 124, 92, 201;
+  --hero-soft: 245, 240, 255;
+}
+
+.langchain-page .langchain-hero--guide {
+  --hero-accent: 21, 125, 104;
+  --hero-soft: 236, 249, 245;
+}
+
+.langchain-page .langchain-hero__eyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 10px;
+  color: rgba(var(--hero-accent), 0.95);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.langchain-page .langchain-hero__headline {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0;
+  color: #18212f;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.langchain-page .langchain-hero__subtitle {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 12px 0 0;
+  color: #415066;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.langchain-page .langchain-hero__tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.langchain-page .langchain-hero__tags span {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(var(--hero-accent), 0.14);
+  color: #243247;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+
+.langchain-page .langchain-series-heading {
+  margin: 6px 0 10px;
+  color: #157d68;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.langchain-page .langchain-series-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 24px;
+}
+
+.langchain-page .langchain-series-grid--overview {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.langchain-page .langchain-series-grid--compact {
+  margin-top: 0;
+}
+
+.langchain-page .langchain-series-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 164px;
+  padding: 15px 16px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(30, 41, 59, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 252, 0.98));
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.langchain-page .langchain-series-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(21, 125, 104, 0.24);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.09);
+}
+
+.langchain-page .langchain-series-card.is-current {
+  border-color: rgba(21, 125, 104, 0.34);
+  background: linear-gradient(180deg, rgba(237, 250, 246, 0.98), rgba(255, 255, 255, 0.98));
+  box-shadow: 0 16px 34px rgba(21, 125, 104, 0.12);
+}
+
+.langchain-page .langchain-series-card__kicker {
+  color: #157d68;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.langchain-page .langchain-series-card__title {
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: #18212f;
+}
+
+.langchain-page .langchain-series-card__desc {
+  color: #526173;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
+.langchain-page .langchain-series-card__meta {
+  margin-top: auto;
+  color: #6b7280;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.langchain-page .langchain-series-disclosure {
+  margin: 0 0 24px;
+  border-radius: 22px;
+  border: 1px solid rgba(30, 41, 59, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 253, 0.98));
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.langchain-page .langchain-series-disclosure[open] {
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+}
+
+.langchain-page .langchain-series-disclosure__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.langchain-page .langchain-series-disclosure__summary::-webkit-details-marker {
+  display: none;
+}
+
+.langchain-page .langchain-series-disclosure__summary::marker {
+  display: none;
+}
+
+.langchain-page .langchain-series-card--summary {
+  min-height: auto;
+  pointer-events: none;
+}
+
+.langchain-page .langchain-series-card--summary:hover {
+  transform: none;
+  border-color: rgba(21, 125, 104, 0.34);
+  box-shadow: 0 16px 34px rgba(21, 125, 104, 0.12);
+}
+
+.langchain-page .langchain-series-disclosure__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(21, 125, 104, 0.08);
+  border: 1px solid rgba(21, 125, 104, 0.14);
+  color: #157d68;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.langchain-page .langchain-series-disclosure__toggle::before {
+  content: "+";
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.langchain-page .langchain-series-disclosure__toggle-opened {
+  display: none;
+}
+
+.langchain-page .langchain-series-disclosure[open] .langchain-series-disclosure__toggle::before {
+  content: "-";
+}
+
+.langchain-page .langchain-series-disclosure[open] .langchain-series-disclosure__toggle-closed {
+  display: none;
+}
+
+.langchain-page .langchain-series-disclosure[open] .langchain-series-disclosure__toggle-opened {
+  display: inline;
+}
+
+.langchain-page .langchain-series-disclosure > .langchain-series-grid {
+  margin: 0;
+  padding: 0 12px 12px;
+}
+
+.langchain-page .langchain-series-disclosure[open] > .langchain-series-grid .langchain-series-card.is-current {
+  display: none;
+}
+
+.langchain-page .langchain-series-grid--overview .langchain-series-card {
+  min-height: 148px;
+  gap: 7px;
+  padding: 14px 14px 15px;
+}
+
+.langchain-page .langchain-series-grid--overview .langchain-series-card__title {
+  font-size: 0.98rem;
+}
+
+.langchain-page .langchain-series-grid--overview .langchain-series-card__desc {
+  font-size: 0.89rem;
+  line-height: 1.58;
+}
+
+.langchain-page .langchain-series-grid--overview .langchain-series-card__meta {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1200px) {
+  .langchain-page .langchain-series-grid--overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.langchain-page h2 {
+  margin-top: 42px;
+  padding-left: 14px;
+  border-left: 4px solid #e2ad47;
+}
+
+.langchain-page h3 {
+  margin-top: 28px;
+}
+
+.langchain-page blockquote {
+  border-left: 4px solid #e2ad47;
+  background: rgba(255, 248, 230, 0.72);
+  border-radius: 0 14px 14px 0;
+  padding: 10px 16px;
+}
+
+.langchain-page table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.langchain-page tr:nth-child(2n) {
+  background-color: rgba(255, 248, 230, 0.45);
+}
+
+@media (max-width: 640px) {
+  .langchain-page .langchain-hero {
+    margin-bottom: 12px;
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  .langchain-page .langchain-hero__subtitle {
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .langchain-page .langchain-series-heading {
+    margin-bottom: 8px;
+  }
+
+  .langchain-page .langchain-series-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .langchain-page .langchain-series-disclosure {
+    margin-bottom: 20px;
+  }
+
+  .langchain-page .langchain-series-disclosure__summary {
+    padding: 10px;
+  }
+
+  .langchain-page .langchain-series-disclosure > .langchain-series-grid {
+    padding: 0 10px 10px;
+  }
+
+  .langchain-page .langchain-series-card {
+    min-height: auto;
+    padding: 14px 14px 15px;
+  }
+}
+
+.dark .langchain-page .langchain-hero {
+  background: linear-gradient(135deg, rgba(25, 28, 37, 0.96), rgba(35, 41, 54, 0.94));
+  border-color: rgba(var(--hero-accent), 0.28);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+}
+
+.dark .langchain-page .langchain-hero__headline {
+  color: #f3f6fb;
+}
+
+.dark .langchain-page .langchain-hero__subtitle {
+  color: rgba(228, 234, 244, 0.82);
+}
+
+.dark .langchain-page .langchain-hero__tags span {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8edf7;
+}
+
+
+.dark .langchain-page .langchain-series-heading {
+  color: #7ee3c5;
+}
+
+.dark .langchain-page .langchain-series-card {
+  background: linear-gradient(180deg, rgba(31, 41, 55, 0.92), rgba(22, 28, 39, 0.94));
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.dark .langchain-page .langchain-series-card:hover {
+  border-color: rgba(76, 188, 158, 0.28);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+}
+
+.dark .langchain-page .langchain-series-card.is-current {
+  border-color: rgba(126, 227, 197, 0.4);
+  background: linear-gradient(180deg, rgba(18, 51, 45, 0.96), rgba(22, 28, 39, 0.95));
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
+}
+
+.dark .langchain-page .langchain-series-card__kicker {
+  color: #7ee3c5;
+}
+
+.dark .langchain-page .langchain-series-card__title {
+  color: #f3f6fb;
+}
+
+.dark .langchain-page .langchain-series-card__desc {
+  color: rgba(228, 234, 244, 0.8);
+}
+
+.dark .langchain-page .langchain-series-card__meta {
+  color: rgba(199, 210, 224, 0.72);
+}
+
+.dark .langchain-page .langchain-series-disclosure {
+  background: linear-gradient(180deg, rgba(24, 32, 45, 0.96), rgba(20, 27, 38, 0.95));
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+}
+
+.dark .langchain-page .langchain-series-disclosure[open] {
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+}
+
+.dark .langchain-page .langchain-series-disclosure__toggle {
+  background: rgba(126, 227, 197, 0.1);
+  border-color: rgba(126, 227, 197, 0.18);
+  color: #7ee3c5;
+}
+
+.dark .langchain-page blockquote {
+  background: rgba(82, 61, 22, 0.3);
+}
+
+/* ============================================================================
    VitePress 布局相关 CSS 变量参考
    ============================================================================
 

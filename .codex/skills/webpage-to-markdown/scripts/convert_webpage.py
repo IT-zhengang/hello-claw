@@ -9,7 +9,9 @@ import json
 import sys
 import os
 import re
+import argparse
 from datetime import datetime
+from pathlib import Path
 import html2text
 from bs4 import BeautifulSoup, NavigableString
 
@@ -17,6 +19,37 @@ from bs4 import BeautifulSoup, NavigableString
 def get_default_output_dir():
     """默认保存到执行命令时所在目录的 mds/ 子目录。"""
     return os.path.join(os.getcwd(), 'mds')
+
+
+DEFAULT_SEARCH_DIRS = [
+    Path.cwd(),
+    Path('/tmp'),
+    Path.home() / 'Downloads',
+]
+
+
+def iter_payload_candidates(search_dirs, suffixes):
+    seen = set()
+    for directory in search_dirs:
+        if not directory.exists() or not directory.is_dir():
+            continue
+        for path in directory.iterdir():
+            if not path.is_file():
+                continue
+            if path in seen:
+                continue
+            seen.add(path)
+            if any(path.name.endswith(suffix) for suffix in suffixes):
+                yield path
+
+
+def find_latest_payload(search_dirs=None, suffixes=None):
+    search_dirs = search_dirs or DEFAULT_SEARCH_DIRS
+    suffixes = suffixes or ['_payload.json']
+    candidates = list(iter_payload_candidates(search_dirs, suffixes))
+    if not candidates:
+        raise FileNotFoundError('No payload JSON files found')
+    return max(candidates, key=lambda path: path.stat().st_mtime)
 
 # ── 内容提取 ──────────────────────────────────────────────
 
@@ -337,25 +370,111 @@ def safe_filename(title, max_len=60):
     return f'{name}.md'
 
 
+def load_input_payload(path):
+    """
+    支持两种输入格式：
+    1. chrome_get_web_content / chrome_* 工具导出的包装格式：
+       [{"text": "{\"htmlContent\": ...}"}]
+    2. 直接导出的原始 payload：
+       {"title": ..., "url": ..., "author": ..., "htmlContent": ...}
+    """
+    with open(path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    raw = None
+    if isinstance(data, list) and data:
+        first = data[0]
+        if isinstance(first, dict) and 'text' in first:
+            raw = json.loads(first['text'])
+    elif isinstance(data, dict):
+        raw = data
+
+    if not isinstance(raw, dict):
+        raise ValueError('Unsupported input JSON format')
+
+    html_str = raw.get('htmlContent') or raw.get('content_html') or raw.get('html')
+    if not html_str:
+        raise ValueError('Missing htmlContent/content_html/html in input JSON')
+
+    return {
+        'html_str': html_str,
+        'title': raw.get('title', 'untitled'),
+        'url': raw.get('url', ''),
+        'author': raw.get('author', ''),
+    }
+
+
 # ── CLI 入口 ──────────────────────────────────────────────
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: convert_webpage.py <input_json> [output_path]")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description='Convert webpage HTML JSON payload into Markdown.'
+    )
+    parser.add_argument(
+        'input_json',
+        nargs='?',
+        help='Input JSON exported from Chrome MCP or raw payload',
+    )
+    parser.add_argument('output_path', nargs='?', help='Optional output Markdown path')
+    parser.add_argument(
+        '--latest',
+        action='store_true',
+        help='Auto-pick the most recent payload JSON from cwd, /tmp, and ~/Downloads',
+    )
+    parser.add_argument(
+        '--dir',
+        action='append',
+        dest='dirs',
+        help='Extra directory to search when using --latest. Can be passed multiple times.',
+    )
+    parser.add_argument(
+        '--suffix',
+        action='append',
+        dest='suffixes',
+        help='Filename suffix to match when using --latest. Defaults to _payload.json.',
+    )
+    parser.add_argument(
+        '--delete-input',
+        action='store_true',
+        help='Delete the input payload JSON after successful Markdown generation',
+    )
+    parser.add_argument(
+        '--keep-input',
+        action='store_true',
+        help='Keep the payload JSON when using --latest (default is delete on success)',
+    )
+    args = parser.parse_args()
 
-    with open(sys.argv[1], 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    use_latest = args.latest or not args.input_json
+    resolved_from_latest = False
 
-    raw = json.loads(data[0]['text'])
-    html_str = raw['htmlContent']
-    title = raw.get('title', 'untitled')
-    url = raw.get('url', '')
+    # UX: when using --latest, a single positional argument is usually meant
+    # to be the output path rather than an explicit input path.
+    if use_latest and args.input_json and not args.output_path:
+        args.output_path = args.input_json
+        args.input_json = None
 
-    md = convert(html_str, title, url)
+    if use_latest:
+        search_dirs = list(DEFAULT_SEARCH_DIRS)
+        if args.dirs:
+            search_dirs.extend(Path(d).expanduser() for d in args.dirs)
+        suffixes = args.suffixes or ['_payload.json']
+        input_path = find_latest_payload(search_dirs=search_dirs, suffixes=suffixes)
+        resolved_from_latest = True
+        print(f'Using latest payload: {input_path}')
+    else:
+        input_path = Path(args.input_json).expanduser()
 
-    if len(sys.argv) >= 3:
-        out = sys.argv[2]
+    payload = load_input_payload(str(input_path))
+    html_str = payload['html_str']
+    title = payload['title']
+    url = payload['url']
+    author = payload['author']
+
+    md = convert(html_str, title, url, author)
+
+    if args.output_path:
+        out = args.output_path
     else:
         default_output_dir = get_default_output_dir()
         os.makedirs(default_output_dir, exist_ok=True)
@@ -366,6 +485,11 @@ def main():
 
     print(f'Saved: {out}')
     print(f'Size:  {os.path.getsize(out)} bytes')
+
+    should_delete_input = args.delete_input or (resolved_from_latest and not args.keep_input)
+    if should_delete_input:
+        input_path.unlink(missing_ok=False)
+        print(f'Deleted input: {input_path}')
 
 
 if __name__ == '__main__':
