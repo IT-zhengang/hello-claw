@@ -58,12 +58,13 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 - Beginners: start with Part 1 "Adopt Claw" and get installation plus basic automation working first
 - If you want scenario-driven outcomes fast: jump into "Lobster University" and pick 5-10 Skills by use case
 - Developers: go to "Build Claw" to study the underlying implementation and customize your own Claw
-- If you want the capability layer: continue with "AI Agent Systems," "LangChain Deep Guide," and "LLM Architecture Analysis"; AI Agent Systems is now updated through Chapter 7, and LangChain is updated through Article VIII
+- If you want the capability layer: continue with "AI Agent Systems," "LangChain Deep Guide," and "LLM Architecture Analysis"; AI Agent Systems is now updated through Chapter 8, and LangChain is updated through Article VIII
 - If you care about the surrounding ecosystem: continue with "AI Open Source Picks" for reusable infrastructure patterns around safe execution and agent runtimes
 
 ## 🔥 News
 
-- **[2026-04-20]** ✅ Current content status: AI Agent Systems is now updated through Chapter 7, LangChain Deep Guide is updated through Article VIII, and this README now matches the latest main site structure
+- **[2026-04-21]** ✅ Current content status: AI Agent Systems is now updated through Chapter 8, LangChain Deep Guide is updated through Article VIII, and this README now matches the latest main site structure
+- **[2026-04-21]** ✅ Added AI Agent Systems Chapter 8: “Gateway Architecture,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent design entry layers and control planes
 - **[2026-04-20]** ✅ Added AI Agent Systems Chapter 7: “Skills System Design,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent accumulate reusable experience
 - **[2026-04-19]** ✅ Added AI Agent Systems Chapter 6: “MCP vs CLI,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent split work across CLI and MCP
 - **[2026-04-18]** ✅ Added the eighth LangChain Deep Guide article: “LangChain in Practice (VIII),” translated from the original WeChat post and published to the site with LangSmith, LangGraph, framework comparison, and next-step learning paths
@@ -200,6 +201,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Chapter 5: Security and Controllability | Compare how OpenClaw, Claude Code, and Hermes Agent design safety boundaries, approval mechanisms, and sandbox isolation | ✅ |
 | Chapter 6: MCP vs CLI | Compare how OpenClaw, Claude Code, and Hermes Agent split responsibilities between direct CLI execution and MCP integration | ✅ |
 | Chapter 7: Skills System Design | Compare how OpenClaw, Claude Code, and Hermes Agent acquire, preserve, and reuse professional Agent experience | ✅ |
+| Chapter 8: Gateway Architecture | Compare how OpenClaw, Claude Code, and Hermes Agent design the entry layer and control plane between an Agent and the outside world | ✅ |
 
 ### Part 4: LangChain Deep Guide
 

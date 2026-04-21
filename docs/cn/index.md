@@ -152,6 +152,7 @@ features:
 | 第5章：安全与可控性设计 | OpenClaw、Claude Code、Hermes Agent 三种安全边界、审批机制与沙箱设计对比 | ✅ |
 | 第6章：MCP vs CLI | OpenClaw、Claude Code、Hermes Agent 三种框架在 CLI 与 MCP 分工上的设计取舍与架构答案 | ✅ |
 | 第7章：Skills 系统设计 | OpenClaw、Claude Code、Hermes Agent 三种框架如何让 Agent 获得、沉淀并复用专业经验 | ✅ |
+| 第8章：Gateway 架构设计 | OpenClaw、Claude Code、Hermes Agent 三种框架如何设计 Agent 与外部世界之间的入口层与控制平面 | ✅ |
 
 ### 第四部分：LangChain深度技术指南
 
@@ -231,6 +232,7 @@ features:
 
 ## 🔥 最新更新
 
+- **[2026-04-21]** ✅ 新增 AI Agent智能体第8章：Gateway 架构设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种入口层与控制平面设计
 - **[2026-04-20]** ✅ 新增 AI Agent智能体第7章：Skills 系统设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种 Skills 经验沉淀路线
 - **[2026-04-19]** ✅ 新增 AI Agent智能体第6章：MCP vs CLI，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 在 CLI 与 MCP 分工上的设计取舍
 - **[2026-04-17]** ✅ 新增 AI Agent智能体第5章：安全与可控性设计，对比 OpenClaw、Claude Code、Hermes Agent 在提示注入、审批机制与沙箱边界上的设计取舍

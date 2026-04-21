@@ -58,12 +58,13 @@ http://claw.newcode.top
 - 零基础用户：从第一部分“领养 Claw”开始，先把安装与基础自动化跑通
 - 想做场景闭环：直接进入“龙虾大学”，按场景挑 5~10 个 Skills 快速落地
 - 开发者：进入“构建 Claw”，拆解底层实现原理并定制自己的 Claw
-- 想理解智能体能力：继续阅读“AI Agent智能体”“LangChain深度技术指南”和“AI大模型架构解析”三条主线；其中 AI Agent 已更新到第7章，LangChain 已更新到第八篇
+- 想理解智能体能力：继续阅读“AI Agent智能体”“LangChain深度技术指南”和“AI大模型架构解析”三条主线；其中 AI Agent 已更新到第8章，LangChain 已更新到第八篇
 - 想看外围生态：继续阅读“AI 开源精选集”，跟进值得借鉴的安全执行与基础设施项目
 
 ## 🔥 最新动态
 
-- **[2026-04-20]** ✅ 当前内容进度：AI Agent智能体已更新到第7章，LangChain深度技术指南已更新到第八篇，README 主线结构已同步到最新版本
+- **[2026-04-21]** ✅ 当前内容进度：AI Agent智能体已更新到第8章，LangChain深度技术指南已更新到第八篇，README 主线结构已同步到最新版本
+- **[2026-04-21]** ✅ 新增 AI Agent智能体第8章：Gateway 架构设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种入口层与控制平面设计
 - **[2026-04-20]** ✅ 新增 AI Agent智能体第7章：Skills 系统设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种 Skills 经验沉淀路线
 - **[2026-04-19]** ✅ 新增 AI Agent智能体第6章：MCP vs CLI，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 在 CLI 与 MCP 分工上的设计取舍
 - **[2026-04-18]** ✅ 新增 LangChain深度技术指南第八篇：LangChain 实战教程（八），整理微信原文并发布到站点，补上 LangSmith、LangGraph、框架对比与进阶路线
@@ -201,6 +202,7 @@ http://claw.newcode.top
 | 第5章：安全与可控性设计 | OpenClaw、Claude Code、Hermes Agent 三种安全边界、审批机制与沙箱设计对比 | ✅ |
 | 第6章：MCP vs CLI | OpenClaw、Claude Code、Hermes Agent 三种框架在 CLI 与 MCP 分工上的设计取舍与架构答案 | ✅ |
 | 第7章：Skills 系统设计 | OpenClaw、Claude Code、Hermes Agent 三种框架如何让 Agent 获得、沉淀并复用专业经验 | ✅ |
+| 第8章：Gateway 架构设计 | OpenClaw、Claude Code、Hermes Agent 三种框架如何设计 Agent 与外部世界之间的入口层与控制平面 | ✅ |
 
 ### 第四部分：LangChain深度技术指南
 

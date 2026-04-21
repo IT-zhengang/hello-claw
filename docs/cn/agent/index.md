@@ -31,6 +31,7 @@ AI Agent智能体这一部分，聚焦的是“龙虾真正变成智能体”之
 - [第五章 安全与可控性设计](./chapter5/index.md)
 - [第六章 MCP vs CLI](./chapter6/index.md)
 - [第七章 Skills 系统设计](./chapter7/index.md)
+- [第八章 Gateway 架构设计](./chapter8/index.md)
 
 建议阅读顺序：
 
@@ -41,4 +42,5 @@ AI Agent智能体这一部分，聚焦的是“龙虾真正变成智能体”之
 5. 如果你已经开始把 Agent 放进真实环境，想进一步理解 Prompt Injection、审批机制与沙箱边界，再读[第五章 安全与可控性设计](./chapter5/index.md)
 6. 如果你想进一步理解为什么现代 Agent 框架会同时拥抱 CLI 与 MCP，以及它们在产品里的真实分工，继续阅读[第六章 MCP vs CLI](./chapter6/index.md)
 7. 如果你想理解 Agent 的专业经验到底该沉淀为社区 Skill、个人 Skill，还是执行中自动生长出来，继续阅读[第七章 Skills 系统设计](./chapter7/index.md)
-8. 如果你想继续把这些系统能力落到主流框架实现，可以接着阅读[LangChain深度技术指南](/cn/langchain/)
+8. 如果你想进一步理解 Agent 和外部世界之间的入口层，为什么会反过来决定整个系统的工作模式，继续阅读[第八章 Gateway 架构设计](./chapter8/index.md)
+9. 如果你想继续把这些系统能力落到主流框架实现，可以接着阅读[LangChain深度技术指南](/cn/langchain/)

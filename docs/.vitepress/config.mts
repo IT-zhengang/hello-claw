@@ -253,6 +253,7 @@ export default defineConfig({
                 { text: '第五章 安全与可控性设计', link: '/cn/agent/chapter5/' },
                 { text: '第六章 MCP vs CLI', link: '/cn/agent/chapter6/' },
                 { text: '第七章 Skills 系统设计', link: '/cn/agent/chapter7/' },
+                { text: '第八章 Gateway 架构设计', link: '/cn/agent/chapter8/' },
               ]
             }
           ],
@@ -545,6 +546,7 @@ export default defineConfig({
                 { text: 'Chapter 5: Security and Controllability', link: '/en/agent/chapter5/' },
                 { text: 'Chapter 6: MCP vs CLI', link: '/en/agent/chapter6/' },
                 { text: 'Chapter 7: Skills System Design', link: '/en/agent/chapter7/' },
+                { text: 'Chapter 8: Gateway Architecture', link: '/en/agent/chapter8/' },
               ]
             }
           ],

@@ -133,6 +133,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 5: Security and Controllability | Compare how OpenClaw, Claude Code, and Hermes Agent design safety boundaries, approval mechanisms, and sandbox isolation | ✅ |
 | Chapter 6: MCP vs CLI | Compare how OpenClaw, Claude Code, and Hermes Agent split responsibilities between direct CLI execution and MCP integration | ✅ |
 | Chapter 7: Skills System Design | Compare how OpenClaw, Claude Code, and Hermes Agent acquire, preserve, and reuse professional Agent experience | ✅ |
+| Chapter 8: Gateway Architecture | Compare how OpenClaw, Claude Code, and Hermes Agent design the entry layer and control plane between an Agent and the outside world | ✅ |
 
 ### Part 4: LangChain Deep Guide
 
@@ -212,6 +213,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 
 ## 🔥 Latest Updates
 
+- **[2026-04-21]** ✅ Added AI Agent Systems Chapter 8 in both Chinese and English: Gateway Architecture, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent design entry layers and control planes
 - **[2026-04-20]** ✅ Added AI Agent Systems Chapter 7 in both Chinese and English: Skills System Design, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent accumulate reusable experience
 - **[2026-04-19]** ✅ Added AI Agent Systems Chapter 6 in both Chinese and English: MCP vs CLI, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent split work across CLI and MCP
 - **[2026-04-17]** ✅ Added AI Agent Systems Chapter 5 in both Chinese and English: Security and Controllability, comparing OpenClaw, Claude Code, and Hermes Agent on prompt injection, approvals, and sandbox boundaries
