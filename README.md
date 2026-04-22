@@ -225,6 +225,7 @@ http://claw.newcode.top
 | **写在开头** | **模型能力边界、推理链路与上下文机制的专题入口** | ✅ |
 | 第1章：Function Call / MCP / ReAct / Skills 技术栈 | 拆解 AI Agent 从工具调用、推理循环、协议标准到能力封装的完整分层 | ✅ |
 | 第2章：Hermes-Agent 自学习 Skill 机制 | 自学习 Skill 的架构设计、触发链路、补丁修复与实现原理 | ✅ |
+| 第3章：Harness Engineering：从 Prompt / Context 到运行控制系统 | 从 Prompt、Context 到 Harness 的三次迁移，拆解运行控制系统的六层结构与一线实践 | ✅ |
 
 ### 第六部分：AI 开源精选集
 

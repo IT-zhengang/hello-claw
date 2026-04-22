@@ -224,6 +224,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | **Introduction** | **A thematic entry for model boundaries, reasoning paths, and context mechanisms** | ✅ |
 | Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
 | Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
+| Chapter 3: Harness Engineering from Prompt and Context to Runtime Control | Explains the shift from prompting and context supply to full runtime control, six Harness layers, and industry practice | ✅ |
 
 ### Part 6: AI Open Source Picks
 

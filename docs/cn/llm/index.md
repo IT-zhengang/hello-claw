@@ -23,3 +23,4 @@ AI大模型架构解析这一部分，聚焦模型层面的能力边界与结构
 
 - [第一章 深度解析：Function Call / MCP / ReAct / Skills 如何构成 AI Agent 的完整技术栈](./chapter1/index.md)
 - [第二章 Hermes-Agent 自学习 Skill 机制](./chapter2/index.md)
+- [第三章 Harness Engineering：从 Prompt / Context 到运行控制系统](./chapter3/index.md)

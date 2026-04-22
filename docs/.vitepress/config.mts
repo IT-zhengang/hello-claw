@@ -289,6 +289,7 @@ export default defineConfig({
                 { text: '写在开头', link: '/cn/llm/' },
                 { text: '第一章 Function Call / MCP / ReAct / Skills 技术栈', link: '/cn/llm/chapter1/' },
                 { text: '第二章 Hermes-Agent 自学习 Skill 机制', link: '/cn/llm/chapter2/' },
+                { text: '第三章 Harness Engineering：从 Prompt / Context 到运行控制系统', link: '/cn/llm/chapter3/' },
               ]
             }
           ],
@@ -573,6 +574,7 @@ export default defineConfig({
                 { text: 'Introduction', link: '/en/llm/' },
                 { text: 'Chapter 1: Function Calling, MCP, ReAct, and Skills', link: '/en/llm/chapter1/' },
                 { text: 'Chapter 2: Hermes-Agent Self-Learning Skill Mechanism', link: '/en/llm/chapter2/' },
+                { text: 'Chapter 3: Harness Engineering from Prompt and Context to Runtime Control', link: '/en/llm/chapter3/' },
               ]
             }
           ],
