@@ -254,6 +254,8 @@ export default defineConfig({
                 { text: '第六章 MCP vs CLI', link: '/cn/agent/chapter6/' },
                 { text: '第七章 Skills 系统设计', link: '/cn/agent/chapter7/' },
                 { text: '第八章 Gateway 架构设计', link: '/cn/agent/chapter8/' },
+                { text: '第九章 Agent 的自我欺骗', link: '/cn/agent/chapter9/' },
+                { text: '第十章 记忆污染', link: '/cn/agent/chapter10/' },
               ]
             }
           ],
@@ -548,6 +550,8 @@ export default defineConfig({
                 { text: 'Chapter 6: MCP vs CLI', link: '/en/agent/chapter6/' },
                 { text: 'Chapter 7: Skills System Design', link: '/en/agent/chapter7/' },
                 { text: 'Chapter 8: Gateway Architecture', link: '/en/agent/chapter8/' },
+                { text: 'Chapter 9: Agent Self-Deception', link: '/en/agent/chapter9/' },
+                { text: 'Chapter 10: Memory Poisoning', link: '/en/agent/chapter10/' },
               ]
             }
           ],

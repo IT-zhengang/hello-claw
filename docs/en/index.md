@@ -134,6 +134,8 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter 6: MCP vs CLI | Compare how OpenClaw, Claude Code, and Hermes Agent split responsibilities between direct CLI execution and MCP integration | ✅ |
 | Chapter 7: Skills System Design | Compare how OpenClaw, Claude Code, and Hermes Agent acquire, preserve, and reuse professional Agent experience | ✅ |
 | Chapter 8: Gateway Architecture | Compare how OpenClaw, Claude Code, and Hermes Agent design the entry layer and control plane between an Agent and the outside world | ✅ |
+| Chapter 9: Agent Self-Deception | Why Agents can report success before the original task is actually complete, and how the three frameworks respond | ✅ |
+| Chapter 10: Memory Poisoning | How OpenClaw, Claude Code, and Hermes Agent handle wrong facts, hostile injections, and long-lived memory corruption | ✅ |
 
 ### Part 4: LangChain Deep Guide
 
@@ -214,6 +216,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 
 ## 🔥 Latest Updates
 
+- **[2026-04-23]** ✅ Added AI Agent Systems Chapter 10 in both Chinese and English: Memory Poisoning, adapted from the original WeChat article and focused on memory writes, poisoning paths, and long-term corruption control
 - **[2026-04-21]** ✅ Added AI Agent Systems Chapter 8 in both Chinese and English: Gateway Architecture, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent design entry layers and control planes
 - **[2026-04-20]** ✅ Added AI Agent Systems Chapter 7 in both Chinese and English: Skills System Design, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent accumulate reusable experience
 - **[2026-04-19]** ✅ Added AI Agent Systems Chapter 6 in both Chinese and English: MCP vs CLI, adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent split work across CLI and MCP
