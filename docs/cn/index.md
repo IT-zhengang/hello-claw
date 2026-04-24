@@ -153,6 +153,8 @@ features:
 | 第6章：MCP vs CLI | OpenClaw、Claude Code、Hermes Agent 三种框架在 CLI 与 MCP 分工上的设计取舍与架构答案 | ✅ |
 | 第7章：Skills 系统设计 | OpenClaw、Claude Code、Hermes Agent 三种框架如何让 Agent 获得、沉淀并复用专业经验 | ✅ |
 | 第8章：Gateway 架构设计 | OpenClaw、Claude Code、Hermes Agent 三种框架如何设计 Agent 与外部世界之间的入口层与控制平面 | ✅ |
+| 第9章：Agent 的自我欺骗 | Agent 为什么会在任务未完成时依然给出“已完成”的成功汇报，以及三种框架的应对方式 | ✅ |
+| 第10章：记忆污染 | 对比 OpenClaw、Claude Code、Hermes Agent 如何处理持久记忆中的错误事实、恶意注入与长期偏差 | ✅ |
 
 ### 第四部分：LangChain深度技术指南
 
@@ -175,6 +177,7 @@ features:
 | **写在开头** | **模型能力边界、推理链路与上下文机制的专题入口** | ✅ |
 | 第1章：Function Call / MCP / ReAct / Skills 技术栈 | 拆解 AI Agent 从工具调用、推理循环、协议标准到能力封装的完整分层 | ✅ |
 | 第2章：Hermes-Agent 自学习 Skill 机制 | 自学习 Skill 的架构设计、触发链路、补丁修复与实现原理 | ✅ |
+| 第3章：Harness Engineering：从 Prompt / Context 到运行控制系统 | 从 Prompt、Context 到 Harness 的三次迁移，拆解运行控制系统的六层结构与一线实践 | ✅ |
 
 ### 第六部分：AI 开源精选集
 
@@ -232,6 +235,7 @@ features:
 
 ## 🔥 最新更新
 
+- **[2026-04-23]** ✅ 新增 AI Agent智能体第10章：记忆污染，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种记忆写入与防污染设计
 - **[2026-04-21]** ✅ 新增 AI Agent智能体第8章：Gateway 架构设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种入口层与控制平面设计
 - **[2026-04-20]** ✅ 新增 AI Agent智能体第7章：Skills 系统设计，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 三种 Skills 经验沉淀路线
 - **[2026-04-19]** ✅ 新增 AI Agent智能体第6章：MCP vs CLI，整理微信公众号原文并发布到站点，对比 OpenClaw、Claude Code、Hermes Agent 在 CLI 与 MCP 分工上的设计取舍

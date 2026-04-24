@@ -15,3 +15,4 @@ Available now:
 
 - [Chapter 1: Function Calling, MCP, ReAct, and Skills](./chapter1/index.md)
 - [Chapter 2: Hermes-Agent Self-Learning Skill Mechanism](./chapter2/index.md)
+- [Chapter 3: Harness Engineering from Prompt and Context to Runtime Control](./chapter3/index.md)

@@ -58,12 +58,13 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 - Beginners: start with Part 1 "Adopt Claw" and get installation plus basic automation working first
 - If you want scenario-driven outcomes fast: jump into "Lobster University" and pick 5-10 Skills by use case
 - Developers: go to "Build Claw" to study the underlying implementation and customize your own Claw
-- If you want the capability layer: continue with "AI Agent Systems," "LangChain Deep Guide," and "LLM Architecture Analysis"; AI Agent Systems is now updated through Chapter 8, and LangChain is updated through Article VIII
+- If you want the capability layer: continue with "AI Agent Systems," "LangChain Deep Guide," and "LLM Architecture Analysis"; AI Agent Systems is now updated through Chapter 10, and LangChain is updated through Article VIII
 - If you care about the surrounding ecosystem: continue with "AI Open Source Picks" for reusable infrastructure patterns around safe execution and agent runtimes
 
 ## 🔥 News
 
-- **[2026-04-21]** ✅ Current content status: AI Agent Systems is now updated through Chapter 8, LangChain Deep Guide is updated through Article VIII, and this README now matches the latest main site structure
+- **[2026-04-23]** ✅ Current content status: AI Agent Systems is now updated through Chapter 10, LangChain Deep Guide is updated through Article VIII, and this README now matches the latest main site structure
+- **[2026-04-23]** ✅ Added AI Agent Systems Chapter 10: “Memory Poisoning,” adapted from the original WeChat article and focused on memory writes, poisoning paths, and long-term corruption control
 - **[2026-04-21]** ✅ Added AI Agent Systems Chapter 8: “Gateway Architecture,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent design entry layers and control planes
 - **[2026-04-20]** ✅ Added AI Agent Systems Chapter 7: “Skills System Design,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent accumulate reusable experience
 - **[2026-04-19]** ✅ Added AI Agent Systems Chapter 6: “MCP vs CLI,” adapted from the original WeChat article and focused on how OpenClaw, Claude Code, and Hermes Agent split work across CLI and MCP
@@ -202,6 +203,8 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | Chapter 6: MCP vs CLI | Compare how OpenClaw, Claude Code, and Hermes Agent split responsibilities between direct CLI execution and MCP integration | ✅ |
 | Chapter 7: Skills System Design | Compare how OpenClaw, Claude Code, and Hermes Agent acquire, preserve, and reuse professional Agent experience | ✅ |
 | Chapter 8: Gateway Architecture | Compare how OpenClaw, Claude Code, and Hermes Agent design the entry layer and control plane between an Agent and the outside world | ✅ |
+| Chapter 9: Agent Self-Deception | Why Agents can report success before the original task is actually complete, and how the three frameworks respond | ✅ |
+| Chapter 10: Memory Poisoning | How OpenClaw, Claude Code, and Hermes Agent handle wrong facts, hostile injections, and long-lived memory corruption | ✅ |
 
 ### Part 4: LangChain Deep Guide
 
@@ -224,6 +227,7 @@ This project is a complete learning guide for OpenClaw, designed to help you mas
 | **Introduction** | **A thematic entry for model boundaries, reasoning paths, and context mechanisms** | ✅ |
 | Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
 | Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
+| Chapter 3: Harness Engineering from Prompt and Context to Runtime Control | Explains the shift from prompting and context supply to full runtime control, six Harness layers, and industry practice | ✅ |
 
 ### Part 6: AI Open Source Picks
 
