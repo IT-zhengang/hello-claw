@@ -154,6 +154,7 @@ This project is a comprehensive learning tutorial for OpenClaw, helping you mast
 | Chapter | Description | Status |
 | ---- | ---- | ---- |
 | **Introduction** | **A thematic entry for model boundaries, reasoning paths, and context mechanisms** | ✅ |
+| Visual Guide: From Models to Agents, MCP, Workflows, and Memory | A visual map of how models, Agents, MCP, workflows, and knowledge / memory fit together, with reading paths for different audiences | ✅ |
 | Chapter 1: Function Calling, MCP, ReAct, and Skills | A layered walkthrough of tool execution, protocol standardization, reasoning loops, and reusable capability packaging | ✅ |
 | Chapter 2: Hermes-Agent Self-Learning Skill Mechanism | How self-learning Skills are triggered, reviewed, repaired, and turned into long-term capability assets | ✅ |
 

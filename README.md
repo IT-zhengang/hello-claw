@@ -223,6 +223,7 @@ http://claw.newcode.top
 | 章节 | 简介 | 状态 |
 | ---- | ---- | ---- |
 | **写在开头** | **模型能力边界、推理链路与上下文机制的专题入口** | ✅ |
+| 图解导读：从模型到 Agent、MCP 与 Memory | 用 7 张图串起模型、Agent、MCP、工作流与知识库 / Memory 的整体关系，并补上不同读者的阅读路径 | ✅ |
 | 第1章：Function Call / MCP / ReAct / Skills 技术栈 | 拆解 AI Agent 从工具调用、推理循环、协议标准到能力封装的完整分层 | ✅ |
 | 第2章：Hermes-Agent 自学习 Skill 机制 | 自学习 Skill 的架构设计、触发链路、补丁修复与实现原理 | ✅ |
 

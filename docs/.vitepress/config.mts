@@ -287,6 +287,7 @@ export default defineConfig({
               text: 'AI大模型架构解析',
               items: [
                 { text: '写在开头', link: '/cn/llm/' },
+                { text: '图解导读：从模型到 Agent、MCP 与 Memory', link: '/cn/llm/visual-guide/' },
                 { text: '第一章 Function Call / MCP / ReAct / Skills 技术栈', link: '/cn/llm/chapter1/' },
                 { text: '第二章 Hermes-Agent 自学习 Skill 机制', link: '/cn/llm/chapter2/' },
               ]
@@ -571,6 +572,7 @@ export default defineConfig({
               text: 'LLM Architecture Analysis',
               items: [
                 { text: 'Introduction', link: '/en/llm/' },
+                { text: 'Visual Guide: Models, Agents, MCP, and Memory', link: '/en/llm/visual-guide/' },
                 { text: 'Chapter 1: Function Calling, MCP, ReAct, and Skills', link: '/en/llm/chapter1/' },
                 { text: 'Chapter 2: Hermes-Agent Self-Learning Skill Mechanism', link: '/en/llm/chapter2/' },
               ]

@@ -651,6 +651,38 @@ clawhub install github</pre>
   </div>
   <Layout v-else />
 
+  <Teleport to="body">
+    <div v-if="showDocRailControls" class="doc-rail-controls" aria-label="文档侧栏控制">
+      <button
+        v-if="hasDesktopSidebar"
+        class="doc-rail-toggle doc-rail-toggle--sidebar"
+        :class="{ 'is-collapsed': isSidebarCollapsed }"
+        type="button"
+        :data-tooltip="isSidebarCollapsed ? '展开左侧目录' : '收起左侧目录'"
+        :aria-pressed="isSidebarCollapsed"
+        :aria-label="isSidebarCollapsed ? '展开左侧目录' : '收起左侧目录'"
+        @click="toggleSidebarCollapse"
+      >
+        <span class="doc-rail-toggle__icon" aria-hidden="true"></span>
+        <span class="doc-rail-toggle__text">{{ isSidebarCollapsed ? '展开目录' : '收起目录' }}</span>
+      </button>
+
+      <button
+        v-if="hasDesktopOutline"
+        class="doc-rail-toggle doc-rail-toggle--outline"
+        :class="{ 'is-collapsed': isOutlineCollapsed }"
+        type="button"
+        :data-tooltip="isOutlineCollapsed ? '展开文章目录' : '收起文章目录'"
+        :aria-pressed="isOutlineCollapsed"
+        :aria-label="isOutlineCollapsed ? '展开文章目录' : '收起文章目录'"
+        @click="toggleOutlineCollapse"
+      >
+        <span class="doc-rail-toggle__text">{{ isOutlineCollapsed ? '展开文章目录' : '收起文章目录' }}</span>
+        <span class="doc-rail-toggle__icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </Teleport>
+
   <div v-if="isDocMarkdownAvailable" class="md-source-launcher">
     <button @click="openMarkdownPanel" class="md-source-launcher__button">
       <span>Markdown</span>
@@ -736,7 +768,7 @@ clawhub install github</pre>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute, useRouter, withBase } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 
@@ -762,6 +794,13 @@ const markdownLoading = ref(false)
 const markdownLoadedKey = ref('')
 const markdownCopied = ref(false)
 const markdownViewMode = ref('split')
+const isSidebarCollapsed = ref(false)
+const isOutlineCollapsed = ref(false)
+const hasDesktopSidebar = ref(false)
+const hasDesktopOutline = ref(false)
+
+const DOC_SIDEBAR_STORAGE_KEY = 'hello-claw:docs-sidebar-collapsed'
+const DOC_OUTLINE_STORAGE_KEY = 'hello-claw:docs-outline-collapsed'
 
 const normalizedDocPath = computed(() => {
   let path = route.path.split('#')[0].split('?')[0]
@@ -1161,6 +1200,64 @@ const keywordHints = {
 
 let hintTimer = null
 
+const readStoredRailPreference = (key) => {
+  if (typeof window === 'undefined') return false
+  return window.localStorage.getItem(key) === '1'
+}
+
+const writeStoredRailPreference = (key, value) => {
+  if (typeof window === 'undefined') return
+  window.localStorage.setItem(key, value ? '1' : '0')
+}
+
+const applyDocRailClasses = () => {
+  if (typeof document === 'undefined') return
+  const root = document.documentElement
+
+  root.classList.toggle('hc-sidebar-collapsed', hasDesktopSidebar.value && isSidebarCollapsed.value)
+  root.classList.toggle('hc-outline-collapsed', hasDesktopOutline.value && isOutlineCollapsed.value)
+}
+
+const syncDocRailAvailability = async () => {
+  if (typeof document === 'undefined') return
+
+  await nextTick()
+
+  window.requestAnimationFrame(() => {
+    const sidebar = document.querySelector('.VPSidebar')
+    const outline = document.querySelector('.VPDocAside, .aside, .outline')
+    const docShell = document.querySelector('.VPDoc')
+    const root = document.documentElement
+
+    hasDesktopSidebar.value = Boolean(docShell && sidebar)
+    hasDesktopOutline.value = Boolean(docShell && outline)
+
+    if (hasDesktopSidebar.value) {
+      const sidebarRect = sidebar.getBoundingClientRect()
+      root.style.setProperty('--hc-doc-sidebar-edge', `${Math.round(sidebarRect.right)}px`)
+    } else {
+      root.style.setProperty('--hc-doc-sidebar-edge', '0px')
+    }
+
+    if (hasDesktopOutline.value) {
+      const outlineRect = outline.getBoundingClientRect()
+      root.style.setProperty('--hc-doc-outline-offset', `${Math.round(window.innerWidth - outlineRect.left)}px`)
+    } else {
+      root.style.setProperty('--hc-doc-outline-offset', '0px')
+    }
+
+    applyDocRailClasses()
+  })
+}
+
+const toggleSidebarCollapse = () => {
+  isSidebarCollapsed.value = !isSidebarCollapsed.value
+}
+
+const toggleOutlineCollapse = () => {
+  isOutlineCollapsed.value = !isOutlineCollapsed.value
+}
+
 const startHintTimer = () => {
   hintTimer = setTimeout(() => {
     showHint.value = true
@@ -1178,6 +1275,11 @@ const isHome = computed(() => {
   return path === '/' || path === '/index.html' || 
          path === withBase('/') || path === withBase('/index.html')
 })
+
+const showDocRailControls = computed(
+  () => !isHome.value && (hasDesktopSidebar.value || hasDesktopOutline.value)
+)
+
 const isLobsterUniversity = computed(() => {
   return false
 })
@@ -1461,13 +1563,18 @@ const updateEyeTracking = (event) => {
 
 onMounted(() => {
   window.addEventListener('mousemove', updateEyeTracking)
+  window.addEventListener('resize', syncDocRailAvailability)
   // 重置提示状态并启动计时器
   showHint.value = false
   startHintTimer()
+  isSidebarCollapsed.value = readStoredRailPreference(DOC_SIDEBAR_STORAGE_KEY)
+  isOutlineCollapsed.value = readStoredRailPreference(DOC_OUTLINE_STORAGE_KEY)
+  syncDocRailAvailability()
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousemove', updateEyeTracking)
+  window.removeEventListener('resize', syncDocRailAvailability)
   clearHintTimer()
 })
 
@@ -1489,6 +1596,21 @@ watch(() => route.path, (newPath) => {
   markdownLoadedKey.value = ''
   markdownCopied.value = false
   markdownViewMode.value = 'split'
+  syncDocRailAvailability()
+})
+
+watch(isSidebarCollapsed, (value) => {
+  writeStoredRailPreference(DOC_SIDEBAR_STORAGE_KEY, value)
+  applyDocRailClasses()
+})
+
+watch(isOutlineCollapsed, (value) => {
+  writeStoredRailPreference(DOC_OUTLINE_STORAGE_KEY, value)
+  applyDocRailClasses()
+})
+
+watch([hasDesktopSidebar, hasDesktopOutline], () => {
+  applyDocRailClasses()
 })
 
 watch(markdownSource, (value) => {
