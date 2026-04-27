@@ -32,6 +32,8 @@ AI Agent智能体这一部分，聚焦的是“龙虾真正变成智能体”之
 - [第六章 MCP vs CLI](./chapter6/index.md)
 - [第七章 Skills 系统设计](./chapter7/index.md)
 - [第八章 Gateway 架构设计](./chapter8/index.md)
+- [第九章 Agent 的自我欺骗](./chapter9/index.md)
+- [第十章 记忆污染](./chapter10/index.md)
 
 建议阅读顺序：
 
@@ -43,4 +45,6 @@ AI Agent智能体这一部分，聚焦的是“龙虾真正变成智能体”之
 6. 如果你想进一步理解为什么现代 Agent 框架会同时拥抱 CLI 与 MCP，以及它们在产品里的真实分工，继续阅读[第六章 MCP vs CLI](./chapter6/index.md)
 7. 如果你想理解 Agent 的专业经验到底该沉淀为社区 Skill、个人 Skill，还是执行中自动生长出来，继续阅读[第七章 Skills 系统设计](./chapter7/index.md)
 8. 如果你想进一步理解 Agent 和外部世界之间的入口层，为什么会反过来决定整个系统的工作模式，继续阅读[第八章 Gateway 架构设计](./chapter8/index.md)
-9. 如果你想继续把这些系统能力落到主流框架实现，可以接着阅读[LangChain深度技术指南](/cn/langchain/)
+9. 如果你想继续理解 Agent 在真实任务里为什么会“看起来成功却实际失败”，继续阅读[第九章 Agent 的自我欺骗](./chapter9/index.md)
+10. 如果你想继续理解记忆系统为什么不仅会“忘”，还会被污染、被注入、被错误事实长期扭曲，继续阅读[第十章 记忆污染](./chapter10/index.md)
+11. 如果你想继续把这些系统能力落到主流框架实现，可以接着阅读[LangChain深度技术指南](/cn/langchain/)

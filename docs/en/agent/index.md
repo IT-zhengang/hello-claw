@@ -21,10 +21,14 @@ Available now:
 - [Chapter 6: MCP vs CLI](./chapter6/index.md)
 - [Chapter 7: Skills System Design](./chapter7/index.md)
 - [Chapter 8: Gateway Architecture](./chapter8/index.md)
+- [Chapter 9: Agent Self-Deception](./chapter9/index.md)
+- [Chapter 10: Memory Poisoning](./chapter10/index.md)
 
 Next step:
 
 - If you want to understand why modern Agent systems increasingly combine direct CLI execution with MCP-based integration, continue with [Chapter 6: MCP vs CLI](./chapter6/index.md)
 - If you want to unpack where Agent expertise should come from across community Skills, personal Skills, and self-evolving execution, continue with [Chapter 7: Skills System Design](./chapter7/index.md)
 - If you want to understand how the entry layer between an Agent and the outside world reshapes the whole system design, continue with [Chapter 8: Gateway Architecture](./chapter8/index.md)
+- If you want to understand why Agents can confidently report success even when the original task is not truly complete, continue with [Chapter 9: Agent Self-Deception](./chapter9/index.md)
+- If you want to understand why memory systems fail not only by forgetting but also by storing the wrong facts and hostile instructions, continue with [Chapter 10: Memory Poisoning](./chapter10/index.md)
 - If you want to see how these ideas map onto a mainstream framework implementation, continue with the [LangChain Deep Guide](/en/langchain/)

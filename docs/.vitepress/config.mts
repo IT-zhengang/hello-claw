@@ -254,6 +254,8 @@ export default defineConfig({
                 { text: '第六章 MCP vs CLI', link: '/cn/agent/chapter6/' },
                 { text: '第七章 Skills 系统设计', link: '/cn/agent/chapter7/' },
                 { text: '第八章 Gateway 架构设计', link: '/cn/agent/chapter8/' },
+                { text: '第九章 Agent 的自我欺骗', link: '/cn/agent/chapter9/' },
+                { text: '第十章 记忆污染', link: '/cn/agent/chapter10/' },
               ]
             }
           ],
@@ -290,6 +292,7 @@ export default defineConfig({
                 { text: '图解导读：从模型到 Agent、MCP 与 Memory', link: '/cn/llm/visual-guide/' },
                 { text: '第一章 Function Call / MCP / ReAct / Skills 技术栈', link: '/cn/llm/chapter1/' },
                 { text: '第二章 Hermes-Agent 自学习 Skill 机制', link: '/cn/llm/chapter2/' },
+                { text: '第三章 Harness Engineering：从 Prompt / Context 到运行控制系统', link: '/cn/llm/chapter3/' },
               ]
             }
           ],
@@ -548,6 +551,8 @@ export default defineConfig({
                 { text: 'Chapter 6: MCP vs CLI', link: '/en/agent/chapter6/' },
                 { text: 'Chapter 7: Skills System Design', link: '/en/agent/chapter7/' },
                 { text: 'Chapter 8: Gateway Architecture', link: '/en/agent/chapter8/' },
+                { text: 'Chapter 9: Agent Self-Deception', link: '/en/agent/chapter9/' },
+                { text: 'Chapter 10: Memory Poisoning', link: '/en/agent/chapter10/' },
               ]
             }
           ],
@@ -575,6 +580,7 @@ export default defineConfig({
                 { text: 'Visual Guide: Models, Agents, MCP, and Memory', link: '/en/llm/visual-guide/' },
                 { text: 'Chapter 1: Function Calling, MCP, ReAct, and Skills', link: '/en/llm/chapter1/' },
                 { text: 'Chapter 2: Hermes-Agent Self-Learning Skill Mechanism', link: '/en/llm/chapter2/' },
+                { text: 'Chapter 3: Harness Engineering from Prompt and Context to Runtime Control', link: '/en/llm/chapter3/' },
               ]
             }
           ],
